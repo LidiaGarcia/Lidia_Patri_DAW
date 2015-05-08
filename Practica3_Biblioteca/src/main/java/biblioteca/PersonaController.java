@@ -21,29 +21,34 @@ public class PersonaController {
 	private PersonasRepo personas_repo;
 	
 	@RequestMapping(method=RequestMethod.GET)
-	public List<Persona> getPersonas(){
-		return personas_repo.findAll();
+	public List<Persona> getPersonas(HttpSession sesion){
+		if(((sesion!=null)&&(sesion.getAttribute("login") != null))&&((Boolean)sesion.getAttribute("login"))){
+			return personas_repo.findAll();
+		}else{
+			return null;
+		}	
 	}
 	
 	@RequestMapping(method=RequestMethod.POST)
-	public ResponseEntity<Persona> addPersona(@RequestBody Persona persona){
-		personas_repo.save(persona);
-		return new ResponseEntity<>(persona, HttpStatus.CREATED);
+	public ResponseEntity<Persona> addPersona(@RequestBody Persona persona, HttpSession sesion){
+		if(((sesion!=null)&&(sesion.getAttribute("admin") != null))&&((Boolean)sesion.getAttribute("admin"))){
+			personas_repo.save(persona);
+			return new ResponseEntity<>(persona, HttpStatus.CREATED);
+		}else{
+			return null;
+		}	
 	}
 	@RequestMapping(value = "/darAlta/{id}", method=RequestMethod.PUT)
 	public void darAlta(@PathVariable long id,@RequestBody boolean b){
-		personas_repo.setAlta(id,b);
+			personas_repo.setAlta(id,b);
 	}
 	
-	
-	@RequestMapping(value = "/darAltaAdmin/{id}", method=RequestMethod.PUT)
-	public void darAltaAdmin(@PathVariable long id, @RequestBody boolean b){
-		personas_repo.setAltaAdmin(id,b);
-	}
 	
 	@RequestMapping(value = "/misdatos/cambiarpass/{id}", method=RequestMethod.PUT)
 	public void cambioPass(@PathVariable long id, @RequestBody String pass, HttpSession sesion){
-		personas_repo.setPass(id,pass);
+		if(((sesion!=null)&&(sesion.getAttribute("login") != null))&&((Boolean)sesion.getAttribute("login"))){
+			personas_repo.setPass(id,pass);
+		}
 	}
 	/*
 	//hace falta?

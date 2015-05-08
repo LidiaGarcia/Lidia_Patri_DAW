@@ -2,6 +2,8 @@ package biblioteca;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,14 +25,20 @@ public class SalaController {
 		return salas_repo.findAll();
 	}
 	@RequestMapping(method=RequestMethod.POST)
-	public ResponseEntity<Sala> addCurso(@RequestBody Sala sala){
-		salas_repo.save(sala);
-		return new ResponseEntity<>(sala, HttpStatus.CREATED);
+	public ResponseEntity<Sala> addCurso(@RequestBody Sala sala, HttpSession sesion){
+		if(((sesion!=null)&&(sesion.getAttribute("admin") != null))&&((Boolean)sesion.getAttribute("admin"))){
+			salas_repo.save(sala);
+			return new ResponseEntity<>(sala, HttpStatus.CREATED);
+		}else{
+			return null;
+		}
 	}
 	
 	@RequestMapping(value = "/{id}", method= RequestMethod.DELETE)
-	public void deleteSala(@PathVariable long id){
-		salas_repo.delete(id);
+	public void deleteSala(@PathVariable long id,HttpSession sesion){
+		if(((sesion!=null)&&(sesion.getAttribute("admin") != null))&&((Boolean)sesion.getAttribute("admin"))){
+			salas_repo.delete(id);
+		}
 	}
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
@@ -39,12 +47,13 @@ public class SalaController {
 	}
 	
 	@RequestMapping(value = "/{id}", method=RequestMethod.PUT)
-	public void modificar(@PathVariable long id, @RequestBody Sala sala){
-		salas_repo.setNombre(id,sala.getNombre());
-		salas_repo.setCompartida(id,sala.getCompartida());
-		salas_repo.setTamanio(id,sala.getTamanio());
-		salas_repo.setEstado(id,sala.getEstado());
-		
+	public void modificar(@PathVariable long id, @RequestBody Sala sala, HttpSession sesion){
+		if(((sesion!=null)&&(sesion.getAttribute("admin") != null))&&((Boolean)sesion.getAttribute("admin"))){
+			salas_repo.setNombre(id,sala.getNombre());
+			salas_repo.setCompartida(id,sala.getCompartida());
+			salas_repo.setTamanio(id,sala.getTamanio());
+			salas_repo.setEstado(id,sala.getEstado());
+		}
 	}
 	
 }
