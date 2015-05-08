@@ -2,6 +2,8 @@ package biblioteca;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -49,11 +51,10 @@ public class CursoController {
 		cursos_repo.setDuracion(id,curso.getDuracion());
 		cursos_repo.setAforo(id,curso.getAforo());	
 	}
-	@RequestMapping(value = "/{id}/inscrito/{idPersona}", method=RequestMethod.POST)
-	public void addPersonaCurso(@PathVariable long id, @PathVariable long idPersona){
-		Persona persona = personas_repo.findOne(idPersona);
+	@RequestMapping(value = "/{id}/inscrito", method=RequestMethod.POST)
+	public void addPersonaCurso(@PathVariable long id, HttpSession sesion){
 		Curso curso = cursos_repo.findById(id);
-		curso.addInscrito(persona);
+		curso.addInscrito(((Persona)sesion.getAttribute("persona")));
 		cursos_repo.save(curso);
 	}
 	
