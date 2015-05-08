@@ -91,9 +91,9 @@ public class CursoController {
 					}
 				}
 			}
+			return cursos;
 		}
-		
-		return cursos;
+		return null;
 	}
 	
 }
