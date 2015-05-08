@@ -5,9 +5,9 @@ LoginController.$inject = ["globalService","$location","$routeParams"];
 function LoginController(globalService, $location, $routeParams) {
 
 	var vm = this;
-	vm.personas = globalService.getPersonas();
 	
 	//View model properties
+	vm.personas = globalService.getPersonas();
 	vm.persona=globalService.getPersona();
 	vm.mail="";
 	vm.maillog="";
