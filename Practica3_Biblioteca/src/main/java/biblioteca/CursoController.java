@@ -68,11 +68,14 @@ public class CursoController {
 		if((sesion!=null)&&((sesion.getAttribute("login") != null)&&((Boolean)sesion.getAttribute("login")))){
 			Curso curso = cursos_repo.findById(id);
 			Persona pers = ((Persona)sesion.getAttribute("persona"));
+			add=true;
 			for (Persona p : curso.getListaInscritos()){
-				if(p.getID()!=pers.getID()){
-					curso.addInscrito(pers);
-					add=true;
+				if(p.getID()==pers.getID()){
+					add=false;
 				}
+			}
+			if (add){
+				curso.addInscrito(pers);
 			}
 		
 			cursos_repo.save(curso);
