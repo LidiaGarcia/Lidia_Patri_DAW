@@ -49,8 +49,7 @@
 </div>
 
 <div id="adminCursos" ng-controller="adminCursosController as vm">
-
-	<div ng-if="vm.miscursos===[]">
+	<span ng-if="vm.miscursos!=[]">
 		<div ng-repeat="curso in vm.miscursos">
 			<p>Curso: {{curso.nombre}}</p>
 			<p>Descripción: {{curso.descripcion}}</p>
@@ -61,8 +60,8 @@
 			<button type="button" ng-click="vm.removeInscripcion(curso)">Eliminar inscripción al curso</button>
 			
 		</div>
-	</div>
-	<div ng-if="vm.miscursos!==[]">
+	</span>
+	<span ng-show="vm.miscursos==[null]">
 	<p>¡Aún no te has inscrito a ningun curso!</p>
-	</div>
+	</span>
 </div>

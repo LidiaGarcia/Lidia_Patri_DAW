@@ -55,11 +55,11 @@
 			<b>Compartida:</b><br>
 			<select ng-model = "vm.compartida" required="true">
 				<option value="si">Sí</option>
-				<option value="no" selected>No</option>
+				<option value="no" ng-selected="true">No</option>
 			</select><br>
 			<b>Tamaño:</b><br>
 			<select ng-model = "vm.tamanio" required="true">
-				<option value="mediana" selected>Mediana</option>
+				<option value="mediana" ng-selected="true">Mediana</option>
 				<option value="pequeña">Pequeña</option>
 				<option value="grande">Grande</option>
 			</select><br>
