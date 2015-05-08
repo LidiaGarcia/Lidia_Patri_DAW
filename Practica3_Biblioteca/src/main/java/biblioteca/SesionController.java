@@ -11,9 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import biblioteca.BibliotecaController.DayWeek;
-
-
 @RestController
 @RequestMapping("/sesion")
 public class SesionController {
@@ -25,10 +22,7 @@ public class SesionController {
 	}
 	
 	@Autowired
-	private PersonasRepo personas_repo;
-	
-	//private HttpSession sesion;
-	
+	private PersonasRepo personas_repo;	
 	
 	@RequestMapping(method = RequestMethod.GET)
 	public List<Boolean> islogPerson(HttpSession sesion){
