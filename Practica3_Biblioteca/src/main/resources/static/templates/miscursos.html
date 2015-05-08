@@ -50,17 +50,15 @@
 </div>
 
 <div id="adminCursos" ng-controller="adminCursosController as vm">
-	<a href="#/newCurso">Nuevo Curso</a>
-	<div ng-repeat="curso in vm.cursos">
-		
+<button type="button" ng-click="vm.reload()">Reload</button>
+	<div ng-repeat="curso in vm.miscursos">
 		<p>Curso: {{curso.nombre}}</p>
 		<p>Descripción: {{curso.descripcion}}</p>
 		<p>Fecha: {{curso.fecha[2]}}-{{curso.fecha[1]}}-{{curso.fecha[0]}}</p>
 		<p>Hora: {{curso.hora[0]}}:{{curso.hora[1]}}</p>
 		<p>Duración: {{curso.duracion}}</p>
 		<p>Aforo: {{curso.aforo}}</p>
-		<button type="button" ng-click="vm.modificar(curso)">Modificar Curso</button>
-		<button type="button" ng-click="vm.deleteCurso(curso)">Eliminar Curso</button>
+		<button type="button" ng-click="vm.removeInscripcion(curso)">Eliminar inscripción al curso</button>
 		
 	</div>
 </div>

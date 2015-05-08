@@ -6,12 +6,17 @@ function adminCursosController(globalService, $location, $routeParams) {
 	
 	var vm = this;
 	vm.cursos= globalService.getCursos();
+	vm.miscursos = globalService.getMisCursos();
+	vm.miscursos = globalService.miscursos;
 	vm.curso={};
 	vm.cursomodificar=globalService.cursomodificar;
 	vm.curso.fecha=[];
 	vm.curso.hora=[];
 	
-	
+	vm.reload = function(){
+		vm.miscursos = globalService.getMisCursos();
+		console.log(vm.miscursos);
+	}
 	vm.modificar = function(curso){
 		vm.cursomodificar=globalService.setCursoModificar(curso);
 		console.log("id",vm.curso.id);
@@ -39,4 +44,9 @@ function adminCursosController(globalService, $location, $routeParams) {
 		globalService.inscripcion(curso);
 		$location.path('/inscripcioncurso');
 	}
+	vm.removeInscripcion = function(curso){
+		globalService.removeInscripcion(curso);
+		$location.path('/inscripcioncurso');
+	}
+	
 }

@@ -21,4 +21,6 @@ function RouteConfig($routeProvider) {
 	$routeProvider.when('/modifyPortatil', { templateUrl : "templates/modifyPortatil.html"});
 	
 	$routeProvider.when('/inscripcioncurso', { templateUrl : "templates/inscripcioncurso.html"});
+	$routeProvider.when('/miscursos', { templateUrl : "templates/miscursos.html"});
+	
 }
