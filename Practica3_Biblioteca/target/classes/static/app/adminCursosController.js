@@ -35,4 +35,8 @@ function adminCursosController(globalService, $location, $routeParams) {
 		vm.curso={};
 		$location.path('/admincursos');
 	}
+	vm.inscripcion = function(curso){
+		globalService.inscripcion(curso);
+		$location.path('/inscripcioncurso');
+	}
 }
