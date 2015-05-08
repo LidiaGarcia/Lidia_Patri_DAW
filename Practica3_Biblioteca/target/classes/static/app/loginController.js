@@ -18,7 +18,7 @@ function LoginController(globalService, $location, $routeParams) {
 	//Controller actions
 	vm.login = function() {
 		globalService.login(vm.maillog,vm.passlog);
-		$location.path("/");
+		setTimeout(function(){$location.path("/");},200);
 	};
 	vm.logout = function() {
 		globalService.logout();

@@ -18,8 +18,10 @@ function GlobalService($resource,$timeout) {
 	vm.portatiles=[];
 	vm.portatil={};
 	vm.portatilmodificar={};
+	vm.date={};
 
-	vm.fecha=('2015-04-25');
+
+	vm.fecha=[2015,4,23];
 	
 	//resources
 	var BibliotecaHoraResource = $resource('/hour');
@@ -104,6 +106,8 @@ function GlobalService($resource,$timeout) {
 		CursosResource.query(function(newcursos){
 			vm.cursos.length = 0;
 			vm.cursos.push.apply(vm.cursos, newcursos);
+			vm.salas.length=0;
+			vm.salas.push.apply(vm.salas, newcursos);
 		});
 	}
 
@@ -149,6 +153,7 @@ function GlobalService($resource,$timeout) {
 	}
 	//salas
 	vm.getSalas = function(){
+		vm.salas=SalasResource.query();
 		return SalasResource.query();
 		
 	}
@@ -213,19 +218,6 @@ function GlobalService($resource,$timeout) {
 		PortatilesModifyResource.update({id:$id},portatil,function(){alert("portatil modificado")});
 	}
 	
-	//reservas
-	vm.getReservaSala = function(sala,date){
-		if(islog()){
-			return ReservasSalaResource.query({id:1},{fecha:vm.fecha});				
-		}else{
-			return null;
-		}
-		//$id=sala.id;
-		//$fecha=vm.fecha
-		//$fecha=date[0]+'-'+ date[1]+'-'+daget te[2];
-		//console.log($fecha);
-		//return null;
-	}
 	
 
 	//fechas y horas
@@ -234,6 +226,7 @@ function GlobalService($resource,$timeout) {
 	}
 	
 	vm.getDate = function(){
+		vm.date=BibliotecaDateResource.query();
 		return BibliotecaDateResource.query();
 	}
 	
@@ -282,4 +275,31 @@ function GlobalService($resource,$timeout) {
 			PassResource.update({id:$id},pass);
 
 	}
+	//reservas
+	vm.getReservaSala = function(sala,date){
+		$id=sala.id;
+		
+		$fecha=date[0]+'-'+ date[1]+'-'+date[2];
+		console.log($fecha,$id);
+		//return null;
+		return ReservasSalaResource.query({id:$id},{fecha:$fecha});				
+	}
+	
+	vm.allReser = function(){
+		var reser =[];
+		for(sala in vm.salas){
+			console.log(vm.salas);
+			reser.push(vm.getReservaSala(sala,vm.fecha));
+		}	
+		return reser;
+	}
+	//otros
+	vm.reload = function(){
+		setTimeout(function(){alert('Hello')},3000);
+		vm.personas=vm.getPersonas();
+		vm.salas=vm.getSalas();
+		vm.portatiles=vm.getPortatiles();
+		vm.date=vm.getDate();
+	}
+	
 }

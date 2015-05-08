@@ -52,25 +52,20 @@
 
 <button type="button" ng-click="vm.reload()">Reload</button>
 
-<p>{{vm.check}}</p>
-<p>{{vm.reservas}}</p>
-<p>{{vm.isReser}}</p>
- <!--	<div ng-repeat="sala in vm.salas">
-	<p>Sala {{sala.id}}</p>
+
+<div ng-repeat="sala in vm.salas">	
+	<button type="button" ng-click="vm.isReser($index)">Sala {{sala.id}}</p>
+	<div ng-show="vm.verSala">	
 		<div ng-repeat="hour in vm.hours">
-			<p>{{hour}}</p>
-				
-			  <div ng-if="vm.isReser(sala,hour)">
+			<p>{{hour}}</p>				
+			  <div ng-if="vm.check[$index]">
 				<div id="salaReser"><p>{{vm.getNameReser(sala,hour)}}</p></div>
 			</div>
-			<div ng-if="!vm.isReser(sala,hour)">
-				<div id="salaNotReser"></div>
+			<div ng-if="!vm.check[$index]">
+				<div id="salaNotReser">Nadie</div>
 			</div>		
-		
-	
-		</div>-->
-	
-	
+		</div>
+	</div>	
 </div>
 
 

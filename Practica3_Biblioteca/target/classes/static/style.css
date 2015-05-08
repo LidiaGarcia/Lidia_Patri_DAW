@@ -13,3 +13,9 @@
 	float: right;
 	padding: 3em;
 }
+#salaNotReser{
+	background: red;
+}
+#salaReser{
+	background: green;
+}

@@ -110,8 +110,8 @@ public class ReservasController {
 	//confirmar una reserva portatil donde se le pasa el id de la reserva
 	@RequestMapping(value = "/portatil/{id}", method = RequestMethod.PUT)
 	public void confirmarPortatil(@PathVariable long id, HttpSession sesion){
-		if(((sesion!=null)&&(sesion.getAttribute("admin") != null))&&((Boolean)sesion.getAttribute("admin"))){
+		//if(((sesion!=null)&&(sesion.getAttribute("admin") != null))&&((Boolean)sesion.getAttribute("admin"))){
 			reserva_portatil_repo.setConfirm(id);
-		}
+		//}
 	}
 }
