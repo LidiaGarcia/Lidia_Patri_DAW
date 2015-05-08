@@ -12,8 +12,6 @@ function MicuentaController(globalService, $location, $routeParams) {
 	//View model properties
 	vm.islog=globalService.islog();
 	vm.persona=globalService.getPersona();
-	vm.isadmin=globalService.isadmin();
-	
 	
 	
 	//Controller actions

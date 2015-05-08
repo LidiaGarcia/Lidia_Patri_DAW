@@ -223,6 +223,10 @@ function GlobalService($resource,$timeout) {
 		return SesionResource.query();
 	}
 	
+	vm.getPersonas = function(){
+		return PersonasResource.query();			
+}
+	
 	vm.getPersona = function(){
 		return SesionPersResource.get();				
 	}
