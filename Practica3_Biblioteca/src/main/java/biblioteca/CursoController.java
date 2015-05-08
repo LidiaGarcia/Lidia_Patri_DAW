@@ -1,5 +1,6 @@
 package biblioteca;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -26,6 +27,7 @@ public class CursoController {
 	public List<Curso> getCursos(){
 		return cursos_repo.findAll();
 	}
+	
 	@RequestMapping(method=RequestMethod.POST)
 	public ResponseEntity<Curso> addCurso(@RequestBody Curso curso, HttpSession sesion){
 		if(((sesion!=null)&&(sesion.getAttribute("admin") != null))&&((Boolean)sesion.getAttribute("admin"))){	
@@ -67,6 +69,21 @@ public class CursoController {
 			curso.addInscrito(((Persona)sesion.getAttribute("persona")));
 			cursos_repo.save(curso);
 		}
+	}
+	
+	@RequestMapping(value = "/miscursos",method=RequestMethod.GET)
+	public List<Curso> getmyCursos(HttpSession sesion){
+		List<Curso> cursos=new ArrayList<Curso>();
+		if(((sesion!=null)&&(sesion.getAttribute("login") != null))&&((Boolean)sesion.getAttribute("login"))){
+			for(Curso curso: cursos_repo.findAll()){
+				if(curso.getListaInscritos().contains((Persona)sesion.getAttribute("persona"))){
+					cursos.add(curso);
+				}
+				
+			}
+		}
+		
+		return cursos;
 	}
 	
 }

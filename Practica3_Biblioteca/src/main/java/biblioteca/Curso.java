@@ -109,4 +109,10 @@ public class Curso {
 	public boolean remove(Persona persona){
 		return this.listaInscritos.remove(persona);
 	}
+
+	@Override
+	public boolean equals(Object obj) {
+		return (((Curso)obj).getID()==this.getID());
+	}
+	
 }
