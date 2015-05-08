@@ -28,16 +28,14 @@ public class ReservaPortatil {
 		@JsonDeserialize(using = LocalDateDeserializer.class)
 		private LocalDate fecha;
 		private LocalTime horaEntrada;
-		private LocalTime horaSalida;
 		private boolean confirmado;
 		
 		public ReservaPortatil(){}
-		public ReservaPortatil(Portatil portatil, Persona persona, LocalDate fecha, LocalTime horaEntrada, LocalTime horaSalida, boolean confirmado) {
+		public ReservaPortatil(Portatil portatil, Persona persona, LocalDate fecha, LocalTime horaEntrada, boolean confirmado) {
 			this.portatil = portatil;
 			this.persona = persona;
 			this.fecha = fecha;
 			this.horaEntrada = horaEntrada;
-			this.horaSalida = horaSalida;
 			this.confirmado = confirmado;
 		}
 		
@@ -68,12 +66,6 @@ public class ReservaPortatil {
 		}
 		public void setHoraEntrada(int hora, int min) {
 			this.horaEntrada = LocalTime.of(hora, min);
-		}
-		public LocalTime getHoraSalida() {
-			return this.horaSalida;
-		}
-		public void setHoraSalida(int hora, int min) {
-			this.horaSalida = LocalTime.of(hora, min);
 		}
 		public LocalDate getFecha() {
 			return fecha;

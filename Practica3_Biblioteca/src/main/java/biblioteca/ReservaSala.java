@@ -28,16 +28,14 @@ public class ReservaSala {
 	@JsonDeserialize(using = LocalDateDeserializer.class)
 	private LocalDate fecha;
 	private LocalTime horaEntrada;
-	private LocalTime horaSalida;
 	private boolean confirmada;
 	
 	public ReservaSala(){}
-	public ReservaSala(Sala sala, Persona persona, LocalDate fecha, LocalTime horaEntrada, LocalTime horaSalida, boolean confirmada) {
+	public ReservaSala(Sala sala, Persona persona, LocalDate fecha, LocalTime horaEntrada, boolean confirmada) {
 		this.sala = sala;
 		this.persona = persona;
 		this.fecha = fecha;
 		this.horaEntrada = horaEntrada;
-		this.horaSalida = horaSalida;
 		this.confirmada = confirmada;
 	}
 	
@@ -61,12 +59,6 @@ public class ReservaSala {
 	}
 	public void setHoraEntrada(int hora, int min) {
 		this.horaEntrada = LocalTime.of(hora, min);
-	}
-	public LocalTime getHoraSalida() {
-		return this.horaSalida;
-	}
-	public void setHoraSalida(int hora, int min) {
-		this.horaSalida = LocalTime.of(hora, min);
 	}
 	public boolean isConfirmada() {
 		return this.confirmada;
