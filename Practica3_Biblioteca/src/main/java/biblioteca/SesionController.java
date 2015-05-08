@@ -31,7 +31,7 @@ public class SesionController {
 	
 	
 	@RequestMapping(method = RequestMethod.GET)
-	public List<Boolean> givemPerson(HttpSession sesion){
+	public List<Boolean> islogPerson(HttpSession sesion){
 		List<Boolean> lista =new ArrayList<Boolean>();
 		if(sesion.getAttribute("login")!=null){
 			lista.add((Boolean)sesion.getAttribute("login"));
@@ -44,7 +44,7 @@ public class SesionController {
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
-	public void giveyouPerson(@RequestBody DatosSesion datos, HttpSession sesion){
+	public void loginPerson(@RequestBody DatosSesion datos, HttpSession sesion){
 		for (Persona pers: personas_repo.findAll()) {
 			if (pers.getCorreo().equalsIgnoreCase(datos.mail) && pers.getPass().equalsIgnoreCase(datos.pass)) {
 					if(pers.isAlta()){
@@ -61,14 +61,14 @@ public class SesionController {
 	}
 	
 	@RequestMapping(method = RequestMethod.DELETE)
-	public void giveoffPerson(HttpSession sesion){
+	public void logoutPerson(HttpSession sesion){
 		sesion.setAttribute("login",false);
 		sesion.setAttribute("admin",false);
 		sesion.setAttribute("persona",null);	
 	}
 	
 	@RequestMapping(value="/persona",method = RequestMethod.GET)
-	public Persona givemeOnePerson(HttpSession sesion){
+	public Persona getPersonLog(HttpSession sesion){
 		if((sesion!=null)&&(sesion.getAttribute("persona") != null)){
 			Persona pers = ((Persona)sesion.getAttribute("persona"));
 			pers.setPass("");
