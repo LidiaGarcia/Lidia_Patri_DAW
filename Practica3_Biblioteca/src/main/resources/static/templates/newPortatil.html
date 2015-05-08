@@ -1,0 +1,62 @@
+<div id="session" ng-controller="LoginController as vm">
+	<div>	
+		<p>{{vm.islog[0]}}</p>
+		<div ng-hide="vm.islog[0]"> 
+			<a href="#/loginregistro">Registrarse</a>
+			<a href="#/loginregistro">Iniciar sesión</a>
+		</div>
+		<div ng-hide="!vm.islog[0]">
+			<a href="#/micuenta">{{vm.persona.nombre}}</a>
+			<form ng-submit="vm.logout()">
+		 	<input type='submit' name='Cerrarsesion' value="Cerrar sesión" />
+			</form>
+		</div>
+	</div>
+</div>
+
+<!--Menú izquierdo-->
+<div id="leftMenu" layout="column" style="height:500px;"  ng-controller="MicuentaController as vm">
+  <div  ng-hide="!vm.islog[0]">
+  <section layout="row" flex>
+    <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
+      <md-toolbar class="md-theme-indigo">
+        <h1 class="md-toolbar-tools">{{vm.persona.nombre}}</h1>
+      	<h1 class="md-toolbar-tools">{{vm.hour[0]}}</h1>
+      	
+      	<button type="button" ng-click="vm.print()">Print datos</button>
+
+      	<h1 class="md-toolbar-tools">{{vm.dayweek.dayWeek}}</h1>
+      </md-toolbar>
+      <md-content ng-hide="vm.islog[1]"layout-padding >
+       <a>Reservar sala</a></br>
+       <a>Reservar portatil</a></br>
+       <a href= "#/inscripcioncurso">Inscribirse a curso</a></br>
+       <a>Mis salas reservadas</a> </br>
+       <a>Mis portátiles reservados</a> </br>
+       <a>Cursos inscritos</a> </br>
+       <a href="#/personalData">Datos personales</a>
+      </md-content>
+      <md-content ng-hide="!vm.islog[1]" layout-padding >
+       <a>Control Salas</a> </br>
+       <a>Control Portátiles</a> </br>
+       <a href="#/adminsalas">Administrar Salas</a> </br>
+       <a href="#/adminportatiles">Administrar Portátiles</a> </br>
+       <a href="#/admincursos">Administrar Cursos</a> </br>
+       <a href="#/personalData">Datos personales</a> 
+      </md-content>
+    </md-sidenav>
+  </section>
+  </div>
+</div>
+
+<div id="adminPortatiles" ng-controller="adminPortatilesController as vm">
+		
+		<form ng-submit="vm.newPortatil(vm.portatil)">
+			<b>Estado:</b><br><textarea type='text' rows='4' cols='30' required="true" ng-model = "vm.portatil.estado"></textarea><br>
+			<b>Características:</b><br><textarea type='text' rows='4' cols='30' required="true" ng-model = "vm.portatil.caracteristicas"></textarea><br>
+			
+		 	<br><input type='submit' name='newPortatil' value="Guardar Nuevo Portatil" />
+		</form>
+		
+	</div>
+</div>

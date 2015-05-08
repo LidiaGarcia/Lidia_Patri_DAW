@@ -1,0 +1,5 @@
+id,compartida,estado,nombre,tamanio
+1,0,bueno,"Sala 1",grande
+2,0,bueno,"Sala 2",mediana
+3,1,"no funcionan los enchufes de la mesa a","Sala 3",grande
+4,0,bueno,"Sala 4",mediana

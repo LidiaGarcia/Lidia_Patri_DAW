@@ -1,0 +1,66 @@
+<div id="session" ng-controller="LoginController as vm">
+	<div>	
+		<p>{{vm.islog[0]}}</p>
+		<div ng-hide="vm.islog[0]"> 
+			<a href="#/loginregistro">Registrarse</a>
+			<a href="#/loginregistro">Iniciar sesión</a>
+		</div>
+		<div ng-hide="!vm.islog[0]">
+			<a href="#/micuenta">{{vm.persona.nombre}}</a>
+			<form ng-submit="vm.logout()">
+		 	<input type='submit' name='Cerrarsesion' value="Cerrar sesión" />
+			</form>
+		</div>
+	</div>
+</div>
+
+<!--Menú izquierdo-->
+<div id="leftMenu" layout="column" style="height:500px;"  ng-controller="MicuentaController as vm">
+  <div  ng-hide="!vm.islog[0]">
+  <section layout="row" flex>
+    <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
+      <md-toolbar class="md-theme-indigo">
+        <h1 class="md-toolbar-tools">{{vm.persona.nombre}}</h1>
+      	<h1 class="md-toolbar-tools">{{vm.hour[0]}}</h1>
+      	
+      	<button type="button" ng-click="vm.print()">Print datos</button>
+
+      	<h1 class="md-toolbar-tools">{{vm.dayweek.dayWeek}}</h1>
+      </md-toolbar>
+      <md-content ng-hide="vm.islog[1]"layout-padding >
+       <a>Reservar sala</a></br>
+       <a>Reservar portatil</a></br>
+       <a href= "#/inscripcioncurso">Inscribirse a curso</a></br>
+       <a>Mis salas reservadas</a> </br>
+       <a>Mis portátiles reservados</a> </br>
+       <a>Cursos inscritos</a> </br>
+       <a href="#/personalData">Datos personales</a>
+      </md-content>
+      <md-content ng-hide="!vm.islog[1]" layout-padding >
+       <a>Control Salas</a> </br>
+       <a>Control Portátiles</a> </br>
+       <a href="#/adminsalas">Administrar Salas</a> </br>
+       <a href="#/adminportatiles">Administrar Portátiles</a> </br>
+       <a href="#/admincursos">Administrar Cursos</a> </br>
+       <a href="#/personalData">Datos personales</a> 
+      </md-content>
+    </md-sidenav>
+  </section>
+  </div>
+</div>
+
+<div id="adminCursos" ng-controller="adminCursosController as vm">
+	<a href="#/newCurso">Nuevo Curso</a>
+	<div ng-repeat="curso in vm.cursos">
+		
+		<p>Curso: {{curso.nombre}}</p>
+		<p>Descripción: {{curso.descripcion}}</p>
+		<p>Fecha: {{curso.fecha[2]}}-{{curso.fecha[1]}}-{{curso.fecha[0]}}</p>
+		<p>Hora: {{curso.hora[0]}}:{{curso.hora[1]}}</p>
+		<p>Duración: {{curso.duracion}}</p>
+		<p>Aforo: {{curso.aforo}}</p>
+		<button type="button" ng-click="vm.modificar(curso)">Modificar Curso</button>
+		<button type="button" ng-click="vm.deleteCurso(curso)">Eliminar Curso</button>
+		
+	</div>
+</div>

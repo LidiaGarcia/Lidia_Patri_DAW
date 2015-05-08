@@ -1,0 +1,15 @@
+#session{
+	background-color: #EEEEEE;
+	text-align: right;
+	padding: 1.5em;
+	display: block;	
+}
+#leftMenu {
+	position: relative;
+	display: inline-block;
+}
+#adminIndex,#adminCursos,#inscrcursos,#adminSalas,#adminPortatiles{
+	display: inline;
+	float: right;
+	padding: 3em;
+}

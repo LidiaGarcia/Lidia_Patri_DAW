@@ -1,0 +1,71 @@
+<div id="session" ng-controller="LoginController as vm">
+	<div>	
+		<p>{{vm.islog[0]}}</p>
+		<div ng-hide="vm.islog[0]"> 
+			<a href="#/loginregistro">Registrarse</a>
+			<a href="#/loginregistro">Iniciar sesión</a>
+		</div>
+		<div ng-hide="!vm.islog[0]">
+			<a href="#/micuenta">{{vm.persona.nombre}}</a>
+			<form ng-submit="vm.logout()">
+		 	<input type='submit' name='Cerrarsesion' value="Cerrar sesión" />
+			</form>
+		</div>
+	</div>
+</div>
+
+<!--Menú izquierdo-->
+<div id="leftMenu" layout="column" style="height:500px;"  ng-controller="MicuentaController as vm">
+  <div  ng-hide="!vm.islog[0]">
+  <section layout="row" flex>
+    <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
+      <md-toolbar class="md-theme-indigo">
+        <h1 class="md-toolbar-tools">{{vm.persona.nombre}}</h1>
+      	<h1 class="md-toolbar-tools">{{vm.hour[0]}}</h1>
+      	
+      	<button type="button" ng-click="vm.print()">Print datos</button>
+
+      	<h1 class="md-toolbar-tools">{{vm.dayweek.dayWeek}}</h1>
+      </md-toolbar>
+      <md-content ng-hide="vm.islog[1]"layout-padding >
+       <a>Reservar sala</a></br>
+       <a>Reservar portatil</a></br>
+       <a href= "#/inscripcioncurso">Inscribirse a curso</a></br>
+       <a>Mis salas reservadas</a> </br>
+       <a>Mis portátiles reservados</a> </br>
+       <a>Cursos inscritos</a> </br>
+       <a href="#/personalData">Datos personales</a>
+      </md-content>
+      <md-content ng-hide="!vm.islog[1]" layout-padding >
+       <a>Control Salas</a> </br>
+       <a>Control Portátiles</a> </br>
+       <a href="#/adminsalas">Administrar Salas</a> </br>
+       <a href="#/adminportatiles">Administrar Portátiles</a> </br>
+       <a href="#/admincursos">Administrar Cursos</a> </br>
+       <a href="#/personalData">Datos personales</a> 
+      </md-content>
+    </md-sidenav>
+  </section>
+  </div>
+</div>
+
+<div id="adminCursos" ng-controller="adminCursosController as vm">
+		<form ng-submit="vm.modifyCurso(vm.cursomodificar)">
+
+			<b>Nombre:</b><br><input type='text' ng-model = "vm.cursomodificar.nombre" required="true"/><br>
+			<b>Descripción:</b><br><textarea type='text' rows='5' cols='40' ng-model = "vm.cursomodificar.descripcion" required="true"></textarea><br>
+			<b>Fecha:</b><br><input type='number'  ng-model = "vm.cursomodificar.fecha[2]"  min="1" max ="31" required="true"/>
+			<input type='number'  ng-model = "vm.cursomodificar.fecha[1]" min="1" max="12" required="true"/>
+			<input type='number' ng-model = "vm.cursomodificar.fecha[0]" min="2015" max="2100" required="true"/><br>
+			<b>Hora:</b><br><input type='number'  ng-model = "vm.cursomodificar.hora[0]"  min="9" max="20" required="true"/>
+			<input type='number' ng-model = "vm.cursomodificar.hora[1]" min="0" max="59" required="true"/><br>
+			<b>Duración:</b><br><input type='number' ng-model = "vm.cursomodificar.duracion" min="1" required="true"/><br>
+			<b>Aforo:</b><br><input type='number' ng-model = "vm.cursomodificar.aforo" min="1" required="true"/><br>
+			
+		 	<br><input type='submit' name='modifyCurso' value="Guardar modificación curso" />
+		</form>
+		
+		
+		
+	</div>
+</div>

@@ -1,0 +1,64 @@
+TABLAS
+
+Personas
+ID, nombre, apellidos, correo, contraseña, dato de alta, admin
+
+Salas
+ID (nombre), compartida ,tamaño, estado
+
+Portatiles
+ID (código barras), estado, caracteristicas
+
+Cursos
+ID, nombre, descripcion, fecha, hora, duración, aforo, ListaInscritos
+
+TABLAS DE RELACIÓN
+
+ReservaSala
+ID, IDAlumno, IDSala, ListaAlumnos, HoraEntrada, HoraSalida, Confirmada
+
+ReservaPortatil
+ID, IDAlumno, IDPortatil, HoraEntrada, HoraSalida, Confirmada
+
+
+
+"PÁGINAS"
+
+index.html 
+cabecera (login, menú:cursos,salas,portatiles, mi cuenta, salir), <div ng-view></div> y pie
+
+vistaPrincipal.html
+cursos, sala, portailes disponibles del dia
+
+Estas paginas se pueden consultar sin estar logueado, si no esta logueado y se clica en inscribirse o reservar te lleva a la pagina de login
+cursos.html (lista de los cursos diponibles)
+curso.html (informacion del curso y boton para incribirse)
+salas.html (calendario de la semana actual con las salas reservadas y los huecos y boton para reservar)
+postatiles.html (igual que salas.html)
+
+identificacionyregistro.html  (para que los alumnos se puedan registrar y/o logear)
+
+micuenta.html (Menu arriba con: botones micursos,missalas,misportiles, misdatos o botones controlSalas (vistaAdmin.html),administrarcursos, adminstrarsalas,administrarportatiles)
+
+Si es un alumno aparece vistaPrincipal.html
+Si es bibliotecario aparece vistaAdmin.html
+Estos tres html permiten la modificacion/anulacion de las reservas de estos
+miscursos.html  
+missalas.html 
+mispostatiles.html
+misdatos.html (informaciion, y cambiar contraseña)
+
+vistaAdmin.html
+tabla con columnas las salas y filas las horas del dia.
+si se pincha en una reserva aparece en la parte derecha un "sidenav" para confirmar sala o eliminar reserva
+
+admincursos.html (lista cursos(modificar/elminar) + añadir curso)
+adminnuevo/modificarcurso.html
+adminsalas.html (lista salas (modificar/elminar) + añadir sala)
+adminportatiles.html (igual que vistaAdmin pero para portatiles)
+
+
+
+
+
+

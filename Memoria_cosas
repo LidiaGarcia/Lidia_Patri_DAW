@@ -1,0 +1,5 @@
+Cosas para recordar
+
+- Las variables las hemos nombrado en castellano por si el proyecto al final se entrega a la gente de la biblioteca.
+- En vez de duplicar un campo del cual ya tenemos info (usuario) lo sacamos del correo: usuario@alumnos.ujc.es
+- Hemos tenido en cuenta que estamos en Java 8 para las mejoras en los imports como el de fecha y hora.
