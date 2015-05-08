@@ -18,6 +18,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/cursos")
 public class CursoController {
 	
+	public static class ControlAdd {
+		public boolean add;
+	}
+	
+	
 	@Autowired
 	private CursoRepo cursos_repo;
 	@Autowired
@@ -63,7 +68,7 @@ public class CursoController {
 		}
 	}
 	@RequestMapping(value = "/{id}/inscrito", method=RequestMethod.POST)
-	public boolean addPersonaCurso(@PathVariable long id, HttpSession sesion){
+	public ControlAdd addPersonaCurso(@PathVariable long id, HttpSession sesion){
 		boolean add=false;
 		if((sesion!=null)&&((sesion.getAttribute("login") != null)&&((Boolean)sesion.getAttribute("login")))){
 			Curso curso = cursos_repo.findById(id);
@@ -80,7 +85,9 @@ public class CursoController {
 		
 			cursos_repo.save(curso);
 		}
-		return add;
+		ControlAdd a=new ControlAdd();
+		a.add=add;
+		return a;
 	}
 	@RequestMapping(value = "/{id}/removeinscrito", method=RequestMethod.POST)
 	public void removePersonaCurso(@PathVariable long id, HttpSession sesion){

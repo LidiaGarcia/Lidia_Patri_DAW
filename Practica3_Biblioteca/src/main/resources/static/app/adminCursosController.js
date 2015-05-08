@@ -9,7 +9,8 @@ function adminCursosController(globalService, $location, $routeParams) {
 	vm.miscursos = globalService.getMisCursos();
 	vm.miscursos=globalService.miscursos;
 
-	
+	vm.checkAdd={};
+	vm.checkAdd.add=true;
 	vm.curso={};
 	vm.cursomodificar=globalService.cursomodificar;
 	vm.curso.fecha=[];
@@ -42,9 +43,10 @@ function adminCursosController(globalService, $location, $routeParams) {
 		vm.curso={};
 		$location.path('/admincursos');
 	}
-	vm.inscripcion = function(curso){
-		globalService.inscripcion(curso);
+	vm.inscripcion = function(curso){	
+		vm.checkAdd = globalService.inscripcion(curso);
 		$location.path('/inscripcioncurso');
+		
 	}
 	vm.removeInscripcion = function(curso){
 		globalService.removeInscripcion(curso);
