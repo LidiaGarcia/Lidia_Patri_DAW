@@ -283,18 +283,22 @@ function GlobalService($resource,$timeout) {
 		//$fecha="2015-05-23";
 		console.log($fecha,$id);
 		//return null;
-		return ReservasSalaResource.query({id:$id},{fecha:$fecha});				
+		var mmm=ReservasSalaResource.query({id:$id},{fecha:$fecha});
+		setTimeout(function(){console.log(mmm);},3000);
+		return mmm;				
 	}
 	
 	vm.allReser = function(){
 		var reser =[];
 		var sal=vm.getSalas();
 		setTimeout(function(){
-		console.log(sal);
-		for (var i = 0; i < sal.length; i++) {
 			console.log(sal);
-			console.log(sal[i].id);
-				reser.push(vm.getReservaSala(sal[i],vm.fecha));
+			for (var i = 0; i < sal.length; i++) {
+				console.log(sal);
+				console.log(sal[i].id);
+				var reservasr = vm.getReservaSala(sal[i],vm.fecha);
+				reser.push(reservasr);
+				console.log(reser);
 			}	
 		}
 		,9000);

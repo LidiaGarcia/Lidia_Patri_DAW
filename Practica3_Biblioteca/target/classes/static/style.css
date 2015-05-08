@@ -19,3 +19,7 @@
 #salaReser{
 	background: green;
 }
+#listadoSalas{
+	display: inline;
+	min-width: 300 px;	
+}

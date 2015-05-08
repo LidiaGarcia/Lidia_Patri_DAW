@@ -10,14 +10,13 @@ function SalasController(globalService, $location, $routeParams) {
 
 	vm.personas = globalService.getPersonas();	
 	vm.salas=globalService.getSalas();
-	vm.hours=[9,10,11,12,13,14,15,16,17,18,19,20];
+	vm.hours=["9","10","11","12","13","14","15","16","17","18","19","20"];
 	vm.date=globalService.getDate();
 	vm.reservas=globalService.allReser();
 	vm.check=[];
+	vm.personaReserva=[];
 	vm.verSala=false;
-	//vm.date=globalService.getDate().$promise.then(function(date){
-	//	vm.reservas=globalService.getReservaSala(vm.salas[0],vm.date);
-	//});
+
 	
 	//Controller actions
 	
@@ -29,29 +28,30 @@ function SalasController(globalService, $location, $routeParams) {
 		vm.date=globalService.getDate();
 		vm.reservas=globalService.allReser();
 	}
-//	vm.allReser = function(){
-//		var reser =[];
-//		console.log(vm.salas);
-//		for(sala in vm.salas){
-//			reser.push(globalService.getReservaSala(sala,vm.date));
-//		}	
-//		return reser;
-//	}
+
 	
 	vm.isReser = function(index){
 		vm.verSala=true;
-		vm.check=false;
-		for(hour in vm.hours){
+		vm.check=[];
+		vm.personaReserva=[];
+		for (var j = 0; j < vm.hours.length; j++) {
 			var check2 = false;
-			console.log(vm.reservas);
-			for (reser in vm.reservas[index]){
-				console.log(reser);
-				if(reser.horaEntrada[0]===hour){
+			var persoRes ={};
+			console.log(vm.reservas[index]);
+			for (var i = 0; i < vm.reservas[index].length; i++) {
+				console.log(vm.reservas[index][i]);
+				console.log(vm.hours[j]);
+				console.log(vm.reservas[index][i].horaEntrada[0]);
+				if(vm.reservas[index][i].horaEntrada[0]==vm.hours[j]){
 					check2=true;
-				}
+					persoRes=(vm.reservas[index][i].persona);
+					console.log(check2);
+				}	
 			}
+			vm.personaReserva.push(persoRes);
 			vm.check.push(check2);
 		}
+		console.log(vm.check);
 		//return vm.check;
 	}
 	
