@@ -21,7 +21,7 @@ function GlobalService($resource,$timeout) {
 	vm.date={};
 
 
-	vm.fecha=[2015,4,23];
+	vm.fecha=[2015, 5, 24];
 	
 	//resources
 	var BibliotecaHoraResource = $resource('/hour');
@@ -279,7 +279,8 @@ function GlobalService($resource,$timeout) {
 	vm.getReservaSala = function(sala,date){
 		$id=sala.id;
 		
-		$fecha=date[0]+'-'+ date[1]+'-'+date[2];
+		$fecha=date[0]+"-"+ date[1]+"-"+date[2];
+		//$fecha="2015-05-23";
 		console.log($fecha,$id);
 		//return null;
 		return ReservasSalaResource.query({id:$id},{fecha:$fecha});				
@@ -287,19 +288,26 @@ function GlobalService($resource,$timeout) {
 	
 	vm.allReser = function(){
 		var reser =[];
-		for(sala in vm.salas){
-			console.log(vm.salas);
-			reser.push(vm.getReservaSala(sala,vm.fecha));
-		}	
+		var sal=vm.getSalas();
+		setTimeout(function(){
+		console.log(sal);
+		for (var i = 0; i < sal.length; i++) {
+			console.log(sal);
+			console.log(sal[i].id);
+				reser.push(vm.getReservaSala(sal[i],vm.fecha));
+			}	
+		}
+		,9000);
+		
 		return reser;
 	}
 	//otros
 	vm.reload = function(){
-		setTimeout(function(){alert('Hello')},3000);
 		vm.personas=vm.getPersonas();
 		vm.salas=vm.getSalas();
 		vm.portatiles=vm.getPortatiles();
 		vm.date=vm.getDate();
+		setTimeout(function(){alert('Hello')},3000);
 	}
 	
 }

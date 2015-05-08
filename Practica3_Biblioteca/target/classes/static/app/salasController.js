@@ -29,20 +29,23 @@ function SalasController(globalService, $location, $routeParams) {
 		vm.date=globalService.getDate();
 		vm.reservas=globalService.allReser();
 	}
-	vm.allReser = function(){
-		var reser =[];
-		for(sala in vm.salas){
-			reser.push(globalService.getReservaSala(sala,vm.date));
-		}	
-		return reser;
-	}
+//	vm.allReser = function(){
+//		var reser =[];
+//		console.log(vm.salas);
+//		for(sala in vm.salas){
+//			reser.push(globalService.getReservaSala(sala,vm.date));
+//		}	
+//		return reser;
+//	}
 	
 	vm.isReser = function(index){
 		vm.verSala=true;
 		vm.check=false;
 		for(hour in vm.hours){
 			var check2 = false;
+			console.log(vm.reservas);
 			for (reser in vm.reservas[index]){
+				console.log(reser);
 				if(reser.horaEntrada[0]===hour){
 					check2=true;
 				}

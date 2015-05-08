@@ -59,9 +59,10 @@ public class ReservasController {
 	}
 	
 	//ReservaS de una sala en una fecha, el id es el id de la sala
-	@RequestMapping(value = "/sala/{id}/{fecha}", method = RequestMethod.GET)
-	public List<ReservaSala> getReservasSalaDia(@PathVariable long id, @PathVariable String fecha){
-		return reserva_salas_repo.findByIdSalayFecha(id, LocalDate.parse(fecha));
+	@RequestMapping(value = "/sala/{id}/{a}-{b}-{c}", method = RequestMethod.GET)
+	public List<ReservaSala> getReservasSalaDia(@PathVariable long id, @PathVariable int a, @PathVariable int b, @PathVariable int c){
+		
+		return reserva_salas_repo.findByIdSalayFecha(id, LocalDate.of(a,b,c));
 	}
 	
 	//confirmar una reserva sala donde se le pasa el id de la reserva

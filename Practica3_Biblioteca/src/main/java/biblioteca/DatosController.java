@@ -35,8 +35,8 @@ public class DatosController implements CommandLineRunner {
 		personas_repo.save(p3);
 		Persona p4 = new Persona("Lucia","Perez","lucia@urjc.es","1234",true,false);
 		personas_repo.save(p4);
-		Persona p5 = new Persona("Juan","Fernandez","juan@urjc.es","1234",true,false);
-		personas_repo.save(p5);
+//		Persona p5 = new Persona("Juan","Fernandez","juan@urjc.es","1234",true,false);
+//		personas_repo.save(p5);
 		Persona p6 = new Persona("a","a","a","a",true,true);
 		personas_repo.save(p6);
 		Persona p7 = new Persona("b","b","b","b",true,false);
