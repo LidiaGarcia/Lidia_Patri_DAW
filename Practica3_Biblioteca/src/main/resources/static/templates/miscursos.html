@@ -49,7 +49,7 @@
 </div>
 
 <div id="adminCursos" ng-controller="adminCursosController as vm">
-	<span ng-if="vm.miscursos!=[]">
+	<span ng-if="vm.miscursos!==[]">
 		<div ng-repeat="curso in vm.miscursos">
 			<p>Curso: {{curso.nombre}}</p>
 			<p>Descripción: {{curso.descripcion}}</p>
@@ -61,7 +61,7 @@
 			
 		</div>
 	</span>
-	<span ng-show="vm.miscursos==null">
+	<span ng-show="vm.miscursos==='vacio'">
 	<p>¡Aún no te has inscrito a ningun curso!</p>
 	</span>
 </div>

@@ -7,7 +7,9 @@ function adminCursosController(globalService, $location, $routeParams) {
 	var vm = this;
 	vm.cursos= globalService.getCursos();
 	vm.miscursos = globalService.getMisCursos();
-	vm.miscursos = globalService.miscursos;
+	vm.miscursos=globalService.miscursos;
+
+	
 	vm.curso={};
 	vm.cursomodificar=globalService.cursomodificar;
 	vm.curso.fecha=[];
