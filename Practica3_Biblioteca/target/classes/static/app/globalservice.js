@@ -6,7 +6,8 @@ function GlobalService($resource,$timeout) {
 	
 	//Variables
 	var vm =this;
-
+	vm.personas=[];
+	vm.persona={};
 	vm.salas=[];
 	vm.sala={};
 	vm.salamodificar={};
@@ -224,8 +225,9 @@ function GlobalService($resource,$timeout) {
 	}
 	
 	vm.getPersonas = function(){
-		return PersonasResource.query();			
-}
+		vm.personas=PersonasResource.query();		
+		return 	vm.personas;
+	}
 	
 	vm.getPersona = function(){
 		return SesionPersResource.get();				
@@ -240,13 +242,12 @@ function GlobalService($resource,$timeout) {
 	vm.logout = function() {
 		SesionResource.remove(function() {});
 	}
-	
 	vm.signup = function(mail,pass){
-		pers = PersonasResource.query();
-		for (var i = 0; i < pers.length; i++) {
-			if ((pers[i].correo === mail)&&(pers[i].pass === pass)) {
-				persona = pers[i];
-				$id=persona.id;
+
+		for (var i = 0; i < vm.personas.length; i++) {
+			if ((vm.personas[i].correo === mail)&&(vm.personas[i].pass === pass)) {
+				vm.persona = vm.personas[i];
+				$id=vm.persona.id;
 				SignupResource.update({id:$id},true);			
 			}
 		}

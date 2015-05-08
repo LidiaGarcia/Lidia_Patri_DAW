@@ -12,6 +12,7 @@ function RouteConfig($routeProvider) {
 	$routeProvider.when('/admincursos', { templateUrl : "templates/admincursos.html"});
 	$routeProvider.when('/adminsalas', { templateUrl : "templates/adminsalas.html"});
 	$routeProvider.when('/adminportatiles', { templateUrl : "templates/adminportatiles.html"});
+	
 	$routeProvider.when('/newCurso', { templateUrl : "templates/newCurso.html"});
 	$routeProvider.when('/modifyCurso', { templateUrl : "templates/modifyCurso.html"});
 	$routeProvider.when('/newSala', { templateUrl : "templates/newSala.html"});
