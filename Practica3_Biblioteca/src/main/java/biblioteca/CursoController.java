@@ -63,12 +63,21 @@ public class CursoController {
 		}
 	}
 	@RequestMapping(value = "/{id}/inscrito", method=RequestMethod.POST)
-	public void addPersonaCurso(@PathVariable long id, HttpSession sesion){
+	public boolean addPersonaCurso(@PathVariable long id, HttpSession sesion){
+		boolean add=false;
 		if((sesion!=null)&&((sesion.getAttribute("login") != null)&&((Boolean)sesion.getAttribute("login")))){
 			Curso curso = cursos_repo.findById(id);
-			curso.addInscrito(((Persona)sesion.getAttribute("persona")));
+			Persona pers = ((Persona)sesion.getAttribute("persona"));
+			for (Persona p : curso.getListaInscritos()){
+				if(p.getID()!=pers.getID()){
+					curso.addInscrito(pers);
+					add=true;
+				}
+			}
+		
 			cursos_repo.save(curso);
 		}
+		return add;
 	}
 	@RequestMapping(value = "/{id}/removeinscrito", method=RequestMethod.POST)
 	public void removePersonaCurso(@PathVariable long id, HttpSession sesion){
