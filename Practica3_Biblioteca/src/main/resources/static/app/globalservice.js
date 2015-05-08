@@ -54,6 +54,10 @@ function GlobalService($resource,$timeout) {
 		{id: '@id'},
 		{'update': {method: 'PUT'}}
 	);
+	var CursoInscripResource = $resource('/cursos/:id/inscrito',
+			{id: '@id'},
+			{inscripcion: {method: 'POST'}}
+	);
 	
 	//portatiles
 	var PortatilesResource = $resource('/portatiles/:id',
@@ -125,6 +129,10 @@ function GlobalService($resource,$timeout) {
 		CursosModifyResource.update({id:$id},curso,function(){alert("curso modificado")});
 	}
 	
+	vm.inscripcion = function(curso){
+		$id=curso.id;
+		CursoInscripResource.inscripcion({id:$id},function(){alert("Te has inscrito correctamente")})
+	}
 	//salas
 	vm.getSalas = function(){
 		return SalasResource.query();
