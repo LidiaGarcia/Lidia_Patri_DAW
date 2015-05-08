@@ -27,14 +27,20 @@ public class CursoController {
 		return cursos_repo.findAll();
 	}
 	@RequestMapping(method=RequestMethod.POST)
-	public ResponseEntity<Curso> addCurso(@RequestBody Curso curso){
-		cursos_repo.save(curso);
-		return new ResponseEntity<>(curso, HttpStatus.CREATED);
+	public ResponseEntity<Curso> addCurso(@RequestBody Curso curso, HttpSession sesion){
+		if(((sesion!=null)&&(sesion.getAttribute("admin") != null))&&((Boolean)sesion.getAttribute("admin"))){	
+			cursos_repo.save(curso);
+			return new ResponseEntity<>(curso, HttpStatus.CREATED);
+		}else{
+			return null;
+		}	
 	}
 	
 	@RequestMapping(value = "/{id}", method= RequestMethod.DELETE)
-	public void deleteCurso(@PathVariable long id){
-		cursos_repo.delete(id);
+	public void deleteCurso(@PathVariable long id, HttpSession sesion){
+		if(((sesion!=null)&&(sesion.getAttribute("admin") != null))&&((Boolean)sesion.getAttribute("admin"))){		
+			cursos_repo.delete(id);
+		}
 	}
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
@@ -43,19 +49,24 @@ public class CursoController {
 	}
 	
 	@RequestMapping(value = "/{id}", method=RequestMethod.PUT)
-	public void modificar(@PathVariable long id, @RequestBody Curso curso){
-		cursos_repo.setNombre(id,curso.getNombre());
-		cursos_repo.setDescripcion(id,curso.getDescripcion());
-		cursos_repo.setFecha(id,curso.getFecha());
-		cursos_repo.setHora(id,curso.getHora());
-		cursos_repo.setDuracion(id,curso.getDuracion());
-		cursos_repo.setAforo(id,curso.getAforo());	
+	public void modificar(@PathVariable long id, @RequestBody Curso curso, HttpSession sesion){
+		if(((sesion!=null)&&(sesion.getAttribute("admin") != null))&&((Boolean)sesion.getAttribute("admin"))){
+			cursos_repo.setNombre(id,curso.getNombre());
+			cursos_repo.setDescripcion(id,curso.getDescripcion());
+			cursos_repo.setFecha(id,curso.getFecha());
+			cursos_repo.setHora(id,curso.getHora());
+			cursos_repo.setDuracion(id,curso.getDuracion());
+			cursos_repo.setAforo(id,curso.getAforo());	
+
+		}
 	}
 	@RequestMapping(value = "/{id}/inscrito", method=RequestMethod.POST)
 	public void addPersonaCurso(@PathVariable long id, HttpSession sesion){
-		Curso curso = cursos_repo.findById(id);
-		curso.addInscrito(((Persona)sesion.getAttribute("persona")));
-		cursos_repo.save(curso);
+		if(((sesion!=null)&&(sesion.getAttribute("login") != null))&&((Boolean)sesion.getAttribute("login"))){
+			Curso curso = cursos_repo.findById(id);
+			curso.addInscrito(((Persona)sesion.getAttribute("persona")));
+			cursos_repo.save(curso);
+		}
 	}
 	
 }
