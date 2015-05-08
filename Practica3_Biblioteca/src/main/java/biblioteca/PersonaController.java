@@ -22,16 +22,12 @@ public class PersonaController {
 	
 	@RequestMapping(method=RequestMethod.GET)
 	public List<Persona> getPersonas(HttpSession sesion){
-		if(((sesion!=null)&&(sesion.getAttribute("login") != null))&&((Boolean)sesion.getAttribute("login"))){
-			return personas_repo.findAll();
-		}else{
-			return null;
-		}	
+		return personas_repo.findAll();	
 	}
 	
 	@RequestMapping(method=RequestMethod.POST)
 	public ResponseEntity<Persona> addPersona(@RequestBody Persona persona, HttpSession sesion){
-		if(((sesion!=null)&&(sesion.getAttribute("admin") != null))&&((Boolean)sesion.getAttribute("admin"))){
+		if((sesion!=null)&&((sesion.getAttribute("admin") != null)&&((Boolean)sesion.getAttribute("admin")))){
 			personas_repo.save(persona);
 			return new ResponseEntity<>(persona, HttpStatus.CREATED);
 		}else{
@@ -46,7 +42,7 @@ public class PersonaController {
 	
 	@RequestMapping(value = "/misdatos/cambiarpass/{id}", method=RequestMethod.PUT)
 	public void cambioPass(@PathVariable long id, @RequestBody String pass, HttpSession sesion){
-		if(((sesion!=null)&&(sesion.getAttribute("login") != null))&&((Boolean)sesion.getAttribute("login"))){
+		if((sesion!=null)&&((sesion.getAttribute("login") != null)&&((Boolean)sesion.getAttribute("login")))){
 			personas_repo.setPass(id,pass);
 		}
 	}

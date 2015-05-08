@@ -61,7 +61,7 @@ function GlobalService($resource,$timeout) {
 	);
 	var CursoEliminarInscripResource = $resource('/cursos/:id/removeinscrito',
 			{id: '@id'},
-			{inscripcion: {method: 'POST'}}
+			{eliminarinscripcion: {method: 'POST'}}
 	);
 	var MisCursosResource = $resource('/cursos/miscursos');
 	//portatiles
@@ -144,7 +144,7 @@ function GlobalService($resource,$timeout) {
 	}
 	vm.removeInscripcion = function(curso){
 		$id=curso.id;
-		CursoEliminarInscripResource.inscripcion({id:$id},function(){alert("Se ha borrado tu inscripción al curso correctamente")})
+		CursoEliminarInscripResource.eliminarinscripcion({id:$id},function(){alert("Se ha borrado tu inscripción al curso correctamente")})
 	}
 	//salas
 	vm.getSalas = function(){

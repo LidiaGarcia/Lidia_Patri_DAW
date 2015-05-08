@@ -34,7 +34,7 @@ public class ReservasController {
 	//crear una reserva de sala
 	@RequestMapping(value = "/sala", method=RequestMethod.POST)
 	public ResponseEntity<ReservaSala> reservarSala(@RequestBody ReservaSala reservaSala, HttpSession sesion){
-		if(((sesion!=null)&&(sesion.getAttribute("login") != null))&&((Boolean)sesion.getAttribute("login"))){
+		if((sesion!=null)&&((sesion.getAttribute("admin") != null)&&((!(Boolean)sesion.getAttribute("admin"))&&((Boolean)sesion.getAttribute("login"))))){
 			reserva_salas_repo.save(reservaSala);
 			return new ResponseEntity<>(reservaSala, HttpStatus.CREATED);
 		}else{
@@ -51,7 +51,7 @@ public class ReservasController {
 	//lista Reservas de salas por una persona
 	@RequestMapping(value = "/sala/persona/{id}", method = RequestMethod.GET)
 	public List<ReservaSala> getSalasDePersona(@PathVariable long id, HttpSession sesion){
-		if(((sesion!=null)&&(sesion.getAttribute("login") != null))&&((Boolean)sesion.getAttribute("login"))){
+		if((sesion!=null)&&((sesion.getAttribute("login") != null)&&((Boolean)sesion.getAttribute("login")))){
 			return reserva_salas_repo.findByIdPersona(id);
 		}else{
 			return null;
@@ -68,7 +68,7 @@ public class ReservasController {
 	
 	@RequestMapping(value = "/sala/{id}", method = RequestMethod.PUT)
 	public void confirmarSala(@PathVariable long id,HttpSession sesion){
-		if(((sesion!=null)&&(sesion.getAttribute("admin") != null))&&((Boolean)sesion.getAttribute("admin"))){
+		if((sesion!=null)&&((sesion.getAttribute("admin") != null)&&((Boolean)sesion.getAttribute("admin")))){
 			reserva_salas_repo.setConfirm(id);
 		}
 	}
@@ -78,7 +78,7 @@ public class ReservasController {
 	//crear una reserva de portatil
 	@RequestMapping(value = "/portatil", method=RequestMethod.POST)
 	public ResponseEntity<ReservaPortatil> reservarPortatil(@RequestBody ReservaPortatil reservaPortatil, HttpSession sesion){
-		if(((sesion!=null)&&(sesion.getAttribute("admin") != null))&&((!(Boolean)sesion.getAttribute("admin"))&&((Boolean)sesion.getAttribute("login")))){
+		if((sesion!=null)&&((sesion.getAttribute("admin") != null)&&((!(Boolean)sesion.getAttribute("admin"))&&((Boolean)sesion.getAttribute("login"))))){
 			reserva_portatil_repo.save(reservaPortatil);
 			return new ResponseEntity<>(reservaPortatil, HttpStatus.CREATED);
 		}else{
@@ -94,7 +94,7 @@ public class ReservasController {
 	//lista Reservas de portatiles por una persona
 	@RequestMapping(value = "/portatil/persona/{id}", method = RequestMethod.GET)
 	public List<ReservaPortatil> getPortatilesDePersona(@PathVariable long id,HttpSession sesion){
-		if(((sesion!=null)&&(sesion.getAttribute("login") != null))&&((Boolean)sesion.getAttribute("login"))){
+		if((sesion!=null)&&((sesion.getAttribute("login") != null)&&((Boolean)sesion.getAttribute("login")))){
 			return reserva_portatil_repo.findByIdPersona(id);
 		}else{
 			return null;

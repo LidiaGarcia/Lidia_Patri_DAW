@@ -26,7 +26,7 @@ public class SalaController {
 	}
 	@RequestMapping(method=RequestMethod.POST)
 	public ResponseEntity<Sala> addCurso(@RequestBody Sala sala, HttpSession sesion){
-		if(((sesion!=null)&&(sesion.getAttribute("admin") != null))&&((Boolean)sesion.getAttribute("admin"))){
+		if((sesion!=null)&&((sesion.getAttribute("admin") != null)&&((Boolean)sesion.getAttribute("admin")))){
 			salas_repo.save(sala);
 			return new ResponseEntity<>(sala, HttpStatus.CREATED);
 		}else{
@@ -36,7 +36,7 @@ public class SalaController {
 	
 	@RequestMapping(value = "/{id}", method= RequestMethod.DELETE)
 	public void deleteSala(@PathVariable long id,HttpSession sesion){
-		if(((sesion!=null)&&(sesion.getAttribute("admin") != null))&&((Boolean)sesion.getAttribute("admin"))){
+		if((sesion!=null)&&((sesion.getAttribute("admin") != null)&&((Boolean)sesion.getAttribute("admin")))){
 			salas_repo.delete(id);
 		}
 	}
@@ -48,7 +48,7 @@ public class SalaController {
 	
 	@RequestMapping(value = "/{id}", method=RequestMethod.PUT)
 	public void modificar(@PathVariable long id, @RequestBody Sala sala, HttpSession sesion){
-		if(((sesion!=null)&&(sesion.getAttribute("admin") != null))&&((Boolean)sesion.getAttribute("admin"))){
+		if((sesion!=null)&&((sesion.getAttribute("admin") != null)&&((Boolean)sesion.getAttribute("admin")))){
 			salas_repo.setNombre(id,sala.getNombre());
 			salas_repo.setCompartida(id,sala.getCompartida());
 			salas_repo.setTamanio(id,sala.getTamanio());

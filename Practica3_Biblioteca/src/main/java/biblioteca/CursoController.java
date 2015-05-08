@@ -30,7 +30,7 @@ public class CursoController {
 	
 	@RequestMapping(method=RequestMethod.POST)
 	public ResponseEntity<Curso> addCurso(@RequestBody Curso curso, HttpSession sesion){
-		if(((sesion!=null)&&(sesion.getAttribute("admin") != null))&&((Boolean)sesion.getAttribute("admin"))){	
+		if((sesion!=null)&&((sesion.getAttribute("admin") != null)&&((Boolean)sesion.getAttribute("admin")))){
 			cursos_repo.save(curso);
 			return new ResponseEntity<>(curso, HttpStatus.CREATED);
 		}else{
@@ -40,7 +40,7 @@ public class CursoController {
 	
 	@RequestMapping(value = "/{id}", method= RequestMethod.DELETE)
 	public void deleteCurso(@PathVariable long id, HttpSession sesion){
-		if(((sesion!=null)&&(sesion.getAttribute("admin") != null))&&((Boolean)sesion.getAttribute("admin"))){		
+		if((sesion!=null)&&((sesion.getAttribute("admin") != null)&&((Boolean)sesion.getAttribute("admin")))){
 			cursos_repo.delete(id);
 		}
 	}
@@ -52,7 +52,7 @@ public class CursoController {
 	
 	@RequestMapping(value = "/{id}", method=RequestMethod.PUT)
 	public void modificar(@PathVariable long id, @RequestBody Curso curso, HttpSession sesion){
-		if(((sesion!=null)&&(sesion.getAttribute("admin") != null))&&((Boolean)sesion.getAttribute("admin"))){
+		if((sesion!=null)&&((sesion.getAttribute("admin") != null)&&((Boolean)sesion.getAttribute("admin")))){
 			cursos_repo.setNombre(id,curso.getNombre());
 			cursos_repo.setDescripcion(id,curso.getDescripcion());
 			cursos_repo.setFecha(id,curso.getFecha());
@@ -64,7 +64,7 @@ public class CursoController {
 	}
 	@RequestMapping(value = "/{id}/inscrito", method=RequestMethod.POST)
 	public void addPersonaCurso(@PathVariable long id, HttpSession sesion){
-		if(((sesion!=null)&&(sesion.getAttribute("login") != null))&&((Boolean)sesion.getAttribute("login"))){
+		if((sesion!=null)&&((sesion.getAttribute("login") != null)&&((Boolean)sesion.getAttribute("login")))){
 			Curso curso = cursos_repo.findById(id);
 			curso.addInscrito(((Persona)sesion.getAttribute("persona")));
 			cursos_repo.save(curso);
@@ -72,7 +72,7 @@ public class CursoController {
 	}
 	@RequestMapping(value = "/{id}/removeinscrito", method=RequestMethod.POST)
 	public void removePersonaCurso(@PathVariable long id, HttpSession sesion){
-		if(((sesion!=null)&&(sesion.getAttribute("login") != null))&&((Boolean)sesion.getAttribute("login"))){
+		if((sesion!=null)&&((sesion.getAttribute("login") != null)&&((Boolean)sesion.getAttribute("login")))){
 			Curso curso = cursos_repo.findById(id);
 			curso.remove(((Persona)sesion.getAttribute("persona")));
 			cursos_repo.save(curso);
@@ -82,7 +82,7 @@ public class CursoController {
 	@RequestMapping(value = "/miscursos",method=RequestMethod.GET)
 	public List<Curso> getmyCursos(HttpSession sesion){
 		List<Curso> cursos=new ArrayList<Curso>();
-		if(((sesion!=null)&&(sesion.getAttribute("login") != null))&&((Boolean)sesion.getAttribute("login"))){
+		if((sesion!=null)&&((sesion.getAttribute("login") != null)&&((Boolean)sesion.getAttribute("login")))){
 			for(Curso curso: cursos_repo.findAll()){
 				Persona pers=(Persona)sesion.getAttribute("persona");
 				for (Persona p : curso.getListaInscritos()){

@@ -46,7 +46,7 @@ function adminCursosController(globalService, $location, $routeParams) {
 	}
 	vm.removeInscripcion = function(curso){
 		globalService.removeInscripcion(curso);
-		$location.path('/inscripcioncurso');
+		$location.path('/miscurso');
 	}
 	
 }

@@ -26,7 +26,7 @@ public class PortatilController {
 	}
 	@RequestMapping(method=RequestMethod.POST)
 	public ResponseEntity<Portatil> addPortatil(@RequestBody Portatil portatil,HttpSession sesion){
-		if(((sesion!=null)&&(sesion.getAttribute("admin") != null))&&((Boolean)sesion.getAttribute("admin"))){
+		if((sesion!=null)&&((sesion.getAttribute("admin") != null)&&((Boolean)sesion.getAttribute("admin")))){
 			portatiles_repo.save(portatil);
 			return new ResponseEntity<>(portatil, HttpStatus.CREATED);
 		}else{
@@ -36,7 +36,7 @@ public class PortatilController {
 	
 	@RequestMapping(value = "/{id}", method= RequestMethod.DELETE)
 	public void deletePortatiles(@PathVariable long id, HttpSession sesion){
-		if(((sesion!=null)&&(sesion.getAttribute("admin") != null))&&((Boolean)sesion.getAttribute("admin"))){
+		if((sesion!=null)&&((sesion.getAttribute("admin") != null)&&((Boolean)sesion.getAttribute("admin")))){
 			portatiles_repo.delete(id);
 		}
 	}
@@ -48,7 +48,7 @@ public class PortatilController {
 	
 	@RequestMapping(value = "/{id}", method=RequestMethod.PUT)
 	public void modificar(@PathVariable long id, @RequestBody Portatil portatil,HttpSession sesion){
-		if(((sesion!=null)&&(sesion.getAttribute("admin") != null))&&((Boolean)sesion.getAttribute("admin"))){
+		if((sesion!=null)&&((sesion.getAttribute("admin") != null)&&((Boolean)sesion.getAttribute("admin")))){
 			portatiles_repo.setEstado(id,portatil.getEstado());
 			portatiles_repo.setCaracteristicas(id,portatil.getCaracteristicas());
 		}
