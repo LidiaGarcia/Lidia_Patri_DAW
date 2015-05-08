@@ -74,7 +74,7 @@ public class CursoController {
 	public void removePersonaCurso(@PathVariable long id, HttpSession sesion){
 		if((sesion!=null)&&((sesion.getAttribute("login") != null)&&((Boolean)sesion.getAttribute("login")))){
 			Curso curso = cursos_repo.findById(id);
-			curso.remove(((Persona)sesion.getAttribute("persona")));
+			curso.removeIncrito(((Persona)sesion.getAttribute("persona")));
 			cursos_repo.save(curso);
 		}
 	}

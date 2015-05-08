@@ -4,6 +4,7 @@ package biblioteca;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -106,8 +107,17 @@ public class Curso {
 		return this.listaInscritos.add(persona);
 	}
 	
-	public boolean remove(Persona persona){
-		return this.listaInscritos.remove(persona);
+	public boolean removeIncrito(Persona persona){
+		Iterator<Persona> it = listaInscritos.iterator();
+		boolean find=false;
+		while(it.hasNext()&&(!find)){
+			Persona p = it.next();
+			if (persona.getID()==p.getID()){
+				find=true;
+				it.remove();
+			}
+		}
+		return find;
 	}
 
 	@Override
