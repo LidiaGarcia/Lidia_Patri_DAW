@@ -136,7 +136,11 @@ function GlobalService($resource,$timeout) {
 	
 	vm.inscripcion = function(curso){
 		$id=curso.id;
-		CursoInscripResource.inscripcion({id:$id},function(){alert("Te has inscrito correctamente")})
+		if(CursoInscripResource.inscripcion({id:$id},function(){})){
+			alert("Te has inscrito correctamente");
+		}else{
+			alert("Ya estabas inscrito en este curso");
+		}
 	}
 	vm.getMisCursos = function(){
 		vm.miscursos = MisCursosResource.query();
