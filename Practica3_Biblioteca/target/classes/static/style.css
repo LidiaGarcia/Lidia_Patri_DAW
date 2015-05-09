@@ -20,6 +20,7 @@
 	background: green;
 }
 #listadoSalas{
-	display: inline;
-	min-width: 300 px;	
+	display: inline-block;
+	min-width: 10em;
+	padding: 2em;	
 }

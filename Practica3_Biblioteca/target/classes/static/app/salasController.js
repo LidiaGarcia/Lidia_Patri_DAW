@@ -15,8 +15,13 @@ function SalasController(globalService, $location, $routeParams) {
 	vm.reservas=globalService.allReser();
 	vm.check=[];
 	vm.personaReserva=[];
+	vm.reservaTotal=new Array();
+	vm.checkTotal=new Array();
 	vm.verSala=false;
+	vm.islog=globalService.islog();
+	vm.persona=globalService.persona;
 
+	
 	
 	//Controller actions
 	
@@ -27,58 +32,45 @@ function SalasController(globalService, $location, $routeParams) {
 		vm.personas = globalService.getPersonas();	
 		vm.date=globalService.getDate();
 		vm.reservas=globalService.allReser();
+		vm.isReser();
 	}
 
 	
-	vm.isReser = function(index){
+	vm.isReser = function(){
 		vm.verSala=true;
 		vm.check=[];
 		vm.personaReserva=[];
-		for (var j = 0; j < vm.hours.length; j++) {
-			var check2 = false;
-			var persoRes ={};
-			console.log(vm.reservas[index]);
-			for (var i = 0; i < vm.reservas[index].length; i++) {
-				console.log(vm.reservas[index][i]);
-				console.log(vm.hours[j]);
-				console.log(vm.reservas[index][i].horaEntrada[0]);
-				if(vm.reservas[index][i].horaEntrada[0]==vm.hours[j]){
-					check2=true;
-					persoRes=(vm.reservas[index][i].persona);
-					console.log(check2);
-				}	
-			}
-			vm.personaReserva.push(persoRes);
-			vm.check.push(check2);
+		for(var index=0; index < vm.salas.length; index++){
+			vm.check=[];
+			vm.personaReserva=[];
+			for (var j = 0; j < vm.hours.length; j++){
+				var check2 = false;
+				var persoRes ={};
+				for (var i = 0; i < vm.reservas[index].length; i++) {				
+					if((vm.reservas[index][i].horaEntrada[0]==vm.hours[j])&&(vm.reservas[index][i].sala.id)){
+						check2=true;
+						persoRes=(vm.reservas[index][i].persona);
+						console.log(check2);
+					}	
+				}
+				vm.personaReserva.push(persoRes);
+				vm.check.push(check2);				
+			}	
+			vm.reservaTotal[index]=vm.personaReserva;
+			vm.checkTotal[index]=vm.check;
 		}
-		console.log(vm.check);
-		//return vm.check;
+		console.log(vm.checkTotal);
+		console.log(vm.reservaTotal);
 	}
 	
-	vm.isReserDate = function(sala,hour,date){
-		vm.reservas=globalService.getReservaSala(sala,date);
-		//vm.check=false;
-		/*for (reser in vm.reservas){
-			console.log(reser.horaEntrada[0]);
-			if(reser.horaEntrada[0]===hour){
-				vm.check=true;
-			}
-		}*/
-		return vm.hours;
-	}
-	
-	
-	/*vm.getNameReser = function(sala,hour){
-		vm.reservas=globalService.getReservaSala(sala,vm.date);
-		for (reser in vm.reservas){
-			if(reser.horaEntrada[0]===hour){
-				vm.personaReserva=reser.persona;
+
+	vm.confirmar = function (i,persona,hour){
+		for(var k=0; k < vm.reservas[i].length; k++){
+			console.log(vm.reservas[i]);
+			if(vm.reservas[i][k].persona.id===persona.id && vm.reservas[i][k].horaEntrada[0]==hour){
+				console.log("dentro");
+				globalService.confirmarReservaSala(vm.reservas[i][k].id);
 			}
 		}
-		//return vm.personaReserva.name;
-		return "";
-	}*/
-	
-//		$location.path("/");
-		
+	}	
 };

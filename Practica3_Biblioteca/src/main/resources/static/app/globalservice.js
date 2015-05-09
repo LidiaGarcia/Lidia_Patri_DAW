@@ -30,6 +30,10 @@ function GlobalService($resource,$timeout) {
 
 	var ReservasSalaResource = $resource('/reservas/sala/:id/:fecha',{},{
 	    query:{method:'GET',params:{id: '@id',fecha: '@fecha'},isArray:true}});
+	var ConfirmarReservasSalaResource = $resource('/reservas/sala/:id',
+			{id: '@id'},
+			{'update': {method:'PUT'}}
+			);
 	
 	//salas
 	var SalasResource = $resource('/salas/:id',
@@ -252,6 +256,7 @@ function GlobalService($resource,$timeout) {
 		vm.datos.mail=mail;
 		vm.datos.pass=pass;
 		SesionResource.save(vm.datos,function() {});
+		vm.persona=SesionPersResource.get();
 	}
 	
 	vm.logout = function() {
@@ -265,6 +270,7 @@ function GlobalService($resource,$timeout) {
 				$id=vm.persona.id;
 				SignupResource.update({id:$id},true);			
 			}
+			vm.persona={};
 		}
 		
 	}
@@ -278,13 +284,9 @@ function GlobalService($resource,$timeout) {
 	//reservas
 	vm.getReservaSala = function(sala,date){
 		$id=sala.id;
-		
 		$fecha=date[0]+"-"+ date[1]+"-"+date[2];
-		//$fecha="2015-05-23";
-		console.log($fecha,$id);
-		//return null;
 		var mmm=ReservasSalaResource.query({id:$id},{fecha:$fecha});
-		setTimeout(function(){console.log(mmm);},3000);
+		setTimeout(function(){console.log(mmm,"hola");},3000);
 		return mmm;				
 	}
 	
@@ -292,19 +294,21 @@ function GlobalService($resource,$timeout) {
 		var reser =[];
 		var sal=vm.getSalas();
 		setTimeout(function(){
-			console.log(sal);
 			for (var i = 0; i < sal.length; i++) {
-				console.log(sal);
-				console.log(sal[i].id);
 				var reservasr = vm.getReservaSala(sal[i],vm.fecha);
 				reser.push(reservasr);
-				console.log(reser);
 			}	
 		}
-		,9000);
-		
+		,3000);
+		console.log(reser);
 		return reser;
 	}
+	
+	vm.confirmarReservaSala = function(id){
+		ConfirmarReservasSalaResource.update({id:$id},function(){alert("sala confirmada")});
+	}
+	
+	
 	//otros
 	vm.reload = function(){
 		vm.personas=vm.getPersonas();
