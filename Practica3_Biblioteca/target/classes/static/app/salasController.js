@@ -12,13 +12,14 @@ function SalasController(globalService, $location, $routeParams) {
 	vm.salas=globalService.getSalas();
 	vm.hours=["9","10","11","12","13","14","15","16","17","18","19","20"];
 	vm.date=globalService.getDate();
+	vm.date2=globalService.date2;
 	vm.reservas=globalService.allReser();
 	vm.check=[];
 	vm.personaReserva=[];
 	vm.reservaTotal=new Array();
 	vm.checkTotal=new Array();
 	vm.confirmTotal=new Array();
-	vm.verSala=false;
+	vm.verSala=true;
 	vm.islog=globalService.islog();
 	vm.persona=globalService.getPersona();
 
@@ -28,13 +29,18 @@ function SalasController(globalService, $location, $routeParams) {
 	
 	vm.reload = function(){
 		globalService.reload();
+		vm.salas=globalService.salas;
+		vm.personas = globalService.personas;
+		vm.portatiles =globalService.portatiles
 		vm.reservas=globalService.allReser();
-		vm.salas=globalService.getSalas();
-		vm.personas = globalService.getPersonas();	
-		vm.date=globalService.getDate();
-		vm.reservas=globalService.allReser();
+		setTimeout(function(){vm.persona=globalService.persona;
+		vm.date2=globalService.date2;
+		vm.reservas=globalService.allReser();},1000);
 		vm.isReser();
-		vm.persona=globalService.persona;
+		
+//		vm.verSala=false;
+
+
 	}
 
 	
@@ -51,6 +57,7 @@ function SalasController(globalService, $location, $routeParams) {
 				var check2 = false;
 				var persoRes ={};
 				var confirm2=false;
+				console.log(vm.reservas[index]);
 				for (var i = 0; i < vm.reservas[index].length; i++) {				
 					if((vm.reservas[index][i].horaEntrada[0]==vm.hours[j])&&(vm.reservas[index][i].sala.id)){
 						check2=true;
@@ -67,9 +74,6 @@ function SalasController(globalService, $location, $routeParams) {
 			vm.checkTotal[index]=vm.check;
 			vm.confirmTotal[index]=vm.confirm;
 		}
-		console.log(vm.checkTotal);
-		console.log(vm.reservaTotal);
-		console.log(vm.confirmTotal);
 	}
 	
 
@@ -79,6 +83,7 @@ function SalasController(globalService, $location, $routeParams) {
 				globalService.confirmarReservaSala(vm.reservas[i][k].id);
 			}
 		}
+		$location.path("/micuenta");
 	}
 	
 	vm.reservar = function (i,hora){
@@ -93,6 +98,29 @@ function SalasController(globalService, $location, $routeParams) {
 		reserva.horaEntrada[1]=0;
 		reserva.confirmada =false;
 		globalService.reservar(reserva);
-		
+		$location.path("/micuenta");
+
+	}
+	
+	vm.nextDay = function(){
+		globalService.nextDay();
+		setTimeout(function(){
+			vm.reload();
+		},100);
+		setTimeout(function(){
+			vm.isReser();
+			$location.path("/micuenta")
+		},650);
+	}
+	
+	vm.previusDay = function(){
+		globalService.previusDay();
+		setTimeout(function(){
+			vm.reload();
+		},100);
+		setTimeout(function(){
+			vm.isReser();
+			$location.path("/micuenta")
+		},650);
 	}
 };

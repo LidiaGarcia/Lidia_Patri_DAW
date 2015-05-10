@@ -19,6 +19,7 @@ function GlobalService($resource,$timeout) {
 	vm.portatil={};
 	vm.portatilmodificar={};
 	vm.date={};
+	vm.date2={};
 
 
 	//vm.fecha=[2015, 5, 24];
@@ -27,10 +28,13 @@ function GlobalService($resource,$timeout) {
 	//resources
 	var BibliotecaHoraResource = $resource('/hour');
 	var BibliotecaDateResource = $resource('/date');	
-	var BibliotecaDiaSemanaResource = $resource('/dayWeek');	
+	var BibliotecaDiaSemanaResource = $resource('/dayWeek');
+	var BibliotecaChangeDateResource = $resource('/date/:fecha/:day',{},
+			{query:{method:'GET',params:{fecha: '@fecha',day: '@day'},isArray:true}});
 
 	var ReservasSalaResource = $resource('/reservas/sala/:id/:fecha',{},
 		{query:{method:'GET',params:{id: '@id',fecha: '@fecha'},isArray:true}});
+	
 	var ReservaSalaResource= $resource('/reservas/sala', {},{save:{method:'POST'}});
 	
 	var ConfirmarReservasSalaResource = $resource('/reservas/sala/:id',
@@ -234,11 +238,43 @@ function GlobalService($resource,$timeout) {
 	
 	vm.getDate = function(){
 		vm.date=BibliotecaDateResource.query();
+		vm.date2=vm.date;
 		return BibliotecaDateResource.query();
 	}
 	
 	vm.getDayWeek = function(){
 		return BibliotecaDiaSemanaResource.get();
+	}
+	vm.getOtherDate = function(date,suma){
+		var days =-1;
+		if (!suma){ days=1}
+		var dayWeek =vm.getDayWeek();
+		setTimeout(function(){
+			if (dayWeek===5&&suma) {
+				days = -3;
+			}else if(dayWeek===1&&!suma){
+				days = 3;
+			}	
+		}
+		,500);
+		$day=parseInt(days);
+		
+		return BibliotecaChangeDateResource.query({fecha:$fecha},{day:$day});
+	}
+	vm.nextDay = function(){
+		vm.date2=vm.getOtherDate(vm.date2,true);	
+		setTimeout(function(){
+			console.log(vm.date2);
+		}
+		,500);
+	}
+	vm.previusDay = function(){
+		vm.date2=vm.getOtherDate(vm.date2,false);	
+		setTimeout(function(){
+			console.log(vm.date2);
+		}
+		,500);
+		
 	}
 	
 	//sesion
@@ -296,12 +332,13 @@ function GlobalService($resource,$timeout) {
 		var sal=vm.getSalas();
 		setTimeout(function(){
 			for (var i = 0; i < sal.length; i++) {
-				var reservasr = vm.getReservaSala(sal[i],vm.date);
+				var reservasr = vm.getReservaSala(sal[i],vm.date2);
 				reser.push(reservasr);
 			}	
+			console.log(vm.date2);
 		}
 		,500);
-		console.log(reser);
+		
 		return reser;
 	}
 	
@@ -316,13 +353,15 @@ function GlobalService($resource,$timeout) {
 	}
 	
 	
+	
 	//otros
 	vm.reload = function(){
 		vm.personas=vm.getPersonas();
 		vm.salas=vm.getSalas();
 		vm.portatiles=vm.getPortatiles();
-		vm.date=vm.getDate();
-		setTimeout(function(){alert('Hello')},3000);
+		vm.cursos=vm.getCursos();
+		console.log("reloando");
+		//setTimeout(function(){alert('Hello')},3000);
 	}
 	
 }

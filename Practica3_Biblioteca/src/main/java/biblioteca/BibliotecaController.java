@@ -3,6 +3,7 @@ package biblioteca;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -41,5 +42,11 @@ public class BibliotecaController {
 	public LocalDate givemeDate(){		
 		return today.now();
 	}
+	
+	@RequestMapping(value="/date/{a}-{b}-{c}/{day}", method = RequestMethod.GET)
+	public LocalDate oneMoreDayDate(@PathVariable int day, @PathVariable int a, @PathVariable int b, @PathVariable int c){		
+		return LocalDate.of(a,b,c).minusDays(day);
+	}
+
 
 }

@@ -76,15 +76,15 @@ public class DatosController implements CommandLineRunner {
 		Curso c5 = new Curso ("Curso 5","Curso sobre la pintura", LocalDate.of(2015, 5, 14), LocalTime.of(9,00),60,90);
 		cursos_repo.save(c5);
 		
-		ReservaSala rs1 = new ReservaSala(s1,p1, LocalDate.of(2015, 5, 23), LocalTime.of(14,00),false);
+		ReservaSala rs1 = new ReservaSala(s1,p1, LocalDate.of(2015, 5, 9), LocalTime.of(14,00),false);
 		reserva_salas_repo.save(rs1);
-		ReservaSala rs2 = new ReservaSala(s1,p2, LocalDate.of(2015, 5, 24), LocalTime.of(11,00),false);
+		ReservaSala rs2 = new ReservaSala(s1,p2, LocalDate.of(2015, 5, 9), LocalTime.of(11,00),false);
 		reserva_salas_repo.save(rs2);
 		ReservaSala rs3 = new ReservaSala(s4,p1, LocalDate.of(2015, 5, 10), LocalTime.of(18,00),false);
 		reserva_salas_repo.save(rs3);
-		ReservaSala rs4 = new ReservaSala(s2,p4, LocalDate.of(2015, 5, 24), LocalTime.of(16,00),false);
+		ReservaSala rs4 = new ReservaSala(s2,p4, LocalDate.of(2015, 5, 11), LocalTime.of(16,00),false);
 		reserva_salas_repo.save(rs4);
-		ReservaSala rs5 = new ReservaSala(s3,p2, LocalDate.of(2015, 5, 25), LocalTime.of(9,00),false);
+		ReservaSala rs5 = new ReservaSala(s3,p2, LocalDate.of(2015, 5, 11), LocalTime.of(9,00),false);
 		reserva_salas_repo.save(rs5);
 		ReservaSala rs6 = new ReservaSala(s3,p4, LocalDate.of(2015, 5, 10), LocalTime.of(18,00),false);
 		reserva_salas_repo.save(rs6);
