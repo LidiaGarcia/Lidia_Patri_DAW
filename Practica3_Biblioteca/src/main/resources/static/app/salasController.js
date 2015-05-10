@@ -34,6 +34,7 @@ function SalasController(globalService, $location, $routeParams) {
 		vm.date=globalService.getDate();
 		vm.reservas=globalService.allReser();
 		vm.isReser();
+		vm.persona=globalService.persona;
 	}
 
 	
@@ -78,5 +79,16 @@ function SalasController(globalService, $location, $routeParams) {
 				globalService.confirmarReservaSala(vm.reservas[i][k].id);
 			}
 		}
-	}	
+	}
+	
+	vm.reservar = function (i,hora,fecha){
+		var reserva = {}
+		reserva.sala =vm.salas[i];
+		reserva.persona = vm.persona;
+		reserva.fecha = vm.date;
+		reserva.horaEntrada =hora;
+		reserva.confirmada =false;
+		globalService.reservar(reserva);
+		
+	}
 };

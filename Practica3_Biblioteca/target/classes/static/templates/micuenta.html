@@ -72,6 +72,9 @@
 			</div>
 			<div ng-if="!vm.checkTotal[$parent.$index][$index]">
 				<div id="salaNotReser"><p>{{hour}}:00</p><p>Vacía</p></div>
+				<span ng-if="vm.islog[0]">
+					<button type="button" ng-hide="vm.islog[1]" ng-click="vm.rerservar($parent.$parent.$parent.$index,vm.reservaTotal[$parent.$parent.$parent.$index][$index],hour)">Reservar</button>							
+				</span>
 			</div>		
 		</div>
 	</div>	

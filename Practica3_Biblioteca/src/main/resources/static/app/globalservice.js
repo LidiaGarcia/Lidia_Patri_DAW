@@ -21,15 +21,18 @@ function GlobalService($resource,$timeout) {
 	vm.date={};
 
 
-	vm.fecha=[2015, 5, 24];
+	//vm.fecha=[2015, 5, 24];
+	
 	
 	//resources
 	var BibliotecaHoraResource = $resource('/hour');
 	var BibliotecaDateResource = $resource('/date');	
 	var BibliotecaDiaSemanaResource = $resource('/dayWeek');	
 
-	var ReservasSalaResource = $resource('/reservas/sala/:id/:fecha',{},{
-	    query:{method:'GET',params:{id: '@id',fecha: '@fecha'},isArray:true}});
+	var ReservasSalaResource = $resource('/reservas/sala/:id/:fecha',
+		{query:{method:'GET',params:{id: '@id',fecha: '@fecha'},isArray:true}}, 
+	    {save:{method:'POST'}}
+	);
 	var ConfirmarReservasSalaResource = $resource('/reservas/sala/:id',
 			{id: '@id'},
 			{'update': {method:'PUT'}}
@@ -260,6 +263,7 @@ function GlobalService($resource,$timeout) {
 	}
 	
 	vm.logout = function() {
+		vm.persona={};
 		SesionResource.remove(function() {});
 	}
 	vm.signup = function(mail,pass){
@@ -285,9 +289,7 @@ function GlobalService($resource,$timeout) {
 	vm.getReservaSala = function(sala,date){
 		$id=sala.id;
 		$fecha=date[0]+"-"+ date[1]+"-"+date[2];
-		var mmm=ReservasSalaResource.query({id:$id},{fecha:$fecha});
-		setTimeout(function(){console.log(mmm,"hola");},3000);
-		return mmm;				
+		return ReservasSalaResource.query({id:$id},{fecha:$fecha});				
 	}
 	
 	vm.allReser = function(){
@@ -295,11 +297,11 @@ function GlobalService($resource,$timeout) {
 		var sal=vm.getSalas();
 		setTimeout(function(){
 			for (var i = 0; i < sal.length; i++) {
-				var reservasr = vm.getReservaSala(sal[i],vm.fecha);
+				var reservasr = vm.getReservaSala(sal[i],vm.date);
 				reser.push(reservasr);
 			}	
 		}
-		,3000);
+		,200);
 		console.log(reser);
 		return reser;
 	}
@@ -307,6 +309,10 @@ function GlobalService($resource,$timeout) {
 	vm.confirmarReservaSala = function(id){
 		$id=id;
 		ConfirmarReservasSalaResource.update({id:$id},function(){alert("sala confirmada")});
+	}
+	
+	vm.reservar = function(reserva){
+		ReservasSalaResource.save(reserva,function(){alert('Has reservado una sala :D')});
 	}
 	
 	
