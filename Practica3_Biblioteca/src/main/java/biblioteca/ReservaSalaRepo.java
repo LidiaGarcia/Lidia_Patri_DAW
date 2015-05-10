@@ -24,4 +24,6 @@ public interface ReservaSalaRepo extends JpaRepository<ReservaSala, Long> {
 	@Query("update ReservaSala p set p.confirmada = true where p.id= ?1")
 	void setConfirm(long id);
 
+	@Query("SELECT DISTINCT p FROM ReservaSala p WHERE p.fecha=?1")
+	List<ReservaSala> findAllHoy(LocalDate fecha);
 }

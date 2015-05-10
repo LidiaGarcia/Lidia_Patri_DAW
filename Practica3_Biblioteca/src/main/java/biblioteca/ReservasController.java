@@ -47,7 +47,11 @@ public class ReservasController {
 	public List<ReservaSala> getSalasReservadas(){
 		return reserva_salas_repo.findAll();
 	}
-	
+	//Reservas de salas hoy
+	@RequestMapping(value = "/sala/hoy", method = RequestMethod.GET)
+	public List<ReservaSala> getReservasSalaHoy(){
+		return reserva_salas_repo.findAllHoy(LocalDate.now());
+	}
 	//lista Reservas de salas por una persona
 	@RequestMapping(value = "/sala/persona/{id}", method = RequestMethod.GET)
 	public List<ReservaSala> getSalasDePersona(@PathVariable long id, HttpSession sesion){
@@ -85,6 +89,11 @@ public class ReservasController {
 		}else{
 			return null;
 		}
+	}
+	//Reservas de salas hoy
+	@RequestMapping(value = "/portatil/hoy", method = RequestMethod.GET)
+	public List<ReservaPortatil> getReservasPortatilHoy(){
+		return reserva_portatil_repo.findAllHoy(LocalDate.now());
 	}
 	//lista Reservas de portatiles
 	@RequestMapping(value = "/portatil", method = RequestMethod.GET)

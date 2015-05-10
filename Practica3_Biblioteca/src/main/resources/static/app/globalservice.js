@@ -36,7 +36,10 @@ function GlobalService($resource,$timeout) {
 		{query:{method:'GET',params:{id: '@id',fecha: '@fecha'},isArray:true}});
 	
 	var ReservaSalaResource= $resource('/reservas/sala', {},{save:{method:'POST'}});
+	var ReservasSalaHoyResource= $resource('/reservas/sala/hoy');
 	
+	
+	var ReservasPortatilHoyResource= $resource('/reservas/portatil/hoy');
 	var ConfirmarReservasSalaResource = $resource('/reservas/sala/:id',
 			{id: '@id'},
 			{'update': {method:'PUT'}}
@@ -77,6 +80,8 @@ function GlobalService($resource,$timeout) {
 			{eliminarinscripcion: {method: 'POST'}}
 	);
 	var MisCursosResource = $resource('/cursos/miscursos');
+	
+	var CursosHoyResource = $resource('/cursos/hoy');
 	//portatiles
 	var PortatilesResource = $resource('/portatiles/:id',
 			{id: '@id'},
@@ -161,6 +166,10 @@ function GlobalService($resource,$timeout) {
 	vm.removeInscripcion = function(curso){
 		$id=curso.id;
 		CursoEliminarInscripResource.eliminarinscripcion({id:$id},function(){alert("Se ha borrado tu inscripción al curso correctamente")})
+	}
+	
+	vm.getCursosDia = function(){
+		return CursosHoyResource.query();
 	}
 	//salas
 	vm.getSalas = function(){
@@ -352,8 +361,14 @@ function GlobalService($resource,$timeout) {
 		ReservaSalaResource.save(reserva,function(){alert('Has reservado una sala :D')});
 	}
 	
+	vm.getReservasSalaDia = function(){
+		return ReservasSalaHoyResource.query();
+	}
 	
 	
+	vm.getReservasPortatilDia = function(){
+		return ReservasPortatilHoyResource.query();
+	}
 	//otros
 	vm.reload = function(){
 		vm.personas=vm.getPersonas();
