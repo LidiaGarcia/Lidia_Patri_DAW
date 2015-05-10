@@ -1,5 +1,6 @@
 package biblioteca;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,6 +34,10 @@ public class CursoController {
 		return cursos_repo.findAll();
 	}
 	
+	@RequestMapping(value = "/hoy",method=RequestMethod.GET)
+	public List<Curso> getCursosHoy(){
+		return cursos_repo.findAllHoy(LocalDate.now());
+	}
 	@RequestMapping(method=RequestMethod.POST)
 	public ResponseEntity<Curso> addCurso(@RequestBody Curso curso, HttpSession sesion){
 		if((sesion!=null)&&((sesion.getAttribute("admin") != null)&&((Boolean)sesion.getAttribute("admin")))){

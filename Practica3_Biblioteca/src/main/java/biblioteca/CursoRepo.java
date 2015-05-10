@@ -46,4 +46,8 @@ public interface CursoRepo extends JpaRepository<Curso, Long> {
 	@Transactional
 	@Query("update Curso p set p.listaInscritos = ?2 where p.id= ?1")
 	void setInscritos(long id, List<Persona> personas);
+	
+	
+	@Query("SELECT DISTINCT p FROM Curso p WHERE p.fecha=?1")
+	List<Curso> findAllHoy(LocalDate fecha);
 }

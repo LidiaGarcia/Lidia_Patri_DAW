@@ -8,7 +8,7 @@
 	position: relative;
 	display: inline-block;
 }
-#adminIndex,#adminCursos,#inscrcursos,#adminSalas,#adminPortatiles,#personalData{
+#adminIndex,#adminCursos,#inscrcursos,#adminSalas,#adminPortatiles,#personalData,#vistadia{
 	display: inline;
 	float: right;
 	padding: 3em;
