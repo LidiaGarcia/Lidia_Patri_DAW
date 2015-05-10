@@ -84,7 +84,12 @@ function SalasController(globalService, $location, $routeParams, $timeout) {
 				globalService.confirmarReservaSala(vm.reservas[i][k].id);
 			}
 		}
-		$location.path("/micuenta");
+		
+		setTimeout(function(){	
+			vm.reload();
+			$location.path("/micuenta");
+		},500);
+		
 	}
 	
 	vm.reservar = function (i,hora){
@@ -101,14 +106,14 @@ function SalasController(globalService, $location, $routeParams, $timeout) {
 			reserva.horaEntrada[1]=0;
 			reserva.confirmada =false;
 			globalService.reservar(reserva);
-			$location.path("/micuenta");}
+			}
 		,2000);
 		setTimeout(function(){
 			vm.reload();
 		},2100);
 		setTimeout(function(){
 			vm.isReser();
-			$location.path("/micuenta")
+			$location.path("/reservasala")
 		},3000);
 		
 	}
@@ -120,7 +125,7 @@ function SalasController(globalService, $location, $routeParams, $timeout) {
 		},100);
 		setTimeout(function(){
 			vm.isReser();
-			$location.path("/micuenta")
+			$location.path("/reservasala")
 		},650);
 	}
 	
@@ -131,7 +136,7 @@ function SalasController(globalService, $location, $routeParams, $timeout) {
 		},100);
 		setTimeout(function(){
 			vm.isReser();
-			$location.path("/micuenta")
+			$location.path("/reservasala")
 		},650);
 	}
 	

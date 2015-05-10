@@ -12,7 +12,7 @@
 		</div>
 	</div>
 </div>
-	
+
 <!--Menú izquierdo-->
 <div id="leftMenu" layout="column" style="height:500px;"  ng-controller="MicuentaController as vm">
   <div  ng-hide="!vm.islog[0]">
@@ -26,7 +26,7 @@
 
       	<h1 class="md-toolbar-tools">{{vm.dayweek.dayWeek}}</h1>
       </md-toolbar>
-       <md-content ng-hide="vm.islog[1]"layout-padding >
+      <md-content ng-hide="vm.islog[1]"layout-padding >
        <a href="#/reservasala">Reservar sala</a></br>
        <a href="#/reservaportatil">Reservar portatil</a></br>
        <a href= "#/inscripcioncurso">Inscribirse a curso</a></br>
@@ -47,41 +47,37 @@
   </section>
   </div>
 </div>
-<!--Datos-->
-<div ng-show="vm.islog[1]" id="adminIndex" ng-controller="SalasController as vm">
-	<div id="listadoSalas" ng-repeat="sala in vm.salas">	
-		<div ng-hide="vm.carga">Cargando...</div>
-		<div ng-show="vm.carga">	
-			<p>Sala {{sala.id}}</p>
-			<div ng-repeat="hour in vm.hours">			
-				<div ng-if="vm.checkTotal[$parent.$index][$index]">				
-					<div id="salaReser"><p>{{hour}}:00 - 	
-						<span ng-if="(vm.islog[1])">
-							{{vm.reservaTotal[$parent.$parent.$parent.$index][$index].nombre}} 
-							{{vm.reservaTotal[$parent.$parent.$parent.$index][$index].apellidos}}
-							<button type="button" ng-hide="vm.confirmTotal[$parent.$parent.$parent.$index][$index]" ng-click="vm.confirmar($parent.$parent.$parent.$index,vm.reservaTotal[$parent.$parent.$parent.$index][$index],hour)">Confirmar</button>							
-						</span>
-					</div>			
-				</div>
-				<div ng-if="!vm.checkTotal[$parent.$index][$index]">
-					<div id="salaNotReser"><p>{{hour}}:00 - Vacía</p></div>
-				</div>		
+
+<div id="adminIndex" ng-controller="SalasController as vm">
+
+	
+	<div ng-if="!vm.islog[1]">	
+	<button type="button" ng-click="vm.previusDay()">Anterior</button>
+	<span>{{vm.date2[2]}}-{{vm.date2[1]}}-{{vm.date2[0]}}</span>
+	<button type="button" ng-click="vm.nextDay()">Siguiente</button>
+	</div>
+
+<div id="listadoSalas" ng-repeat="sala in vm.salas">	
+	<div ng-hide="vm.carga">Cargando...</div>
+	<div ng-show="vm.carga">	
+		<p>Sala {{sala.id}}</p>
+		<div ng-repeat="hour in vm.hours">			
+			<div ng-if="vm.checkTotal[$parent.$index][$index]">				
+				<div id="salaReser"><p>{{hour}}:00 - 	
+					<span ng-if="!vm.islog[1]">
+						Reservada</p>
+					</span>
+				</div>			
 			</div>
-		</div>	
-	</div>
-</div>
-{{vm.islog[1]}}
-<!-- <div ng-hide="!vm.islog[1]" id="vistadia" ng-controller="DayController as vm">
-	<div id="cursosdia">
-		<div ng-repeat="curso in vm.cursos">
-			<p>Curso: {{curso.nombre}}</p>
-			<p>Hora: {{curso.hora[0]}}:{{curso.hora[1]}}</p>
+			<div ng-if="!vm.checkTotal[$parent.$index][$index]">
+				<div id="salaNotReser"><p>{{hour}}:00 - Vacía</p></div>
+				<span ng-if="vm.islog[0]">
+					<button type="button" ng-hide="vm.islog[1]" ng-click="vm.reservar($parent.$parent.$parent.$index,hour)">Reservar</button>							
+				</span>
+			</div>		
 		</div>
-	</div>
-	<div id ="reservasSalaDia">
-		<p>{{vm.reservasSalaDia()}}</p>
-	</div>
-	<div id = "reservasPortatilDia">
-		<p>{{vm.reservasPortatilDia()}}</p>
-	</div>
-</div> -->
+	</div>	
+</div>
+
+
+

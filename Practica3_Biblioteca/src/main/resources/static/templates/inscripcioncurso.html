@@ -26,9 +26,9 @@
 
       	<h1 class="md-toolbar-tools">{{vm.dayweek.dayWeek}}</h1>
       </md-toolbar>
-      <md-content ng-hide="vm.islog[1]"layout-padding >
-       <a>Reservar sala</a></br>
-       <a>Reservar portatil</a></br>
+     <md-content ng-hide="vm.islog[1]"layout-padding >
+       <a href="#/reservasala">Reservar sala</a></br>
+       <a href="#/reservaportatil">Reservar portatil</a></br>
        <a href= "#/inscripcioncurso">Inscribirse a curso</a></br>
        <a>Mis salas reservadas</a> </br>
        <a>Mis portátiles reservados</a> </br>
@@ -36,8 +36,8 @@
        <a href="#/personalData">Datos personales</a>
       </md-content>
       <md-content ng-hide="!vm.islog[1]" layout-padding >
-       <a>Control Salas</a> </br>
-       <a>Control Portátiles</a> </br>
+       <a href="#/controlsalas">Control Salas</a> </br>
+       <a href="#/controlportatiles">Control Portátiles</a> </br>
        <a href="#/adminsalas">Administrar Salas</a> </br>
        <a href="#/adminportatiles">Administrar Portátiles</a> </br>
        <a href="#/admincursos">Administrar Cursos</a> </br>

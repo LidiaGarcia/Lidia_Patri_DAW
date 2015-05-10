@@ -4,7 +4,7 @@ RouteConfig.$inject = [ '$routeProvider' ];
 
 function RouteConfig($routeProvider) {
 
-	$routeProvider.when('/', { templateUrl : "templates/micuenta.html" , controller: LoginController});
+	$routeProvider.when('/', { templateUrl : "templates/vistadia.html" , controller: LoginController});
 	$routeProvider.when('/micuenta', { templateUrl : "templates/micuenta.html" , controller: LoginController});
 	$routeProvider.when('/loginregistro', { templateUrl : "templates/loginregistro.html" , controller: LoginController});
 	$routeProvider.when('/personalData', { templateUrl : "templates/personalData.html" });
@@ -25,4 +25,9 @@ function RouteConfig($routeProvider) {
 	
 	$routeProvider.when('/vistadia', {templateUrl : "templates/vistadia.html"});
 	
+	$routeProvider.when('/reservasala', {templateUrl : "templates/reservasala.html"});
+	$routeProvider.when('/reservaportatil', {templateUrl : "templates/reservaportatil.html"});
+	
+	
+		
 }

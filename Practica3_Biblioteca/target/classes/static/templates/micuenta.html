@@ -27,8 +27,8 @@
       	<h1 class="md-toolbar-tools">{{vm.dayweek.dayWeek}}</h1>
       </md-toolbar>
       <md-content ng-hide="vm.islog[1]"layout-padding >
-       <a>Reservar sala</a></br>
-       <a>Reservar portatil</a></br>
+       <a href="#/reservasala">Reservar sala</a></br>
+       <a href="#/reservaportatil">Reservar portatil</a></br>
        <a href= "#/inscripcioncurso">Inscribirse a curso</a></br>
        <a>Mis salas reservadas</a> </br>
        <a>Mis portátiles reservados</a> </br>
@@ -36,8 +36,8 @@
        <a href="#/personalData">Datos personales</a>
       </md-content>
       <md-content ng-hide="!vm.islog[1]" layout-padding >
-       <a>Control Salas</a> </br>
-       <a>Control Portátiles</a> </br>
+       <a href="#/controlsalas">Control Salas</a> </br>
+       <a href="#/controlportatiles">Control Portátiles</a> </br>
        <a href="#/adminsalas">Administrar Salas</a> </br>
        <a href="#/adminportatiles">Administrar Portátiles</a> </br>
        <a href="#/admincursos">Administrar Cursos</a> </br>
@@ -50,12 +50,6 @@
 
 <div id="adminIndex" ng-controller="SalasController as vm">
 
-	
-	<div ng-if="!vm.islog[1]">	
-	<button type="button" ng-click="vm.previusDay()">Anterior</button>
-	<span>{{vm.date2[2]}}-{{vm.date2[1]}}-{{vm.date2[0]}}</span>
-	<button type="button" ng-click="vm.nextDay()">Siguiente</button>
-	</div>
 
 <div id="listadoSalas" ng-repeat="sala in vm.salas">	
 	<div ng-hide="vm.carga">Cargando...</div>
@@ -69,16 +63,10 @@
 						{{vm.reservaTotal[$parent.$parent.$parent.$index][$index].apellidos}}
 						<button type="button" ng-hide="vm.confirmTotal[$parent.$parent.$parent.$index][$index]" ng-click="vm.confirmar($parent.$parent.$parent.$index,vm.reservaTotal[$parent.$parent.$parent.$index][$index],hour)">Confirmar</button>							
 					</span>
-					<span ng-if="!vm.islog[1]">
-						Reservada</p>
-					</span>
 				</div>			
 			</div>
 			<div ng-if="!vm.checkTotal[$parent.$index][$index]">
 				<div id="salaNotReser"><p>{{hour}}:00 - Vacía</p></div>
-				<span ng-if="vm.islog[0]">
-					<button type="button" ng-hide="vm.islog[1]" ng-click="vm.reservar($parent.$parent.$parent.$index,hour)">Reservar</button>							
-				</span>
 			</div>		
 		</div>
 	</div>	
