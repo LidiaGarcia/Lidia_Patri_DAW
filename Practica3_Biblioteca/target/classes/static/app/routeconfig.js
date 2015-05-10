@@ -23,4 +23,6 @@ function RouteConfig($routeProvider) {
 	$routeProvider.when('/inscripcioncurso', { templateUrl : "templates/inscripcioncurso.html"});
 	$routeProvider.when('/miscursos', { templateUrl : "templates/miscursos.html"});
 	
+	$routeProvider.when('/vistadia', {templateUrl : "templates/vistadia.html"});
+	
 }

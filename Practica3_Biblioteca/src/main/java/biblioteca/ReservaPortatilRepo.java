@@ -21,4 +21,7 @@ public interface ReservaPortatilRepo extends JpaRepository<ReservaPortatil, Long
 	@Transactional
 	@Query("update ReservaPortatil p set p.confirmado = true where p.id= ?1")
 	void setConfirm(long id);
+	
+	@Query("SELECT DISTINCT p FROM ReservaPortatil p WHERE p.fecha=?1")
+	List<ReservaPortatil> findAllHoy(LocalDate fecha);
 }
