@@ -63,7 +63,7 @@
 					<span ng-if="(vm.islog[1])">
 						<p>{{vm.reservaTotal[$parent.$parent.$parent.$index][$index].nombre}} 
 						{{vm.reservaTotal[$parent.$parent.$parent.$index][$index].apellidos}}</p>
-						<button type="button" ng-click="vm.confirmar($parent.$parent.$parent.$index,vm.reservaTotal[$parent.$parent.$parent.$index][$index],hour)">Confirmar</button>							
+						<button type="button" ng-hide="vm.confirmTotal[$parent.$parent.$parent.$index][$index]" ng-click="vm.confirmar($parent.$parent.$parent.$index,vm.reservaTotal[$parent.$parent.$parent.$index][$index],hour)">Confirmar</button>							
 					</span>
 					<span ng-if="!vm.islog[1]">
 						<p>Reservada</p>

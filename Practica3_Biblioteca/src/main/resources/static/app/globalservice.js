@@ -305,6 +305,7 @@ function GlobalService($resource,$timeout) {
 	}
 	
 	vm.confirmarReservaSala = function(id){
+		$id=id;
 		ConfirmarReservasSalaResource.update({id:$id},function(){alert("sala confirmada")});
 	}
 	
