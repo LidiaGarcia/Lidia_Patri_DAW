@@ -29,10 +29,9 @@ function GlobalService($resource,$timeout) {
 	var BibliotecaDateResource = $resource('/date');	
 	var BibliotecaDiaSemanaResource = $resource('/dayWeek');	
 
-	var ReservasSalaResource = $resource('/reservas/sala/:id/:fecha',
-		{query:{method:'GET',params:{id: '@id',fecha: '@fecha'},isArray:true}}
-	);
-	var ReservaSalaResource= $resource('/reservas/sala', {save:{method:'POST'}});
+	var ReservasSalaResource = $resource('/reservas/sala/:id/:fecha',{},
+		{query:{method:'GET',params:{id: '@id',fecha: '@fecha'},isArray:true}});
+	var ReservaSalaResource= $resource('/reservas/sala', {},{save:{method:'POST'}});
 	
 	var ConfirmarReservasSalaResource = $resource('/reservas/sala/:id',
 			{id: '@id'},
@@ -275,7 +274,6 @@ function GlobalService($resource,$timeout) {
 				$id=vm.persona.id;
 				SignupResource.update({id:$id},true);			
 			}
-			vm.persona={};
 		}
 		
 	}
@@ -313,6 +311,7 @@ function GlobalService($resource,$timeout) {
 	}
 	
 	vm.reservar = function(reserva){
+		console.log(reserva);
 		ReservaSalaResource.save(reserva,function(){alert('Has reservado una sala :D')});
 	}
 	
