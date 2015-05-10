@@ -1,8 +1,8 @@
 angular.module("app").controller("SalasController", SalasController);
 
-SalasController.$inject = ["globalService","$location","$routeParams"];
+SalasController.$inject = ["globalService","$location","$routeParams","$timeout" ];
 
-function SalasController(globalService, $location, $routeParams) {
+function SalasController(globalService, $location, $routeParams, $timeout) {
 
 	var vm = this;
 	
@@ -22,27 +22,30 @@ function SalasController(globalService, $location, $routeParams) {
 	vm.verSala=true;
 	vm.islog=globalService.islog();
 	vm.persona=globalService.getPersona();
-
+	vm.carga=false;
 	
 	
 	//Controller actions
 	
-	vm.reload = function(){
+
+	
+	vm.reload = function (){
 		globalService.reload();
 		vm.salas=globalService.salas;
 		vm.personas = globalService.personas;
 		vm.portatiles =globalService.portatiles
 		vm.reservas=globalService.allReser();
+		setTimeout(function(){
+			vm.persona=globalService.getPersona();
+			vm.date2=globalService.date2;
+			vm.reservas=globalService.allReser();}
+		,1000);
 		setTimeout(function(){vm.persona=globalService.persona;
-		vm.date2=globalService.date2;
-		vm.reservas=globalService.allReser();},1000);
-		vm.isReser();
+			vm.isReser();
+			vm.carga=true;}
+		,2050);
 		
-//		vm.verSala=false;
-
-
 	}
-
 	
 	vm.isReser = function(){
 		vm.verSala=true;
@@ -57,12 +60,10 @@ function SalasController(globalService, $location, $routeParams) {
 				var check2 = false;
 				var persoRes ={};
 				var confirm2=false;
-				console.log(vm.reservas[index]);
 				for (var i = 0; i < vm.reservas[index].length; i++) {				
 					if((vm.reservas[index][i].horaEntrada[0]==vm.hours[j])&&(vm.reservas[index][i].sala.id)){
 						check2=true;
 						persoRes=(vm.reservas[index][i].persona);
-						console.log(vm.reservas[index][i]);
 						confirm2 = vm.reservas[index][i].confirmada;
 					}	
 				}
@@ -87,19 +88,29 @@ function SalasController(globalService, $location, $routeParams) {
 	}
 	
 	vm.reservar = function (i,hora){
-		console.log(vm.persona);
-		var reserva = {}
-		reserva.sala =vm.salas[i];
-		reserva.persona = {};
-		reserva.persona = vm.persona;
-		reserva.fecha = vm.date;
-		reserva.horaEntrada=[];
-		reserva.horaEntrada[0] = parseInt(hora);
-		reserva.horaEntrada[1]=0;
-		reserva.confirmada =false;
-		globalService.reservar(reserva);
-		$location.path("/micuenta");
-
+		vm.persona=globalService.getPersona();		
+		setTimeout(function(){
+			console.log(vm.persona);
+			var reserva = {}
+			reserva.sala =vm.salas[i];
+			reserva.persona = {};
+			reserva.persona = vm.persona;
+			reserva.fecha = vm.date2;
+			reserva.horaEntrada=[];
+			reserva.horaEntrada[0] = parseInt(hora);
+			reserva.horaEntrada[1]=0;
+			reserva.confirmada =false;
+			globalService.reservar(reserva);
+			$location.path("/micuenta");}
+		,2000);
+		setTimeout(function(){
+			vm.reload();
+		},2100);
+		setTimeout(function(){
+			vm.isReser();
+			$location.path("/micuenta")
+		},3000);
+		
 	}
 	
 	vm.nextDay = function(){
@@ -123,4 +134,8 @@ function SalasController(globalService, $location, $routeParams) {
 			$location.path("/micuenta")
 		},650);
 	}
+	
+	setTimeout(function(){
+		vm.reload();}
+	,500);
 };

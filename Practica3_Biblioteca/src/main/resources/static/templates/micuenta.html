@@ -50,18 +50,17 @@
 
 <div id="adminIndex" ng-controller="SalasController as vm">
 
-<button type="button" ng-click="vm.reload()">Reload</button>
-
-	<button type="button" ng-click="vm.isReser()">Ver reservas</button>	
-	<div>	
+	
+	<div ng-if="!vm.islog[1]">	
 	<button type="button" ng-click="vm.previusDay()">Anterior</button>
 	<span>{{vm.date2[2]}}-{{vm.date2[1]}}-{{vm.date2[0]}}</span>
 	<button type="button" ng-click="vm.nextDay()">Siguiente</button>
 	</div>
 
 <div id="listadoSalas" ng-repeat="sala in vm.salas">	
-	<p>Sala {{sala.id}}</p>
-	<div ng-show="vm.verSala">	
+	<div ng-hide="vm.carga">Cargando...</div>
+	<div ng-show="vm.carga">	
+		<p>Sala {{sala.id}}</p>
 		<div ng-repeat="hour in vm.hours">			
 			<div ng-if="vm.checkTotal[$parent.$index][$index]">				
 				<div id="salaReser"><p>{{hour}}:00 - 	
