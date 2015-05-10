@@ -30,9 +30,10 @@ function GlobalService($resource,$timeout) {
 	var BibliotecaDiaSemanaResource = $resource('/dayWeek');	
 
 	var ReservasSalaResource = $resource('/reservas/sala/:id/:fecha',
-		{query:{method:'GET',params:{id: '@id',fecha: '@fecha'},isArray:true}}, 
-	    {save:{method:'POST'}}
+		{query:{method:'GET',params:{id: '@id',fecha: '@fecha'},isArray:true}}
 	);
+	var ReservaSalaResource= $resource('/reservas/sala', {save:{method:'POST'}});
+	
 	var ConfirmarReservasSalaResource = $resource('/reservas/sala/:id',
 			{id: '@id'},
 			{'update': {method:'PUT'}}
@@ -301,7 +302,7 @@ function GlobalService($resource,$timeout) {
 				reser.push(reservasr);
 			}	
 		}
-		,200);
+		,500);
 		console.log(reser);
 		return reser;
 	}
@@ -312,7 +313,7 @@ function GlobalService($resource,$timeout) {
 	}
 	
 	vm.reservar = function(reserva){
-		ReservasSalaResource.save(reserva,function(){alert('Has reservado una sala :D')});
+		ReservaSalaResource.save(reserva,function(){alert('Has reservado una sala :D')});
 	}
 	
 	
