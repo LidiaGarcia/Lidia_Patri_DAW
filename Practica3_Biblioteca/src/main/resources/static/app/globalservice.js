@@ -23,6 +23,7 @@ function GlobalService($resource,$timeout) {
 	vm.reservasSalaHoy=[];
 	vm.reservasPortatilHoy=[];
 	vm.allReservas=[];
+	vm.allReservasPortatiles=[];
 
 	//vm.fecha=[2015, 5, 24];
 	
@@ -38,6 +39,9 @@ function GlobalService($resource,$timeout) {
 		{query:{method:'GET',params:{id: '@id',fecha: '@fecha'},isArray:true}});
 	
 	var ReservaSalaResource= $resource('/reservas/sala', {},
+			{save:{method:'POST'}});
+	
+	var ReservaPortatilResource= $resource('/reservas/portatil', {},
 			{save:{method:'POST'}});
 	var ReservasSalaHoyResource= $resource('/reservas/sala/hoy');
 	
@@ -355,6 +359,7 @@ function GlobalService($resource,$timeout) {
 	//otros
 	vm.reload = function(){
 		vm.allReservas=ReservaSalaResource.query();
+		vm.allReservasPortatiles=ReservaPortatilResource.query();
 		vm.personas=vm.getPersonas();
 		vm.salas=vm.getSalas();
 		vm.portatiles=vm.getPortatiles();
