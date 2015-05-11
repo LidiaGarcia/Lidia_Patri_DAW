@@ -8,11 +8,13 @@ function DayController(globalService, $location) {
 	vm.cursos= globalService.getCursosDia();
 	console.log(vm.cursos);
 	vm.salas= globalService.getSalas();
+	vm.portatiles= globalService.getPortatiles();
 	vm.reservasSala = globalService.getReservasSalaDia();
 	vm.reservasPortatil = globalService.getReservasPortatilDia();
 	vm.islog=globalService.islog();
 	vm.carga=false;
-	vm.disponibles=0;
+	vm.disponiblesSala=0;
+	vm.disponiblesPortatil=0;
 	vm.numhoras=12;
 	
 	vm.reload = function (){
@@ -20,13 +22,13 @@ function DayController(globalService, $location) {
 		setTimeout(function(){
 			vm.cursos= globalService.getCursosDia();		
 			vm.salas= globalService.getSalas();
+			vm.portatiles= globalService.getPortatiles();
 			vm.reservasSala = globalService.reservasSalaHoy;
 			vm.reservasPortatil = globalService.getReservasPortatilDia();
 			
 			}
 		,2000);
 		setTimeout(function(){
-			console.log(vm.reservasSala);
 			vm.reservasSalaDia();
 			vm.carga=true;
 			}
@@ -35,16 +37,11 @@ function DayController(globalService, $location) {
 	}
 	vm.reservasSalaDia = function(){
 	
-		vm.disponibles = vm.salas.length*vm.numhoras - vm.reservasSala.length;
+		vm.disponiblesSala = vm.salas.length*vm.numhoras - vm.reservasSala.length;
 	}
 	vm.reservasPortatilDia = function(){
-		var disponibles=0;
-		for (var i = 0; i < vm.reservasPortatil.length; i++){
-			if(!vm.reservasPortatil[i].confirmado){
-				diponibles+=1;
-			}
-		}
-		return disponibles;
+		console.log(vm.portatiles.lenght);
+		vm.disponiblesPortatil = vm.portatiles.length*vm.numhoras - vm.reservasPortatil.length;
 	}
 	
 	setTimeout(function(){

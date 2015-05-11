@@ -62,12 +62,11 @@
 				
 			</div>
 	  <div id ="reservasSalaDia">
-	  <p>{{vm.disponibles}}</p>
+	  <p>Salas dispoibles hoy: {{vm.disponiblesSala}}</p>
 	</div>
-	<!-- 
-	<div id = "reservasPortatilDia">
-		<p>{{vm.reservasPortatilDia()}}</p>
-	</div> -->
+	<div id ="reservasPortatilDia">
+	  <p>Portatiles dispoibles hoy: {{vm.disponiblesPortatil}}</p>
+	</div>
 	</div>
 </div>
 <div ng-show="vm.islog[1]" id="adminIndex" ng-controller="SalasController as vm">
