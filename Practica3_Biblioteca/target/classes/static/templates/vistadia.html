@@ -51,22 +51,24 @@
  <div ng-show="!vm.islog[1]" id="vistadia" ng-controller="DayController as vm">
  <div ng-hide="vm.carga">Cargando...</div>
 		<div ng-show="vm.carga">	
-			 <div id="cursosdia">
-			 <h1>Cursos de hoy</h1>
-				<div ng-repeat="curso in vm.cursos">
-				<ul>
-					<li>Curso: {{curso.nombre}}</li>
-					<p>Hora: {{curso.hora[0]}}:{{curso.hora[1]}}</p>
-				</ul>
-				</div>
-				
+		 <div id="cursosdia">
+		 <h1>Cursos de hoy</h1>
+			<div ng-repeat="curso in vm.cursos">
+			<ul>
+				<li>Curso: {{curso.nombre}}</li>
+				<p>Hora: {{curso.hora[0]}}:{{curso.hora[1]}}</p>
+			</ul>
 			</div>
-	  <div id ="reservasSalaDia">
-	  <p>Salas dispoibles hoy: {{vm.disponiblesSala}}</p>
-	</div>
-	<div id ="reservasPortatilDia">
-	  <p>Portatiles dispoibles hoy: {{vm.disponiblesPortatil}}</p>
-	</div>
+			
+		</div>
+		  <div id ="reservasSalaDia">
+		  <h1>Salas</h1>
+		  <p>Tramos para reservar salas diposibles hoy: {{vm.disponiblesSala}}</p>
+		  </div>
+		<div id ="reservasPortatilDia">
+		<h1>Portatiles</h1>
+		  <p>Tramos para reservar portatiles diposibles hoy: {{vm.disponiblesPortatil}}</p>
+		</div>
 	</div>
 </div>
 <div ng-show="vm.islog[1]" id="adminIndex" ng-controller="SalasController as vm">

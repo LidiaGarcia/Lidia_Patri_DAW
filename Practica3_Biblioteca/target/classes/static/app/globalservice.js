@@ -21,7 +21,7 @@ function GlobalService($resource,$timeout) {
 	vm.date={};
 	vm.date2={};
 	vm.reservasSalaHoy=[];
-
+	vm.reservasPortatilHoy=[];
 
 	//vm.fecha=[2015, 5, 24];
 	
@@ -341,15 +341,14 @@ function GlobalService($resource,$timeout) {
 	vm.getReservasSalaDia = function(){
 		setTimeout(function(){
 			vm.reservasSalaHoy=ReservasSalaHoyResource.query();		
-		},2000);
-		
-		
-		return vm.reservasSalahoy;
+		},1500);
 	}
 	
-	
 	vm.getReservasPortatilDia = function(){
-		return ReservasPortatilHoyResource.query();
+		setTimeout(function(){
+			vm.reservasPortatilHoy=ReservasPortatilHoyResource.query();		
+		},2000);
+
 	}
 	//otros
 	vm.reload = function(){
@@ -357,7 +356,9 @@ function GlobalService($resource,$timeout) {
 		vm.salas=vm.getSalas();
 		vm.portatiles=vm.getPortatiles();
 		vm.cursos=vm.getCursos();
+		vm.miscursos=vm.getMisCursos();
 		vm.reservasSalaHoy=vm.getReservasSalaDia();
+		vm.reservasPortatilHoy=vm.getReservasPortatilDia();
 	}
 	//reloud
 	function autoreload(){
