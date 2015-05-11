@@ -34,18 +34,8 @@ function DayController(globalService, $location) {
 
 	}
 	vm.reservasSalaDia = function(){
-		var huecostotales=vm.salas.length*vm.numhoras;
-		for (var k = 0; k < vm.reservasSala.length; k++){
-			if(!vm.reservasSala[k].confirmada){
-
-				console.log(vm.reservasSala[k]);	
-				console.log(!vm.reservasSala[k].confirmada);
-				console.log("antes",vm.disponibles);
-				vm.disponibles+=1;
-				console.log("despies",vm.disponibles);
-			}
-		}
-		console.log(vm.disponibles);
+	
+		vm.disponibles = vm.salas.length*vm.numhoras - vm.reservasSala.length;
 	}
 	vm.reservasPortatilDia = function(){
 		var disponibles=0;
