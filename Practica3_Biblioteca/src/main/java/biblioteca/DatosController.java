@@ -89,11 +89,11 @@ public class DatosController implements CommandLineRunner {
 		ReservaSala rs6 = new ReservaSala(s3,p4, LocalDate.of(2015, 5, 10), LocalTime.of(18,00),false);
 		reserva_salas_repo.save(rs6);
 	
-		ReservaPortatil rsp1 = new ReservaPortatil(por1,p2,LocalDate.of(2015, 5, 20),LocalTime.of(10,00),false);
+		ReservaPortatil rsp1 = new ReservaPortatil(por1,p2,LocalDate.of(2015, 5, 11),LocalTime.of(10,00),false);
 		reserva_portatil_repo.save(rsp1);
 		ReservaPortatil rsp2 = new ReservaPortatil(por2,p3,LocalDate.of(2015, 5, 22),LocalTime.of(12,00),false);
 		reserva_portatil_repo.save(rsp2);
-		ReservaPortatil rsp3 = new ReservaPortatil(por3,p2,LocalDate.of(2015, 5, 21),LocalTime.of(9,00),false);
+		ReservaPortatil rsp3 = new ReservaPortatil(por3,p2,LocalDate.of(2015, 5, 11),LocalTime.of(9,00),false);
 		reserva_portatil_repo.save(rsp3);
 		ReservaPortatil rsp4 = new ReservaPortatil(por2,p4,LocalDate.of(2015, 5, 20),LocalTime.of(18,00),false);
 		reserva_portatil_repo.save(rsp4);
