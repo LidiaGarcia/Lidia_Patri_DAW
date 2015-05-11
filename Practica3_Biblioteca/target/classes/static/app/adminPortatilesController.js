@@ -8,7 +8,7 @@ function adminPortatilesController(globalService, $location, $routeParams) {
 	vm.portatiles= globalService.getPortatiles();
 	vm.portatil={};
 	vm.portatilmodificar=globalService.portatilmodificar;
-	vm.allReservasPortatiles=globalService.allReservas;
+	vm.allReservasPortatiles=globalService.allReservasPortatiles;
 	vm.carga=false;
 	
 	vm.reload = function (){
@@ -48,12 +48,31 @@ function adminPortatilesController(globalService, $location, $routeParams) {
 		,500);
 	}
 	vm.deletePortatil = function(portatil){
-		globalService.deletePortatil(portatil);
-		vm.portatil={};
-		vm.reload();
+		var reservada = true;	
+		vm.allReservasPortatiles=globalService.allReservasPortatiles;
+		setTimeout(function(){			
+			
+			for(index=0;index<vm.allReservasPortatiles.length;index++){
+				console.log(vm.allReservasPortatiles[index]);
+				if(vm.allReservasPortatiles[index].portatil.id==portatil.id){
+					reservada=false;
+				}	
+			}	
+			if(reservada){
+				globalService.deletePortatil(portatil);
+				vm.portatil={};
+				reservada=false;
+			}else{
+				alert("No se puede eliminar un portátil con reservas");
+			}
+		},1000);
 		setTimeout(function(){
-			$location.path('/adminportatiles');}
-		,500);
+			vm.reload();
+		},1200);
+		setTimeout(function(){
+			$location.path('/adminportatiles');
+		},1600);
+		
 	}
 	
 	setTimeout(function(){
