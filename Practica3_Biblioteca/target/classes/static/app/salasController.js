@@ -116,7 +116,6 @@ function SalasController(globalService, $location, $routeParams, $timeout) {
 	vm.reservar = function (i,hora){
 		vm.persona=globalService.getPersona();		
 		setTimeout(function(){
-			console.log(vm.persona);
 			var reserva = {}
 			reserva.sala =vm.salas[i];
 			reserva.persona = {};
