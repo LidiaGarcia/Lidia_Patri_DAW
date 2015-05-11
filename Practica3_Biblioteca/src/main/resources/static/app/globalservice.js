@@ -198,12 +198,6 @@ function GlobalService($resource,$timeout) {
 	}
 	
 	vm.modifySala = function (sala){
-		console.log(sala.id);
-		
-		console.log(sala.nombre);
-		console.log(sala.compartida);
-		console.log(sala.estado);
-		console.log(sala.tamanio);
 		$id=sala.id;
 		SalasModifyResource.update({id:$id},sala,function(){alert("sala modificada")});
 	}
@@ -267,18 +261,9 @@ function GlobalService($resource,$timeout) {
 	}
 	vm.nextDay = function(){
 		vm.date2=vm.getOtherDate(vm.date2,true);	
-		setTimeout(function(){
-			console.log(vm.date2);
-		}
-		,500);
 	}
 	vm.previusDay = function(){
 		vm.date2=vm.getOtherDate(vm.date2,false);	
-		setTimeout(function(){
-			console.log(vm.date2);
-		}
-		,500);
-		
 	}
 	
 	//sesion
@@ -320,7 +305,6 @@ function GlobalService($resource,$timeout) {
 
 	vm.pass = function(pass,idpers){
 			$id=idpers;
-			console.log(SesionPersResource.get(),$id);
 			PassResource.update({id:$id},pass);
 
 	}
@@ -339,7 +323,6 @@ function GlobalService($resource,$timeout) {
 				var reservasr = vm.getReservaSala(sal[i],vm.date2);
 				reser.push(reservasr);
 			}	
-			console.log(vm.date2);
 		}
 		,500);
 		
@@ -352,14 +335,12 @@ function GlobalService($resource,$timeout) {
 	}
 	
 	vm.reservar = function(reserva){
-		console.log(reserva);
 		ReservaSalaResource.save(reserva,function(){alert('Has reservado una sala :D')});
 	}
 	
 	vm.getReservasSalaDia = function(){
 		setTimeout(function(){
 			vm.reservasSalaHoy=ReservasSalaHoyResource.query();		
-			console.log(vm.reservasSalaHoy);
 		},2000);
 		
 		
@@ -377,9 +358,6 @@ function GlobalService($resource,$timeout) {
 		vm.portatiles=vm.getPortatiles();
 		vm.cursos=vm.getCursos();
 		vm.reservasSalaHoy=vm.getReservasSalaDia();
-		console.log("en reload",vm.reservasSalaHoy);
-		console.log("reloando");
-		//setTimeout(function(){alert('Hello')},3000);
 	}
 	//reloud
 	function autoreload(){
