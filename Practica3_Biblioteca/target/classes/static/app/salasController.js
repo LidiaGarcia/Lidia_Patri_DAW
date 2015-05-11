@@ -14,6 +14,7 @@ function SalasController(globalService, $location, $routeParams, $timeout) {
 	vm.date=globalService.getDate();
 	vm.date2=globalService.date2;
 	vm.reservas=globalService.allReser();
+	vm.allReservas=[];
 	vm.check=[];
 	vm.personaReserva=[];
 	vm.reservaTotal=new Array();
@@ -23,6 +24,24 @@ function SalasController(globalService, $location, $routeParams, $timeout) {
 	vm.islog=globalService.islog();
 	vm.persona=globalService.getPersona();
 	vm.carga=false;
+	vm.nombre="";
+	vm.tamanio="";
+	vm.estado="";
+	vm.compartida="";
+	vm.sala={
+			nombre:"",
+			tamanio:"",
+			estado:"mediana",
+			compartida:false
+		};
+		
+	vm.salamodificar={
+			id:globalService.salamodificar.id,
+			nombre:globalService.salamodificar.nombre,
+			tamanio:globalService.salamodificar.tamanio,
+			estado:globalService.salamodificar.estado,
+			compartida:globalService.salamodificar.compartida
+	};
 	
 	
 	//Controller actions
@@ -40,7 +59,9 @@ function SalasController(globalService, $location, $routeParams, $timeout) {
 			vm.date2=globalService.date2;
 			vm.reservas=globalService.allReser();}
 		,1000);
-		setTimeout(function(){vm.persona=globalService.persona;
+		setTimeout(function(){
+			vm.persona=globalService.persona;
+			vm.allReservas=globalService.allReservas;
 			vm.isReser();
 			vm.carga=true;}
 		,2050);
@@ -138,6 +159,76 @@ function SalasController(globalService, $location, $routeParams, $timeout) {
 			vm.isReser();
 			$location.path("/reservasala")
 		},650);
+	}
+	
+	
+	
+	
+	vm.modificar = function(sala){
+		vm.salamodificar=globalService.setSalaModificar(sala);
+		vm.reload();
+		$location.path('/modifySala');
+	}
+	vm.modifySala = function(sala){
+
+		if(sala.compartida==="si"){
+			sala.compartida=true;
+		}
+		else{
+			vm.salamodificar.compartida=false;
+		}
+		globalService.modifySala(sala);
+		vm.salamodificar={};
+		globalService.setSalaModificar(vm.salamodificar);
+		vm.reload();
+		$location.path('/adminsalas');
+	}
+	vm.newSala = function(){
+		vm.sala.nombre=vm.nombre;
+		if (vm.tamanio !==""){
+			vm.sala.tamanio=vm.tamanio;
+		}
+		else{
+			vm.sala.tamanio="mediana";
+		}
+		vm.sala.estado=vm.estado;
+		if(vm.compartida==="si"){
+			vm.sala.compartida=true;
+		}
+		else{
+			vm.sala.compartida=false;
+		}
+		globalService.newSala(vm.sala);
+		vm.sala={};
+		vm.reload();
+		$location.path('/adminsalas');
+	}
+	vm.deleteSala = function(sala){
+//			globalService.deleteSala(sala);
+//			vm.sala={};
+		var reservada = true;	
+		vm.allReservas=globalService.allReservas;
+		setTimeout(function(){			
+			
+			for(index=0;index<vm.allReservas.length;index++){
+				if(vm.allReservas[index].sala.id==sala.id){
+					reservada=false;
+				}	
+			}	
+			if(reservada){
+				globalService.deleteSala(sala);
+				vm.sala={};
+				reservada=false;
+			}else{
+				alert("No se puede eliminar una sala con reservas");
+			}
+		},1000);
+		setTimeout(function(){
+			vm.reload();
+		},1200);
+		setTimeout(function(){
+			$location.path("/adminsalas")
+		},1600);
 	}
 	
 	setTimeout(function(){

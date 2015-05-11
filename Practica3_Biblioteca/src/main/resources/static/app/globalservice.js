@@ -22,6 +22,7 @@ function GlobalService($resource,$timeout) {
 	vm.date2={};
 	vm.reservasSalaHoy=[];
 	vm.reservasPortatilHoy=[];
+	vm.allReservas=[];
 
 	//vm.fecha=[2015, 5, 24];
 	
@@ -36,7 +37,8 @@ function GlobalService($resource,$timeout) {
 	var ReservasSalaResource = $resource('/reservas/sala/:id/:fecha',{},
 		{query:{method:'GET',params:{id: '@id',fecha: '@fecha'},isArray:true}});
 	
-	var ReservaSalaResource= $resource('/reservas/sala', {},{save:{method:'POST'}});
+	var ReservaSalaResource= $resource('/reservas/sala', {},
+			{save:{method:'POST'}});
 	var ReservasSalaHoyResource= $resource('/reservas/sala/hoy');
 	
 	
@@ -188,18 +190,18 @@ function GlobalService($resource,$timeout) {
 	}
 	
 	vm.newSala = function (newSala){
-		SalasResource.save(newSala,function() {alert("Nueva sala añadido")
+		SalasResource.save(newSala,function() {alert("Nueva sala añadida")
 		});
 	}
 	
 	vm.deleteSala = function (sala){
 		$id=sala.id;
-		SalasResource.deleteSala({id:$id},function(){alert("sala eliminada")});	
+		SalasResource.deleteSala({id:$id},function(){alert(sala.nombre+" eliminada")});	
 	}
 	
 	vm.modifySala = function (sala){
 		$id=sala.id;
-		SalasModifyResource.update({id:$id},sala,function(){alert("sala modificada")});
+		SalasModifyResource.update({id:$id},sala,function(){alert(sala.nombre+" modificada")});
 	}
 	
 	//portatiles
@@ -219,12 +221,12 @@ function GlobalService($resource,$timeout) {
 	
 	vm.deletePortatil = function (portatil){
 		$id=portatil.id;
-		PortatilesResource.deletePortatil({id:$id},function(){alert("portatil eliminado")});	
+		PortatilesResource.deletePortatil({id:$id},function(){alert("Portatil "+portatil.id+" eliminado")});	
 	}
 	
 	vm.modifyPortatil = function (portatil){
 		$id=portatil.id;
-		PortatilesModifyResource.update({id:$id},portatil,function(){alert("portatil modificado")});
+		PortatilesModifyResource.update({id:$id},portatil,function(){alert("Portatil "+portatil.id+" modificado")});
 	}
 	
 	
@@ -331,11 +333,11 @@ function GlobalService($resource,$timeout) {
 	
 	vm.confirmarReservaSala = function(id){
 		$id=id;
-		ConfirmarReservasSalaResource.update({id:$id},function(){alert("sala confirmada")});
+		ConfirmarReservasSalaResource.update({id:$id},function(){alert("Sala confirmada")});
 	}
 	
 	vm.reservar = function(reserva){
-		ReservaSalaResource.save(reserva,function(){alert('Has reservado una sala :D')});
+		ReservaSalaResource.save(reserva,function(){alert('Has reservado una sala')});
 	}
 	
 	vm.getReservasSalaDia = function(){
@@ -352,6 +354,7 @@ function GlobalService($resource,$timeout) {
 	}
 	//otros
 	vm.reload = function(){
+		vm.allReservas=ReservaSalaResource.query();
 		vm.personas=vm.getPersonas();
 		vm.salas=vm.getSalas();
 		vm.portatiles=vm.getPortatiles();

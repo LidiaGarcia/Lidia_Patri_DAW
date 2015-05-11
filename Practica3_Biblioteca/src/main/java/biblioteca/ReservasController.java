@@ -112,10 +112,12 @@ public class ReservasController {
 	}
 	
 	//ReservaS de un portatil en una fecha, el id es el id del portatil
-	@RequestMapping(value = "/portatil/{id}/{fecha}", method = RequestMethod.GET)
-	public List<ReservaPortatil> getReservasPortatilDia(@PathVariable long id, @PathVariable String fecha){
-		return reserva_portatil_repo.findByIdPortatilyFecha(id, LocalDate.parse(fecha));
+	@RequestMapping(value = "/portatil/{id}/{d}-{e}-{f}", method = RequestMethod.GET)
+	public List<ReservaPortatil> getReservasPortatilDia(@PathVariable long id,  @PathVariable int d, @PathVariable int e, @PathVariable int f){
+		return reserva_portatil_repo.findByIdPortatilyFecha(id, LocalDate.of(d,e,f));
 	}
+	
+	
 	
 	//confirmar una reserva portatil donde se le pasa el id de la reserva
 	@RequestMapping(value = "/portatil/{id}", method = RequestMethod.PUT)
