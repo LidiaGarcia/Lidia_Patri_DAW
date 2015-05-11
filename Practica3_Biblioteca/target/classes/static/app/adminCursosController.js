@@ -8,7 +8,7 @@ function adminCursosController(globalService, $location, $routeParams) {
 	vm.cursos= globalService.getCursos();
 	vm.miscursos = globalService.getMisCursos();
 	vm.miscursos=globalService.miscursos;
-
+	vm.carga=false;
 	vm.checkAdd={};
 	vm.checkAdd.add=true;
 	vm.curso={};
@@ -17,40 +17,51 @@ function adminCursosController(globalService, $location, $routeParams) {
 	vm.curso.hora=[];
 	
 	vm.reload = function(){
-		vm.miscursos = globalService.getMisCursos();
-		console.log(vm.miscursos);
+		globalService.reload();
+		setTimeout(function(){
+			vm.miscursos = globalService.miscursos;
+			vm.cursos = globalService.cursos;}
+		,1000);
+		setTimeout(function(){
+			vm.carga=true;}
+		,2050);
+		
 	}
 	vm.modificar = function(curso){
 		vm.cursomodificar=globalService.setCursoModificar(curso);
-		console.log("id",vm.curso.id);
-		console.log("nombre",vm.curso.nombre);
+		vm.reload();
 		$location.path('/modifyCurso');
 	}
 	vm.modifyCurso = function(curso){
-		console.log("id en admincursoscontrrolelr",curso.id);
 		globalService.modifyCurso(curso);
 		vm.cursomodificar={};
 		globalService.setCursoModificar(vm.cursomodificar);
+		vm.reload();
 		$location.path('/admincursos');
 	}
 	vm.newCurso = function(curso){
 		globalService.newCurso(curso);
 		vm.curso={};
+		vm.reload();
 		$location.path('/admincursos');
 	}
 	vm.deleteCurso = function(curso){
 		globalService.deleteCurso(curso);
 		vm.curso={};
+		vm.reload();
 		$location.path('/admincursos');
 	}
 	vm.inscripcion = function(curso){	
 		vm.checkAdd = globalService.inscripcion(curso);
+		vm.reload();
 		$location.path('/inscripcioncurso');
 		
 	}
 	vm.removeInscripcion = function(curso){
 		globalService.removeInscripcion(curso);
+		vm.reload();
 		$location.path('/miscursos');
 	}
+	vm.reload();
 	
 }

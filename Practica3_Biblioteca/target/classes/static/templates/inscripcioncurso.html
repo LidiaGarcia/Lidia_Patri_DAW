@@ -50,14 +50,17 @@
 
 
 <div id="inscrcursos" ng-controller="adminCursosController as vm">
+	
 	<div ng-show="!vm.checkAdd.add">Ya estabas inscrito en ese curso.</div>
-	<div ng-repeat="curso in vm.cursos">
+	<div ng-hide="vm.carga">Cargando...</div>
+	<div ng-hide="!vm.carga" ng-repeat="curso in vm.cursos">
 		<p>Curso: {{curso.nombre}}</p>
 		<p>Descripción: {{curso.descripcion}}</p>
 		<p>Fecha: {{curso.fecha[2]}}-{{curso.fecha[1]}}-{{curso.fecha[0]}}</p>
 		<p>Hora: {{curso.hora[0]}}:{{curso.hora[1]}}</p>
 		<p>Duración: {{curso.duracion}}</p>
 		<p>Aforo: {{curso.aforo}}</p>
-		<button type="button" ng-click="vm.inscripcion(curso)">Inscribirse al curso</button>	
+		<button type="button" ng-click="vm.inscripcion(curso)">Inscribirse al curso</button>
+	
 	</div>
 </div>

@@ -50,7 +50,9 @@
 
 <div id="adminCursos" ng-controller="adminCursosController as vm">
 	<a href="#/newCurso">Nuevo Curso</a>
-	<div ng-repeat="curso in vm.cursos">
+	
+	<div ng-hide="vm.carga">Cargando...</div>
+	<div ng-hide="!vm.carga" ng-repeat="curso in vm.cursos">
 		
 		<p>Curso: {{curso.nombre}}</p>
 		<p>Descripción: {{curso.descripcion}}</p>

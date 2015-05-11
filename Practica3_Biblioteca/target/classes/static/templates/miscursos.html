@@ -53,7 +53,8 @@
 	<div ng-hide="vm.miscursos[0]">
 	<p>¡Aún no te has inscrito a ningun curso!</p>
 	</div>
-		<div ng-repeat="curso in vm.miscursos">
+		<div ng-hide="vm.carga">Cargando...</div>
+	<div ng-hide="!vm.carga" ng-repeat="curso in vm.miscursos">
 			<p>Curso: {{curso.nombre}}</p>
 			<p>Descripción: {{curso.descripcion}}</p>
 			<p>Fecha: {{curso.fecha[2]}}-{{curso.fecha[1]}}-{{curso.fecha[0]}}</p>
