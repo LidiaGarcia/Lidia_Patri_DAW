@@ -20,6 +20,7 @@ function GlobalService($resource,$timeout) {
 	vm.portatilmodificar={};
 	vm.date={};
 	vm.date2={};
+	vm.reservasSalaHoy=[];
 
 
 	//vm.fecha=[2015, 5, 24];
@@ -110,13 +111,7 @@ function GlobalService($resource,$timeout) {
 	
 	//Funciones
 
-	//reloud
-	function autoreload(){
-		reload();
-		$timeout(autoreload, 1000);
-	}
 	
-	autoreload();
 
 	function reload(){
 		CursosResource.query(function(newcursos){
@@ -193,7 +188,7 @@ function GlobalService($resource,$timeout) {
 	}
 	
 	vm.newSala = function (newSala){
-		SalasResource.save(newSala,function() {
+		SalasResource.save(newSala,function() {alert("Nueva sala añadido")
 		});
 	}
 	
@@ -224,7 +219,7 @@ function GlobalService($resource,$timeout) {
 	}
 	
 	vm.newPortatil = function (newPortatil){
-		PortatilesResource.save(newPortatil,function() {
+		PortatilesResource.save(newPortatil,function() {alert("Nuevo portatil añadido")
 		});
 	}
 	
@@ -362,7 +357,13 @@ function GlobalService($resource,$timeout) {
 	}
 	
 	vm.getReservasSalaDia = function(){
-		return ReservasSalaHoyResource.query();
+		setTimeout(function(){
+			vm.reservasSalaHoy=ReservasSalaHoyResource.query();		
+			console.log(vm.reservasSalaHoy);
+		},2000);
+		
+		
+		return vm.reservasSalahoy;
 	}
 	
 	
@@ -375,8 +376,17 @@ function GlobalService($resource,$timeout) {
 		vm.salas=vm.getSalas();
 		vm.portatiles=vm.getPortatiles();
 		vm.cursos=vm.getCursos();
+		vm.reservasSalaHoy=vm.getReservasSalaDia();
+		console.log("en reload",vm.reservasSalaHoy);
 		console.log("reloando");
 		//setTimeout(function(){alert('Hello')},3000);
 	}
+	//reloud
+	function autoreload(){
+		vm.reload();
+		$timeout(autoreload, 1000);
+	}
+	
+	autoreload();
 	
 }

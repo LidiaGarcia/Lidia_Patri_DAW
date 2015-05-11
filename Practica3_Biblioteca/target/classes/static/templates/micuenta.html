@@ -5,7 +5,7 @@
 			<a href="#/loginregistro">Iniciar sesión</a>
 		</div>
 		<div ng-hide="!vm.islog[0]">
-			<a href="#/micuenta">{{vm.persona.nombre}}</a>
+			<a href="#/vistadia">{{vm.persona.nombre}}</a>
 			<form ng-submit="vm.logout()">
 		 	<input type='submit' name='Cerrarsesion' value="Cerrar sesión" />
 			</form>
@@ -48,29 +48,6 @@
   </div>
 </div>
 
-<div id="adminIndex" ng-controller="SalasController as vm">
-
-
-<div id="listadoSalas" ng-repeat="sala in vm.salas">	
-	<div ng-hide="vm.carga">Cargando...</div>
-	<div ng-show="vm.carga">	
-		<p>Sala {{sala.id}}</p>
-		<div ng-repeat="hour in vm.hours">			
-			<div ng-if="vm.checkTotal[$parent.$index][$index]">				
-				<div id="salaReser"><p>{{hour}}:00 - 	
-					<span ng-if="(vm.islog[1])">
-						{{vm.reservaTotal[$parent.$parent.$parent.$index][$index].nombre}} 
-						{{vm.reservaTotal[$parent.$parent.$parent.$index][$index].apellidos}}
-						<button type="button" ng-hide="vm.confirmTotal[$parent.$parent.$parent.$index][$index]" ng-click="vm.confirmar($parent.$parent.$parent.$index,vm.reservaTotal[$parent.$parent.$parent.$index][$index],hour)">Confirmar</button>							
-					</span>
-				</div>			
-			</div>
-			<div ng-if="!vm.checkTotal[$parent.$index][$index]">
-				<div id="salaNotReser"><p>{{hour}}:00 - Vacía</p></div>
-			</div>		
-		</div>
-	</div>	
-</div>
 
 
 

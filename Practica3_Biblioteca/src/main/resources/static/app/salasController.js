@@ -87,7 +87,7 @@ function SalasController(globalService, $location, $routeParams, $timeout) {
 		
 		setTimeout(function(){	
 			vm.reload();
-			$location.path("/micuenta");
+			$location.path("/vistadia");
 		},500);
 		
 	}

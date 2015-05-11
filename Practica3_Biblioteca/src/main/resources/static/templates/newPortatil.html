@@ -5,14 +5,13 @@
 			<a href="#/loginregistro">Iniciar sesión</a>
 		</div>
 		<div ng-hide="!vm.islog[0]">
-			<a href="#/micuenta">{{vm.persona.nombre}}</a>
+			<a href="#/vistadia">{{vm.persona.nombre}}</a>
 			<form ng-submit="vm.logout()">
 		 	<input type='submit' name='Cerrarsesion' value="Cerrar sesión" />
 			</form>
 		</div>
 	</div>
 </div>
-
 <!--Menú izquierdo-->
 <div id="leftMenu" layout="column" style="height:500px;"  ng-controller="MicuentaController as vm">
   <div  ng-hide="!vm.islog[0]">

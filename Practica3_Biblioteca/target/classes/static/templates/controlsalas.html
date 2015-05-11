@@ -12,7 +12,7 @@
 		</div>
 	</div>
 </div>
-
+	
 <!--Menú izquierdo-->
 <div id="leftMenu" layout="column" style="height:500px;"  ng-controller="MicuentaController as vm">
   <div  ng-hide="!vm.islog[0]">
@@ -47,17 +47,26 @@
   </section>
   </div>
 </div>
-
-<div id="adminPortatiles" ng-controller="adminPortatilesController as vm">
-	<a href="#/newPortatil">Nuevo Portatil</a>
-	<div ng-repeat="portatil in vm.portatiles">
-		
-		<p>Portatil: {{portatil.id}}</p>
-		<p>Estado: {{portatil.estado}}</p>
-		<p>Características: {{portatil.caracteristicas}}</p>
-		
-		<button type="button" ng-click="vm.modificar(portatil)">Modificar Portatil</button>
-		<button type="button" ng-click="vm.deletePortatil(portatil)">Eliminar Portatil</button>
-		
+<!--Datos-->
+<div ng-show="vm.islog[1]" id="adminIndex" ng-controller="SalasController as vm">
+	<div id="listadoSalas" ng-repeat="sala in vm.salas">	
+		<div ng-hide="vm.carga">Cargando...</div>
+		<div ng-show="vm.carga">	
+			<p>Sala {{sala.id}}</p>
+			<div ng-repeat="hour in vm.hours">			
+				<div ng-if="vm.checkTotal[$parent.$index][$index]">				
+					<div id="salaReser"><p>{{hour}}:00 - 	
+						<span ng-if="(vm.islog[1])">
+							{{vm.reservaTotal[$parent.$parent.$parent.$index][$index].nombre}} 
+							{{vm.reservaTotal[$parent.$parent.$parent.$index][$index].apellidos}}
+							<button type="button" ng-hide="vm.confirmTotal[$parent.$parent.$parent.$index][$index]" ng-click="vm.confirmar($parent.$parent.$parent.$index,vm.reservaTotal[$parent.$parent.$parent.$index][$index],hour)">Confirmar</button>							
+						</span>
+					</div>			
+				</div>
+				<div ng-if="!vm.checkTotal[$parent.$index][$index]">
+					<div id="salaNotReser"><p>{{hour}}:00 - Vacía</p></div>
+				</div>		
+			</div>
+		</div>	
 	</div>
 </div>
