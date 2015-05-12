@@ -382,16 +382,11 @@ function GlobalService($resource,$timeout) {
 		ReservaPortatilResource.save(reserva,function(){alert('Has reservado un portátil')});
 	}
 	vm.getReservasSalaDia = function(){
-		setTimeout(function(){
-			vm.reservasSalaHoy=ReservasSalaHoyResource.query();		
-		},1500);
+			vm.reservasSalaHoy=ReservasSalaHoyResource.query();				
 	}
 	
-	vm.getReservasPortatilDia = function(){
-		setTimeout(function(){
+	vm.getReservasPortatilDia = function(){		
 			vm.reservasPortatilHoy=ReservasPortatilHoyResource.query();		
-		},2000);
-
 	}
 	
 	vm.removeReservaSala = function(reserva) {
@@ -418,16 +413,15 @@ function GlobalService($resource,$timeout) {
 	vm.reload = function(){
 		vm.missalas=MisSalasResource.query();
 		vm.misportatiles=MisPortatilesResource.query();
-		vm.allReservas=ReservaSalaResource.query();
 		vm.allReservasPortatiles=ReservaPortatilResource.query();
+		vm.allReservas=ReservaSalaResource.query();
 		vm.personas=vm.getPersonas();
 		vm.salas=vm.getSalas();
 		vm.portatiles=vm.getPortatiles();
 		vm.cursos=vm.getCursos();
 		vm.miscursos=vm.getMisCursos();
 		vm.cursosHoy=vm.getCursosDia();
-		vm.reservasSalaHoy=vm.getReservasSalaDia();
-		vm.reservasPortatilHoy=vm.getReservasPortatilDia();
+
 	}
 	//reloud
 	function autoreload(){

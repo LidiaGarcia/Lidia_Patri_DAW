@@ -8,8 +8,8 @@ function DayController(globalService, $location) {
 	vm.cursos= globalService.getCursosDia();
 	vm.salas= globalService.getSalas();
 	vm.portatiles= globalService.getPortatiles();
-	vm.reservasSala = globalService.getReservasSalaDia();
 	vm.reservasPortatil = globalService.getReservasPortatilDia();
+	vm.reservasSala = globalService.getReservasSalaDia();
 	vm.islog=globalService.islog();
 	vm.carga=false;
 	vm.disponiblesSala=0;
@@ -19,19 +19,19 @@ function DayController(globalService, $location) {
 	vm.reload = function (){
 		globalService.reload();
 		setTimeout(function(){
-			vm.salas= globalService.getSalas();
-			vm.portatiles= globalService.getPortatiles();
+			vm.salas= globalService.salas;
+			vm.portatiles= globalService.portatiles;
+			vm.cursos= globalService.cursosHoy;		
 			vm.reservasSala = globalService.reservasSalaHoy;
 			vm.reservasPortatil = globalService.reservasPortatilHoy;
-			vm.cursos= globalService.cursosHoy;		
 			}
-		,2000);
+		,1200);
 		setTimeout(function(){
-			vm.reservasSalaDia();
 			vm.reservasPortatilDia();
+			vm.reservasSalaDia();			
 			vm.carga=true;
 			}
-		,2500);
+		,1500);
 
 	}
 	vm.reservasSalaDia = function(){
