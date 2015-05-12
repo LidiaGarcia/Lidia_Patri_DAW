@@ -20,6 +20,9 @@ public class BibliotecaController {
 	public static class DayWeek {
 		public int dayWeek;
 	}
+	public static class DayBefore {
+		public boolean dayBefore;
+	}
 
 	@JsonSerialize(using = LocalDateSerializer.class)
 	@JsonDeserialize(using = LocalDateDeserializer.class)
@@ -47,6 +50,10 @@ public class BibliotecaController {
 	public LocalDate oneMoreDayDate(@PathVariable int day, @PathVariable int a, @PathVariable int b, @PathVariable int c){		
 		return LocalDate.of(a,b,c).minusDays(day);
 	}
-
-
+	
+	//@RequestMapping(value="/date/before/{d}-{e}-{f}", method = RequestMethod.GET)
+	//public DayBefore isDateBefore(@PathVariable int d, @PathVariable int e, @PathVariable int f){		
+		//return ;
+	//}
+	
 }
