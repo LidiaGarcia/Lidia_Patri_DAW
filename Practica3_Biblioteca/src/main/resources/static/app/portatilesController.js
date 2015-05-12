@@ -29,6 +29,11 @@ function PortatilesController(globalService, $location, $timeout) {
 	vm.estado="";
 	vm.compartida="";
 	vm.misPortatiles=globalService.getMisPortatiles();
+	vm.fechaAnterior=false;
+	
+	setTimeout(function(){
+		vm.fechaAnterior=globalService.fechaAnterior(vm.date2);}
+	,100);
 	
 	vm.reload = function (){
 		globalService.reload();		
@@ -37,6 +42,7 @@ function PortatilesController(globalService, $location, $timeout) {
 		vm.personas = globalService.personas;
 		vm.reservas=globalService.allReserPortatiles();
 		setTimeout(function(){
+			vm.fechaAnterior=globalService.fechaanterior;
 			vm.persona=globalService.getPersona();
 			vm.date2=globalService.date2;
 			vm.reservas=globalService.allReserPortatiles();}

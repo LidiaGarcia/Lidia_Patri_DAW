@@ -27,6 +27,7 @@ function GlobalService($resource,$timeout) {
 	vm.cursosHoy=[];
 	vm.allReservas=[];
 	vm.allReservasPortatiles=[];	
+	vm.fechaanterior=false;
 	
 	//resources
 	var BibliotecaHoraResource = $resource('/hour');
@@ -35,6 +36,9 @@ function GlobalService($resource,$timeout) {
 	var BibliotecaChangeDateResource = $resource('/date/:fecha/:day',{},
 			{query:{method:'GET',params:{fecha: '@fecha',day: '@day'},isArray:true}});
 
+	var BibliotecaDateBeforeResource = $resource('/date/before/:fecha',
+			{fecha: '@fecha'});
+	
 	var ReservasSalaResource = $resource('/reservas/sala/:id/:fecha',{},
 		{query:{method:'GET',params:{id: '@id',fecha: '@fecha'},isArray:true}});
 	
@@ -269,10 +273,25 @@ function GlobalService($resource,$timeout) {
 		return BibliotecaChangeDateResource.query({fecha:$fecha},{day:$day});
 	}
 	vm.nextDay = function(){
-		vm.date2=vm.getOtherDate(vm.date2,true);	
+		vm.date2=vm.getOtherDate(vm.date2,true);
+		setTimeout(function(){
+			vm.fechaAnterior(vm.date2);
+		},1000);
 	}
-	vm.previusDay = function(){
-		vm.date2=vm.getOtherDate(vm.date2,false);	
+	vm.previusDay = function(){	
+		vm.date2=vm.getOtherDate(vm.date2,false);
+		setTimeout(function(){
+			vm.fechaAnterior(vm.date2);
+		},1000);
+		
+	}
+	
+	vm.fechaAnterior = function(date){
+		console.log(date);
+		
+		$fecha=date[0]+"-"+ date[1]+"-"+date[2];
+		vm.fechaanterior= BibliotecaDateBeforeResource.get({fecha:$fecha});
+		
 	}
 	
 	//sesion
@@ -411,6 +430,7 @@ function GlobalService($resource,$timeout) {
 	
 	//otros
 	vm.reload = function(){
+		
 		vm.missalas=MisSalasResource.query();
 		vm.misportatiles=MisPortatilesResource.query();
 		vm.allReservasPortatiles=ReservaPortatilResource.query();

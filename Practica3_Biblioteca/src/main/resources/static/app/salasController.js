@@ -43,22 +43,27 @@ function SalasController(globalService, $location, $timeout) {
 			compartida:globalService.salamodificar.compartida
 	};
 	vm.misSalas=globalService.getMisSalas();
+	setTimeout(function(){
+	vm.fechaAnterior=globalService.fechaAnterior(vm.date2);}
+	,100);
 	
 	
 	//Controller actions
 	
-
-	
 	vm.reload = function (){
 		globalService.reload();
+		vm.islog=globalService.islog();
 		vm.misSalas=globalService.missalas;
 		vm.salas=globalService.salas;
 		vm.personas = globalService.personas;
 		vm.reservas=globalService.allReser();
 		setTimeout(function(){
+			vm.fechaAnterior=globalService.fechaanterior;
 			vm.persona=globalService.getPersona();
 			vm.date2=globalService.date2;
-			vm.reservas=globalService.allReser();}
+			vm.reservas=globalService.allReser();
+			
+			}
 		,1000);
 		setTimeout(function(){
 			vm.persona=globalService.persona;

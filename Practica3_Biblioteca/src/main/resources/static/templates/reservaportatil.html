@@ -50,16 +50,16 @@
 
 <div id="adminIndex" ng-controller="PortatilesController as vm">
 
-	
+	<div ng-hide="vm.carga">Cargando...</div>
+	<div ng-show="vm.carga">
 	<div ng-if="!vm.islog[1]">	
-	<button type="button" ng-click="vm.previusDay()">Anterior</button>
+	<button type="button" ng-disabled="vm.fechaAnterior.dayBefore"  ng-click="vm.previusDay()">Anterior</button>
 	<span>{{vm.date2[2]}}-{{vm.date2[1]}}-{{vm.date2[0]}}</span>
 	<button type="button" ng-click="vm.nextDay()">Siguiente</button>
 	</div>
 
 <div id="listadoPortatiles" ng-repeat="portatil in vm.portatiles">	
-	<div ng-hide="vm.carga">Cargando...</div>
-	<div ng-show="vm.carga">	
+		
 		<p>Portatil {{portatil.id}}</p>
 		<div ng-repeat="hour in vm.hours">			
 			<div ng-if="vm.checkTotal[$parent.$index][$index]">				
