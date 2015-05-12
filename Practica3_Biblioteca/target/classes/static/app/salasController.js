@@ -1,8 +1,8 @@
 angular.module("app").controller("SalasController", SalasController);
 
-SalasController.$inject = ["globalService","$location","$routeParams","$timeout" ];
+SalasController.$inject = ["globalService","$location","$timeout" ];
 
-function SalasController(globalService, $location, $routeParams, $timeout) {
+function SalasController(globalService, $location, $timeout) {
 
 	var vm = this;
 	
@@ -42,6 +42,7 @@ function SalasController(globalService, $location, $routeParams, $timeout) {
 			estado:globalService.salamodificar.estado,
 			compartida:globalService.salamodificar.compartida
 	};
+	vm.misSalas=globalService.getMisSalas();
 	
 	
 	//Controller actions
@@ -50,9 +51,9 @@ function SalasController(globalService, $location, $routeParams, $timeout) {
 	
 	vm.reload = function (){
 		globalService.reload();
+		vm.misSalas=globalService.missalas;
 		vm.salas=globalService.salas;
 		vm.personas = globalService.personas;
-		vm.portatiles =globalService.portatiles
 		vm.reservas=globalService.allReser();
 		setTimeout(function(){
 			vm.persona=globalService.getPersona();
@@ -203,8 +204,6 @@ function SalasController(globalService, $location, $routeParams, $timeout) {
 		$location.path('/adminsalas');
 	}
 	vm.deleteSala = function(sala){
-//			globalService.deleteSala(sala);
-//			vm.sala={};
 		var reservada = true;	
 		vm.allReservas=globalService.allReservas;
 		setTimeout(function(){			
@@ -229,8 +228,18 @@ function SalasController(globalService, $location, $routeParams, $timeout) {
 			$location.path("/adminsalas")
 		},1600);
 	}
+	vm.removeReservaSala = function(reserva){
+		globalService.removeReservaSala(reserva);
+		setTimeout(function(){
+			vm.reload();
+		},500);
+		setTimeout(function(){
+			$location.path("/missalas")
+		},1000);
+	}
 	
 	setTimeout(function(){
+		console.log(vm.misSalas);
 		vm.reload();}
 	,500);
 };

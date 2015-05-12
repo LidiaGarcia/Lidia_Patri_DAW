@@ -8,18 +8,18 @@
 	position: relative;
 	display: inline-block;
 }
-#adminIndex,#adminCursos,#inscrcursos,#adminSalas,#adminPortatiles,#personalData,#vistadia{
+#adminIndex,#adminCursos,#inscrcursos,#adminSalas,#adminPortatiles,#personalData,#vistadia,#misSalas, #misPortatiles{
 	display: inline;
 	float: right;
 	padding: 3em;
 }
-#salaNotReser{
+#salaNotReser,#portatilNotReser{
 	background: red;
 }
-#salaReser{
+#salaReser,#portatilReser{
 	background: green;
 }
-#listadoSalas{
+#listadoSalas,#listadoPortatiles{
 	display: inline-block;
 	min-width: 10em;
 	padding: 2em;	

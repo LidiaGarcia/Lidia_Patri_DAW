@@ -48,16 +48,19 @@
   </div>
 </div>
 
-<div id="adminPortatiles" ng-controller="PortatilesController as vm">
-		<form ng-submit="vm.modifyPortatil(vm.portatilmodificar)">
-			<p>Modicando portatil {{vm.portatilmodificar.id}}</p>
-			<b>Estado:</b><br><textarea type='text' rows='4' cols='30' required="true" ng-model = "vm.portatilmodificar.estado"></textarea><br>
-			<b>Características:</b><br><textarea type='text' rows='4' cols='30' required="true" ng-model = "vm.portatilmodificar.caracteristicas"></textarea><br>
-			
-		 	<br><input type='submit' name='modifyPortatil' value="Guardar modificación portatil" />
-		</form>
-		
-		
-		
+<div id="misSalas" ng-controller="SalasController as vm">
+
+	<div ng-hide="vm.misSalas[0]">
+	<p>¡No tienes ninguna sala reservada!</p>
 	</div>
+	<div ng-hide="vm.carga">Cargando...</div>
+	<div ng-hide="!vm.carga" ng-repeat="reserva in vm.misSalas">
+			<p>Sala: {{reserva.sala.nombre}}</p>
+			<p>Fecha: {{reserva.fecha[2]}}-{{reserva.fecha[1]}}-{{reserva.fecha[0]}}</p>
+			<p>Hora: {{reserva.horaEntrada[0]}}:{{reserva.horaEntrada[1]}}</p>
+			<button type="button" ng-click="vm.removeReservaSala(reserva)">Eliminar reserva</button>
+			
+		</div>
+	
+	
 </div>

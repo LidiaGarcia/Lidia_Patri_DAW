@@ -1,6 +1,6 @@
 angular.module("app").service("globalService", GlobalService);
 
-GlobalService.$inject = [ "$resource", "$timeout" ];
+GlobalService.$inject = [ "$resource", "$timeout"];
 
 function GlobalService($resource,$timeout) {
 	
@@ -15,6 +15,8 @@ function GlobalService($resource,$timeout) {
 	vm.curso={};
 	vm.cursomodificar={};
 	vm.miscursos=[];
+	vm.missalas=[];
+	vm.misportatiles=[];
 	vm.portatiles=[];
 	vm.portatil={};
 	vm.portatilmodificar={};
@@ -23,10 +25,7 @@ function GlobalService($resource,$timeout) {
 	vm.reservasSalaHoy=[];
 	vm.reservasPortatilHoy=[];
 	vm.allReservas=[];
-	vm.allReservasPortatiles=[];
-
-	//vm.fecha=[2015, 5, 24];
-	
+	vm.allReservasPortatiles=[];	
 	
 	//resources
 	var BibliotecaHoraResource = $resource('/hour');
@@ -38,20 +37,28 @@ function GlobalService($resource,$timeout) {
 	var ReservasSalaResource = $resource('/reservas/sala/:id/:fecha',{},
 		{query:{method:'GET',params:{id: '@id',fecha: '@fecha'},isArray:true}});
 	
-	var ReservaSalaResource= $resource('/reservas/sala', {},
-			{save:{method:'POST'}});
+	var ReservasPortatilResource = $resource('/reservas/portatil/:id/:fecha',{},
+			{query:{method:'GET',params:{id: '@id',fecha: '@fecha'},isArray:true}});
+		
+	var ReservaSalaResource= $resource('/reservas/sala/:id', {},
+			{save:{method:'POST'}},
+			{remove:{method:'DELETE',params:{id: '@id'}}});
 	
-	var ReservaPortatilResource= $resource('/reservas/portatil', {},
-			{save:{method:'POST'}});
+	var ReservaPortatilResource= $resource('/reservas/portatil/:id', {},
+			{save:{method:'POST'}},
+			{remove:{method:'DELETE',params:{id: '@id'}}});
+	
 	var ReservasSalaHoyResource= $resource('/reservas/sala/hoy');
-	
-	
 	var ReservasPortatilHoyResource= $resource('/reservas/portatil/hoy');
+	
 	var ConfirmarReservasSalaResource = $resource('/reservas/sala/:id',
 			{id: '@id'},
 			{'update': {method:'PUT'}}
 			);
-	
+	var ConfirmarReservasPortatilResource = $resource('/reservas/portatil/:id',
+			{id: '@id'},
+			{'update': {method:'PUT'}}
+			);
 	//salas
 	var SalasResource = $resource('/salas/:id',
 			{id: '@id'},
@@ -62,7 +69,9 @@ function GlobalService($resource,$timeout) {
 			{id: '@id'},
 			{'update': {method: 'PUT'}}
 	);
-	
+	var MisSalasResource = $resource('reservas/sala/persona/:id',{},
+			{query:{method:'GET',params:{id: '@id'},isArray:true}}
+	);
 	//personas
 	var PersonasResource = $resource('/personas');
 
@@ -101,6 +110,11 @@ function GlobalService($resource,$timeout) {
 		{'update': {method: 'PUT'}}
 	);
 	
+	var MisPortatilesResource = $resource('reservas/portatil/persona/:id',{},
+			{query:{method:'GET',params:{id: '@id'},isArray:true}}
+	);
+	
+	//sesion
 	var SignupResource = $resource('/personas/darAlta/:id',
 			{id: '@id'},
 			{ 'update': {method: 'PUT'}}
@@ -109,26 +123,13 @@ function GlobalService($resource,$timeout) {
 			{id: '@id'},
 			{'update': {method: 'PUT'}}
 	);
-	
-	//sesion
+
 	var SesionResource = $resource('/sesion',{save: {method: 'POST'},remove: {method: 'DELETE'}});
 	var SesionPersResource = $resource('/sesion/persona');
 
 	
 	//Funciones
 
-	
-
-	function reload(){
-		CursosResource.query(function(newcursos){
-			vm.cursos.length = 0;
-			vm.cursos.push.apply(vm.cursos, newcursos);
-			vm.salas.length=0;
-			vm.salas.push.apply(vm.salas, newcursos);
-		});
-	}
-
-	
 	//cursos
 	vm.getCursos = function(){
 		return CursosResource.query();
@@ -172,6 +173,7 @@ function GlobalService($resource,$timeout) {
 	vm.getCursosDia = function(){
 		return CursosHoyResource.query();
 	}
+	
 	//salas
 	vm.getSalas = function(){
 		vm.salas=SalasResource.query();
@@ -314,6 +316,7 @@ function GlobalService($resource,$timeout) {
 			PassResource.update({id:$id},pass);
 
 	}
+	
 	//reservas
 	vm.getReservaSala = function(sala,date){
 		$id=sala.id;
@@ -321,6 +324,11 @@ function GlobalService($resource,$timeout) {
 		return ReservasSalaResource.query({id:$id},{fecha:$fecha});				
 	}
 	
+	vm.getReservaPortatil = function(portatil,date){
+		$id=portatil.id;
+		$fecha=date[0]+"-"+ date[1]+"-"+date[2];
+		return ReservasPortatilResource.query({id:$id},{fecha:$fecha});				
+	}
 	vm.allReser = function(){
 		var reser =[];
 		var sal=vm.getSalas();
@@ -335,15 +343,35 @@ function GlobalService($resource,$timeout) {
 		return reser;
 	}
 	
+	vm.allReserPortatiles = function(){
+		var reser =[];
+		var por=vm.getPortatiles();
+		setTimeout(function(){
+			for (var i = 0; i < por.length; i++) {
+				var reservasr = vm.getReservaPortatil(por[i],vm.date2);
+				reser.push(reservasr);
+			}	
+		}
+		,500);
+		
+		return reser;
+	}
 	vm.confirmarReservaSala = function(id){
 		$id=id;
 		ConfirmarReservasSalaResource.update({id:$id},function(){alert("Sala confirmada")});
 	}
 	
+	vm.confirmarReservaPortatil = function(id){
+		$id=id;
+		ConfirmarReservasPortatilResource.update({id:$id},function(){alert("Portátil confirmado")});
+	}
 	vm.reservar = function(reserva){
 		ReservaSalaResource.save(reserva,function(){alert('Has reservado una sala')});
 	}
 	
+	vm.reservarPortatil = function(reserva){
+		ReservaPortatilResource.save(reserva,function(){alert('Has reservado un portátil')});
+	}
 	vm.getReservasSalaDia = function(){
 		setTimeout(function(){
 			vm.reservasSalaHoy=ReservasSalaHoyResource.query();		
@@ -356,8 +384,31 @@ function GlobalService($resource,$timeout) {
 		},2000);
 
 	}
+	
+	vm.removeReservaSala = function(reserva) {
+		$id=reserva.id;
+		ReservaSalaResource.remove({id:$id},function(){alert('Has eliminado tu reserva de sala')});
+	}
+
+	vm.getMisSalas = function(){
+		vm.missalas = MisSalasResource.query();
+		return vm.missalas;
+	}
+	
+	vm.removeReservaPortatil = function(reserva) {
+		$id=reserva.id;
+		ReservaPortatilResource.remove({id:$id},function(){alert('Has eliminado tu reserva de portátil')});
+	}
+
+	vm.getMisPortatiles = function(){
+		vm.misportatiles = MisPortatilesResource.query();
+		return vm.misportatiles;
+	}
+	
 	//otros
 	vm.reload = function(){
+		vm.missalas=MisSalasResource.query();
+		vm.misportatiles=MisPortatilesResource.query();
 		vm.allReservas=ReservaSalaResource.query();
 		vm.allReservasPortatiles=ReservaPortatilResource.query();
 		vm.personas=vm.getPersonas();

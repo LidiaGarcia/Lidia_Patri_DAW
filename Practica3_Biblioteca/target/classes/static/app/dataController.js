@@ -1,8 +1,8 @@
 angular.module("app").controller("DataController", DataController);
 
-DataController.$inject = ["globalService","$location","$routeParams"];
+DataController.$inject = ["globalService","$location"];
 
-function DataController(globalService, $location, $routeParams) {
+function DataController(globalService, $location) {
 
 	var vm = this;
 	vm.persona = globalService.getPersona();

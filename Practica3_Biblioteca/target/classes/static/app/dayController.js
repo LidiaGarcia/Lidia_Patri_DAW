@@ -26,13 +26,13 @@ function DayController(globalService, $location) {
 			vm.reservasPortatil = globalService.reservasPortatilHoy;
 			
 			}
-		,1900);
+		,2000);
 		setTimeout(function(){
 			vm.reservasSalaDia();
 			vm.reservasPortatilDia();
 			vm.carga=true;
 			}
-		,2200);
+		,2500);
 
 	}
 	vm.reservasSalaDia = function(){
@@ -45,5 +45,5 @@ function DayController(globalService, $location) {
 	
 	setTimeout(function(){
 		vm.reload();}
-	,200);
+	,500);
 };

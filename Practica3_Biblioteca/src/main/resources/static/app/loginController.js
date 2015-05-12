@@ -1,8 +1,8 @@
 angular.module("app").controller("LoginController", LoginController);
 
-LoginController.$inject = ["globalService","$location","$routeParams"];
+LoginController.$inject = ["globalService","$location"];
 
-function LoginController(globalService, $location, $routeParams) {
+function LoginController(globalService, $location) {
 
 	var vm = this;
 	

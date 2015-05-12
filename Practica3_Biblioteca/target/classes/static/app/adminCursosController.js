@@ -1,8 +1,8 @@
 angular.module("app").controller("adminCursosController", adminCursosController);
 
-adminCursosController.$inject = ["globalService","$location","$routeParams"];
+adminCursosController.$inject = ["globalService","$location"];
 
-function adminCursosController(globalService, $location, $routeParams) {
+function adminCursosController(globalService, $location) {
 	
 	var vm = this;
 	vm.cursos= globalService.getCursos();

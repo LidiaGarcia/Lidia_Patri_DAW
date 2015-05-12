@@ -48,16 +48,36 @@
   </div>
 </div>
 
-<div id="adminPortatiles" ng-controller="PortatilesController as vm">
-		<form ng-submit="vm.modifyPortatil(vm.portatilmodificar)">
-			<p>Modicando portatil {{vm.portatilmodificar.id}}</p>
-			<b>Estado:</b><br><textarea type='text' rows='4' cols='30' required="true" ng-model = "vm.portatilmodificar.estado"></textarea><br>
-			<b>Características:</b><br><textarea type='text' rows='4' cols='30' required="true" ng-model = "vm.portatilmodificar.caracteristicas"></textarea><br>
-			
-		 	<br><input type='submit' name='modifyPortatil' value="Guardar modificación portatil" />
-		</form>
-		
-		
-		
+<div id="adminIndex" ng-controller="PortatilesController as vm">
+
+	
+	<div ng-if="!vm.islog[1]">	
+	<button type="button" ng-click="vm.previusDay()">Anterior</button>
+	<span>{{vm.date2[2]}}-{{vm.date2[1]}}-{{vm.date2[0]}}</span>
+	<button type="button" ng-click="vm.nextDay()">Siguiente</button>
 	</div>
+
+<div id="listadoPortatiles" ng-repeat="portatil in vm.portatiles">	
+	<div ng-hide="vm.carga">Cargando...</div>
+	<div ng-show="vm.carga">	
+		<p>Portatil {{portatil.id}}</p>
+		<div ng-repeat="hour in vm.hours">			
+			<div ng-if="vm.checkTotal[$parent.$index][$index]">				
+				<div id="portatilReser"><p>{{hour}}:00 - 	
+					<span ng-if="!vm.islog[1]">
+						Reservado</p>
+					</span>
+				</div>			
+			</div>
+			<div ng-if="!vm.checkTotal[$parent.$index][$index]">
+				<div id="portatilNotReser"><p>{{hour}}:00 - Vacía</p></div>
+				<span ng-if="vm.islog[0]">
+					<button type="button" ng-hide="vm.islog[1]" ng-click="vm.reservar($parent.$parent.$parent.$index,hour)">Reservar</button>							
+				</span>
+			</div>		
+		</div>
+	</div>	
 </div>
+
+
+

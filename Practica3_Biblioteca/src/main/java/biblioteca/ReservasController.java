@@ -42,6 +42,14 @@ public class ReservasController {
 		}
 	}
 	
+	//elimina la reserva de una sala
+	@RequestMapping(value = "/sala/{id}", method= RequestMethod.DELETE)
+	public void deleteReservaSala(@PathVariable long id,HttpSession sesion){
+		if((sesion!=null)&&((sesion.getAttribute("login") != null)&&((Boolean)sesion.getAttribute("login")))){
+			reserva_salas_repo.delete(id);
+		}
+	}
+		
 	//lista Reservas de salas
 	@RequestMapping(value = "/sala", method = RequestMethod.GET)
 	public List<ReservaSala> getSalasReservadas(){
@@ -53,14 +61,15 @@ public class ReservasController {
 		return reserva_salas_repo.findAllHoy(LocalDate.now());
 	}
 	//lista Reservas de salas por una persona
-	@RequestMapping(value = "/sala/persona/{id}", method = RequestMethod.GET)
-	public List<ReservaSala> getSalasDePersona(@PathVariable long id, HttpSession sesion){
-		if((sesion!=null)&&((sesion.getAttribute("login") != null)&&((Boolean)sesion.getAttribute("login")))){
-			return reserva_salas_repo.findByIdPersona(id);
-		}else{
-			return null;
+		@RequestMapping(value = "/sala/persona", method = RequestMethod.GET)
+		public List<ReservaSala> getSalasDePersona(HttpSession sesion){
+			if((sesion!=null)&&((sesion.getAttribute("login") != null)&&((Boolean)sesion.getAttribute("login")))){
+				
+				return reserva_salas_repo.findByIdPersona(((Persona)sesion.getAttribute("persona")).getID());
+			}else{
+				return null;
+			}
 		}
-	}
 	
 	//ReservaS de una sala en una fecha, el id es el id de la sala
 	@RequestMapping(value = "/sala/{id}/{a}-{b}-{c}", method = RequestMethod.GET)
@@ -90,7 +99,16 @@ public class ReservasController {
 			return null;
 		}
 	}
-	//Reservas de salas hoy
+	
+	//elimina la reserva de un portatil
+	@RequestMapping(value = "/portatil/{id}", method= RequestMethod.DELETE)
+	public void deleteReservaPortatil(@PathVariable long id,HttpSession sesion){
+		if((sesion!=null)&&((sesion.getAttribute("login") != null)&&((Boolean)sesion.getAttribute("login")))){
+			reserva_portatil_repo.delete(id);
+		}
+	}
+			
+	//Reservas de portatiles hoy
 	@RequestMapping(value = "/portatil/hoy", method = RequestMethod.GET)
 	public List<ReservaPortatil> getReservasPortatilHoy(){
 		return reserva_portatil_repo.findAllHoy(LocalDate.now());
@@ -101,16 +119,17 @@ public class ReservasController {
 		return reserva_portatil_repo.findAll();
 	}
 	
+	
 	//lista Reservas de portatiles por una persona
-	@RequestMapping(value = "/portatil/persona/{id}", method = RequestMethod.GET)
-	public List<ReservaPortatil> getPortatilesDePersona(@PathVariable long id,HttpSession sesion){
+	@RequestMapping(value = "/portatil/persona", method = RequestMethod.GET)
+	public List<ReservaPortatil> getPortatilesDePersona(HttpSession sesion){
 		if((sesion!=null)&&((sesion.getAttribute("login") != null)&&((Boolean)sesion.getAttribute("login")))){
-			return reserva_portatil_repo.findByIdPersona(id);
+			
+			return reserva_portatil_repo.findByIdPersona(((Persona)sesion.getAttribute("persona")).getID());
 		}else{
 			return null;
 		}
 	}
-	
 	//ReservaS de un portatil en una fecha, el id es el id del portatil
 	@RequestMapping(value = "/portatil/{id}/{d}-{e}-{f}", method = RequestMethod.GET)
 	public List<ReservaPortatil> getReservasPortatilDia(@PathVariable long id,  @PathVariable int d, @PathVariable int e, @PathVariable int f){

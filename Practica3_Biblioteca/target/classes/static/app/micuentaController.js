@@ -1,8 +1,8 @@
 angular.module("app").controller("MicuentaController", MicuentaController);
 
-MicuentaController.$inject = ["globalService","$location","$routeParams"];
+MicuentaController.$inject = ["globalService","$location"];
 
-function MicuentaController(globalService, $location, $routeParams) {
+function MicuentaController(globalService, $location) {
 
 	var vm = this;
 	vm.hour=globalService.getHour();
