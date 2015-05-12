@@ -1,3 +1,9 @@
+#pie > p{
+	vertical-align : bottom;
+	float: bottom;
+	display: block;
+	text-align : center;
+}
 #session{
 	background-color: #EEEEEE;
 	text-align: right;
