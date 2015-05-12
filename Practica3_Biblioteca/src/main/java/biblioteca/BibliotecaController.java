@@ -51,9 +51,12 @@ public class BibliotecaController {
 		return LocalDate.of(a,b,c).minusDays(day);
 	}
 	
-	//@RequestMapping(value="/date/before/{d}-{e}-{f}", method = RequestMethod.GET)
-	//public DayBefore isDateBefore(@PathVariable int d, @PathVariable int e, @PathVariable int f){		
-		//return ;
-	//}
+	@RequestMapping(value="/date/before/{d}-{e}-{f}", method = RequestMethod.GET)
+	public DayBefore isDateBefore(@PathVariable int d, @PathVariable int e, @PathVariable int f){
+		DayBefore day = new DayBefore();
+		day.dayBefore = (LocalDate.of(d,e,f)).isBefore(today.now());
+		return day;
+		
+	}
 	
 }
