@@ -295,11 +295,13 @@ function GlobalService($resource,$timeout) {
 		SesionResource.save(vm.datos,function() {});
 		vm.persona=SesionPersResource.get();
 		console.log(vm.persona);
+		var log=vm.islog();
 		setTimeout(function(){
-		if (!vm.persona){
+		if (!log[0]){
 			alert("Los datos introducidos no son correctos");
 		}
-		},500);
+		},1000);
+		
 	}
 	
 	vm.logout = function() {
