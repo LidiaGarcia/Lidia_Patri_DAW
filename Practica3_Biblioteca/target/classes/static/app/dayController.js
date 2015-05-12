@@ -19,12 +19,11 @@ function DayController(globalService, $location) {
 	vm.reload = function (){
 		globalService.reload();
 		setTimeout(function(){
-			vm.cursos= globalService.cursosHoy;		
 			vm.salas= globalService.getSalas();
 			vm.portatiles= globalService.getPortatiles();
 			vm.reservasSala = globalService.reservasSalaHoy;
 			vm.reservasPortatil = globalService.reservasPortatilHoy;
-			
+			vm.cursos= globalService.cursosHoy;		
 			}
 		,2000);
 		setTimeout(function(){
