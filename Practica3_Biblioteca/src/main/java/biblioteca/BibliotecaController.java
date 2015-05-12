@@ -54,7 +54,7 @@ public class BibliotecaController {
 	@RequestMapping(value="/date/before/{d}-{e}-{f}", method = RequestMethod.GET)
 	public DayBefore isDateBefore(@PathVariable int d, @PathVariable int e, @PathVariable int f){
 		DayBefore day = new DayBefore();
-		day.dayBefore = (LocalDate.of(d,e,f)).isBefore(today.now());
+		day.dayBefore = ((LocalDate.of(d,e,f)).isBefore(today.now())) || ((LocalDate.of(d,e,f)).isEqual(today.now()));
 		return day;
 		
 	}
