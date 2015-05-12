@@ -1,7 +1,6 @@
-#pie > p{
-	vertical-align : bottom;
-	float: bottom;
-	display: block;
+#pie{
+	vertical-align: bottom;
+	display:block;
 	text-align : center;
 }
 #session{

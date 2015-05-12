@@ -15,14 +15,17 @@ function adminCursosController(globalService, $location) {
 	vm.cursomodificar=globalService.cursomodificar;
 	vm.curso.fecha=[];
 	vm.curso.hora=[];
+	vm.islog=globalService.islog();
 	
 	vm.reload = function(){
 		globalService.reload();
+		vm.islog=globalService.islog();
 		setTimeout(function(){
 			vm.miscursos = globalService.miscursos;
 			vm.cursos = globalService.cursos;}
 		,1000);
 		setTimeout(function(){
+			
 			vm.carga=true;}
 		,2050);
 		
@@ -62,6 +65,7 @@ function adminCursosController(globalService, $location) {
 		vm.reload();
 		$location.path('/miscursos');
 	}
-	vm.reload();
+		vm.reload();
+
 	
 }

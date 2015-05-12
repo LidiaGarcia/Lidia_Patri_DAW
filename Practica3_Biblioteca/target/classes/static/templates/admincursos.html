@@ -49,10 +49,11 @@
 </div>
 
 <div id="adminCursos" ng-controller="adminCursosController as vm">
-	<a href="#/newCurso">Nuevo Curso</a>
+	<div ng-show="vm.islog[1]">
 	
 	<div ng-hide="vm.carga">Cargando...</div>
 	<div ng-hide="!vm.carga" ng-repeat="curso in vm.cursos">
+			<a href="#/newCurso">Nuevo Curso</a>
 		
 		<p>Curso: {{curso.nombre}}</p>
 		<p>Descripción: {{curso.descripcion}}</p>
@@ -63,5 +64,6 @@
 		<button type="button" ng-click="vm.modificar(curso)">Modificar Curso</button>
 		<button type="button" ng-click="vm.deleteCurso(curso)">Eliminar Curso</button>
 		
+	</div>
 	</div>
 </div>

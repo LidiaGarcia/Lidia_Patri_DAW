@@ -48,21 +48,45 @@
   </div>
 </div>
 
-<div id="adminCursos" ng-controller="adminCursosController as vm">
+<div id="adminCursos" ng-controller="adminCursosController as vm" layout="column">
+	
+	<md-content ng-show="vm.islog[1]" layout-padding layout="column">
 		
 		<form ng-submit="vm.newCurso(vm.curso)">
-			<b>Nombre:</b><br><input type='text' required="true" ng-model = "vm.curso.nombre"/><br>
-			<b>Descripción:</b><br><textarea type='text' rows='5' cols='40' required="true" ng-model = "vm.curso.descripcion"></textarea><br>
+			<div layout-gt-sm="row">
+        		<md-input-container flex>
+          			<label>Nombre</label>
+         			<input type="text" required="true" ng-model = "vm.curso.nombre"/>
+        		</md-input-container>
+		 	</div>
+		 	<div layout-gt-sm="row">
+        		<md-input-container flex>
+          			<label>Descripción</label>
+         			<textarea type="text" rows='5' cols='40' required="true" ng-model = "vm.curso.descripcion"/>
+        		</md-input-container>
+		 	</div>
+			<div layout-gt-sm="row">
+        		<md-input-container flex>
+          			<label>Fecha</label>
+         			<input type='number' required="true" ng-model = "vm.curso.fecha[2]" min="1" max ="31"/>
+			<input type='number' required="true" ng-model = "vm.curso.fecha[1]" min="1" max="12"/>
+			<input type='number' required="true" ng-model = "vm.curso.fecha[0]" min="2015" max="2100"/>
+        		</md-input-container>
+		 	</div>
+		
 			<b>Fecha:</b><br><input type='number' required="true" ng-model = "vm.curso.fecha[2]" min="1" max ="31"/>
 			<input type='number' required="true" ng-model = "vm.curso.fecha[1]" min="1" max="12"/>
 			<input type='number' required="true" ng-model = "vm.curso.fecha[0]" min="2015" max="2100"/><br>
+		
 			<b>Hora:</b><br><input type='number' required="true" ng-model = "vm.curso.hora[0]" min="9" max="20" />
 			<input type='number' required="true" ng-model = "vm.curso.hora[1]" min="0" max="59"/><br>
+		
 			<b>Duración:</b><br><input type='number' required="true" ng-model = "vm.curso.duracion" min="1"/><br>
+		
 			<b>Aforo:</b><br><input type='number' required="true" ng-model = "vm.curso.aforo" min="1"/><br>
 			
 		 	<br><input type='submit' name='newCurso' value="Guardar Nuevo curso" />
 		</form>
-		
+		 </md-content>
 	</div>
 </div>
