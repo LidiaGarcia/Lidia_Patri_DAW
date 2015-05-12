@@ -15,16 +15,16 @@
 	<div id="login">	
 		<p>LOGIN</p>
 		<form ng-submit="vm.login()">
-			<b>Correo:</b><br> <input type='text' ng-model="vm.maillog" /><br>
-			<b>Contraseña:</b><br> <input type="password" ng-model="vm.passlog" /><br>
+			<b>Correo:</b><br> <input type='text' required="true" ng-model="vm.maillog" /><br>
+			<b>Contraseña:</b><br> <input type="password" required="true" ng-model="vm.passlog" /><br>
 			<br> <input type='submit' name='Inicar sesion' value="Iniciar sesión" />
 		</form>
 	</div>
 	<div id="signup">
 		<p>REGISTRO</p>
 		<form ng-submit="vm.signup()">
-			<b>Correo:</b><br> <input type='text' ng-model="vm.mail" /><br>
-			<b>Contraseña:</b><br> <input type="password" ng-model="vm.pass" /><br>
+			<b>Correo:</b><br> <input required="true" type='text' ng-model="vm.mail" /><br>
+			<b>Contraseña:</b><br> <input required="true" type="password" ng-model="vm.pass" /><br>
 			<br> <input type='submit' name='Registro' value="Registro" />
 		</form>
 	</div>

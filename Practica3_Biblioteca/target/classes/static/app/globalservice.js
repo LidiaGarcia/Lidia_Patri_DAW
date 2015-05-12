@@ -24,6 +24,7 @@ function GlobalService($resource,$timeout) {
 	vm.date2={};
 	vm.reservasSalaHoy=[];
 	vm.reservasPortatilHoy=[];
+	vm.cursosHoy=[];
 	vm.allReservas=[];
 	vm.allReservasPortatiles=[];	
 	
@@ -293,6 +294,12 @@ function GlobalService($resource,$timeout) {
 		vm.datos.pass=pass;
 		SesionResource.save(vm.datos,function() {});
 		vm.persona=SesionPersResource.get();
+		console.log(vm.persona);
+		setTimeout(function(){
+		if (!vm.persona){
+			alert("Los datos introducidos no son correctos");
+		}
+		},500);
 	}
 	
 	vm.logout = function() {
@@ -416,6 +423,7 @@ function GlobalService($resource,$timeout) {
 		vm.portatiles=vm.getPortatiles();
 		vm.cursos=vm.getCursos();
 		vm.miscursos=vm.getMisCursos();
+		vm.cursosHoy=vm.getCursosDia();
 		vm.reservasSalaHoy=vm.getReservasSalaDia();
 		vm.reservasPortatilHoy=vm.getReservasPortatilDia();
 	}
