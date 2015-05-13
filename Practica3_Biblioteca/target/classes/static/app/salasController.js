@@ -244,7 +244,6 @@ function SalasController(globalService, $location, $timeout) {
 	}
 	
 	setTimeout(function(){
-		console.log(vm.misSalas);
 		vm.reload();}
 	,500);
 };

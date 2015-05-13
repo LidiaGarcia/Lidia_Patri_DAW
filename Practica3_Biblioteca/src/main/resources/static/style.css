@@ -90,7 +90,7 @@ body{
     background-color: #e3e3ff;
 }
 
-#adminIndex,#inscrcursos,#adminSalas,#adminPortatiles,#personalData,#vistadia,#misSalas, #misPortatiles{
+#adminIndex,#inscrcursos,#adminSalas,#personalData,#vistadia,#misSalas, #misPortatiles{
 	display: inline;
 	float: right;
 	padding: 3em;
@@ -106,19 +106,51 @@ body{
 	min-width: 10em;
 	padding: 2em;	
 }
+#adminSalanueva form {
+	width: 60%;
+	position: relative;
+	display : inline;
+
+}
+#adminPortatiles form{
+	width: 60%;
+	position: relative;
+	display : inline;
+	
+}
 #adminCursos form{
 	width: 60%;
 	position: relative;
 	display : inline;
 	
 }
-#adminCursos form>div{
+#login form{
+	width: 90%;
+	dsplay: inline-block;
+	position:relative;
+
+}
+
+#login form>div{
+	vertical-align: top;
+	display : inline-block;
+	margin-top:1em;
+	
+}
+#login form>div>div{
+	vertical-align: top;
+	display : inline-block;
+	padding: 1em;
+    width: 100%;
+	
+}
+#adminCursos form>div, #adminPortatiles form>div, #adminSalanueva form>div{
 	vertical-align: top;
 	display : inline-block;
 	margin-top:1em;
 
 }
-#adminCursos form>div>div{
+#adminCursos form>div>div,#adminPortatiles form>div>div, #adminSalanueva form>div>div{
 	vertical-align: top;
 	display : inline-block;
 	padding: 1em;
@@ -138,9 +170,40 @@ body{
    color: white;
    
 }
-#adminCursos md-content, #adminCursos{
+#adminPortatiles md-content, #adminPortatiles{
 	background-color:transparent;
 	display : inline;
+}
+#adminCursos md-content, #adminCursos, #adminSalanueva md-content, #adminSalanueva{
+	background-color:transparent;
+	display : inline;
+}
+#login md-content, #login{
+
+	background-color:transparent;
+	width:auto;
+	display : inline-block;
+}
+
+#content2{
+    display: inline-block;
+    padding-top: 0.5em;
+    padding-left: 1em;
+    padding-right: 1em;
+	width: 100%;
+    background-color: white;
+    margin: 0.5em;
+    font-size: 1em !important;
+}
+#content2 span{
+    text-transform: none;
+}
+#content2 h5{
+    color: #262679; 
+    margin: 0px;
+}
+#content2 h3{
+    color: #262679; 
 }
 #content{
     display: inline-block;
@@ -163,3 +226,26 @@ body{
     color: #262679; 
 }
 
+#adminSalanueva p {
+	color:#bbbbbb;
+
+}
+md-input-container md-select {
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    -webkit-order: 2;
+    -ms-flex-order: 2;
+    order: 2;
+    display: block;
+    background: none;
+    padding: 11px 0px 2px 1px;
+    border-width: 0 0 1px 0;
+    line-height: 26px;
+    -ms-flex-preferred-size: 26px;
+    border-radius: 0;
+    margin: 0;
+}
+.md-input-has-value md-select {
+    padding: 0px 0px 2px 1px;
+}

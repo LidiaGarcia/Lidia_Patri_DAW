@@ -1,47 +1,100 @@
 <div id="session" ng-controller="LoginController as vm">
 	<div>	
+		<img  class="logo" src="img/Logo_URJC.png"/>
+		<img  class="logo2" src="img/logoBURJC.png"/>
 		<div ng-hide="vm.islog[0]"> 
-			<a href="#/loginregistro">Registrarse</a>
-			<a href="#/loginregistro">Iniciar sesión</a>
+			<a id="nombreUsuario" href="#/loginregistro">Registrarse | Iniciar sesión</a>
 		</div>
 		<div ng-hide="!vm.islog[0]">
-			<a href="#/vistadia">{{vm.persona.nombre}}</a>
-			<form ng-submit="vm.logout()">
-		 	<input type='submit' name='Cerrarsesion' value="Cerrar sesión" />
-			</form>
+			<a id="nombreUsuario" href="#/vistadia">Hola {{vm.persona.nombre}}</a>
+		 	<md-button id="botonSalir" ng-click="vm.logout()" class="md-raised">Salir <md-icon md-svg-src="img/logout.svg"/></md-button>
 		</div>
 	</div>
 </div>
 
 <!--Menú izquierdo-->
-<div id="leftMenu" layout="column" style="height:500px;"  ng-controller="MicuentaController as vm">
+<div id="leftMenu" layout="column"  ng-controller="MicuentaController as vm">
   <div  ng-hide="!vm.islog[0]">
-  <section layout="row" flex>
-    <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
-      <md-toolbar class="md-theme-indigo">
-        <h1 class="md-toolbar-tools">{{vm.persona.nombre}}</h1>
-      	<h1 class="md-toolbar-tools">{{vm.hour[0]}}</h1>
-      	
-      	<button type="button" ng-click="vm.print()">Print datos</button>
-
-      	<h1 class="md-toolbar-tools">{{vm.dayweek.dayWeek}}</h1>
-      </md-toolbar>
-       <md-content ng-hide="vm.islog[1]"layout-padding >
-       <a href="#/reservasala">Reservar sala</a></br>
-       <a href="#/reservaportatil">Reservar portatil</a></br>
-       <a href= "#/inscripcioncurso">Inscribirse a curso</a></br>
-       <a href="#/missalas">Mis salas reservadas</a> </br>
-       <a href="#/misportatiles">Mis portátiles reservados</a> </br>
-       <a href="#/miscursos">Cursos inscritos</a> </br>
-       <a href="#/personalData">Datos personales</a>
+  <section layout="row">
+    <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')">
+      <a href="#/reservasala"><md-toolbar class="md-theme-indigo">
+        <h1 class="md-toolbar-tools"><md-icon id="home" md-svg-src="img/home.svg"></md-icon> {{vm.persona.nombre}}</h1>
+      </md-toolbar></a>
+       <md-content ng-hide="vm.islog[1]">
+       <div layout-gt-sm="row">
+       		<a href="#/reservasala">Reservar sala</a>
+       	</div>
+       	<div layout-gt-sm="row">
+       		<a href="#/reservaportatil">Reservar portatil</a>
+       	</div>
+       	<div id="menuSelected"  layout-gt-sm="row">
+       		<a href= "#/inscripcioncurso">Inscribirse a curso</a>
+       	</div>
+       	<div layout-gt-sm="row">
+       		<a href="#/missalas">Mis salas reservadas</a> 
+       </div>
+       	<div layout-gt-sm="row">
+		       <a href="#/misportatiles">Mis portátiles reservados</a> 
+       </div>
+       	<div layout-gt-sm="row">
+       		<a href="#/miscursos">Cursos inscritos</a> 
+       </div>
+       <div layout-gt-sm="row">
+       		<a href="#/reservasala">Información salas</a>
+       	</div>
+       	<div layout-gt-sm="row">
+       		<a href="#/reservaportatil">Información portátiles</a>
+       	</div>
+       	<div id="lastMenu" layout-gt-sm="row">
+       		<a href="#/personalData">Datos personales</a>
+      	</div>
       </md-content>
-      <md-content ng-hide="!vm.islog[1]" layout-padding >
-       <a href="#/controlsalas">Control Salas</a> </br>
-       <a href="#/controlportatiles">Control Portátiles</a> </br>
-       <a href="#/adminsalas">Administrar Salas</a> </br>
-       <a href="#/adminportatiles">Administrar Portátiles</a> </br>
-       <a href="#/admincursos">Administrar Cursos</a> </br>
-       <a href="#/personalData">Datos personales</a> 
+      <md-content ng-hide="!vm.islog[1]" >
+       
+       	<div layout-gt-sm="row">
+       		<a href="#/controlsalas">Control Salas</a> 
+       </div>
+       	<div layout-gt-sm="row">
+       		<a href="#/controlportatiles">Control Portátiles</a> 
+       </div>
+       	<div layout-gt-sm="row">
+       		<a href="#/adminsalas">Administrar Salas</a>
+       </div>
+       	<div layout-gt-sm="row">
+       		<a href="#/adminportatiles">Administrar Portátiles</a> 
+       </div>
+       	<div layout-gt-sm="row">
+       		<a href="#/admincursos">Administrar Cursos</a> 
+       </div>
+       	<div id="lastMenu" layout-gt-sm="row">
+       		<a href="#/personalData">Datos personales</a> 
+      	</div>
+      </md-content>
+    </md-sidenav>
+  </section>
+  </div>
+  <div  ng-hide="vm.islog[0]">
+  <section layout="row">
+    <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')">
+      <a href="#/vistadia"><md-toolbar class="md-theme-indigo">
+        <h1 class="md-toolbar-tools"><md-icon id="home" md-svg-src="img/home.svg"></md-icon> Inicio</h1>
+      </md-toolbar></a>
+       <md-content>
+		<div id="menuSelected" layout-gt-sm="row">
+       		<a href="#/inscripcioncurso">Cursos</a>
+       	</div>        
+       <div layout-gt-sm="row">
+       		<a href="#/reservasala">Salas reservadas</a>
+       	</div>
+       	<div layout-gt-sm="row">
+       		<a href="#/reservaportatil">Portátiles reservados</a>
+       	</div>
+        <div layout-gt-sm="row">
+       		<a href="#/reservasala">Información salas</a>
+       	</div>
+       	<div layout-gt-sm="row">
+       		<a href="#/reservaportatil">Información portátiles</a>
+       	</div>
       </md-content>
     </md-sidenav>
   </section>

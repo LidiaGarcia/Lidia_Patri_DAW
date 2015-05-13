@@ -32,9 +32,9 @@ function GlobalService($resource,$timeout) {
 	//resources
 	var BibliotecaHoraResource = $resource('/hour');
 	var BibliotecaDateResource = $resource('/date');	
-	var BibliotecaDiaSemanaResource = $resource('/dayWeek');
-	var BibliotecaChangeDateResource = $resource('/date/:fecha/:day',{},
-			{query:{method:'GET',params:{fecha: '@fecha',day: '@day'},isArray:true}});
+
+	var BibliotecaChangeDateResource = $resource('/date/:fecha/:next',{},
+			{query:{method:'GET',params:{fecha: '@fecha',next: '@next'},isArray:true}});
 
 	var BibliotecaDateBeforeResource = $resource('/date/before/:fecha',
 			{fecha: '@fecha'});
@@ -54,6 +54,7 @@ function GlobalService($resource,$timeout) {
 			{remove:{method:'DELETE',params:{id: '@id'}}});
 	
 	var ReservasSalaHoyResource= $resource('/reservas/sala/hoy');
+	
 	var ReservasPortatilHoyResource= $resource('/reservas/portatil/hoy');
 	
 	var ConfirmarReservasSalaResource = $resource('/reservas/sala/:id',
@@ -253,24 +254,10 @@ function GlobalService($resource,$timeout) {
 		return BibliotecaDateResource.query();
 	}
 	
-	vm.getDayWeek = function(){
-		return BibliotecaDiaSemanaResource.get();
-	}
-	vm.getOtherDate = function(date,suma){
-		var days =-1;
-		if (!suma){ days=1}
-		var dayWeek =vm.getDayWeek();
-		setTimeout(function(){
-			if (dayWeek===5&&suma) {
-				days = -3;
-			}else if(dayWeek===1&&!suma){
-				days = 3;
-			}	
-		}
-		,500);
-		$day=parseInt(days);
-		
-		return BibliotecaChangeDateResource.query({fecha:$fecha},{day:$day});
+	vm.getOtherDate = function(date,next){
+		$next=next;
+		$fecha=date[0]+"-"+date[1]+"-"+date[2];
+		return BibliotecaChangeDateResource.query({fecha:$fecha},{next:$next});
 	}
 	vm.nextDay = function(){
 		vm.date2=vm.getOtherDate(vm.date2,true);
@@ -287,7 +274,6 @@ function GlobalService($resource,$timeout) {
 	}
 	
 	vm.fechaAnterior = function(date){
-		console.log(date);
 		
 		$fecha=date[0]+"-"+ date[1]+"-"+date[2];
 		vm.fechaanterior= BibliotecaDateBeforeResource.get({fecha:$fecha});
@@ -313,13 +299,6 @@ function GlobalService($resource,$timeout) {
 		vm.datos.pass=pass;
 		SesionResource.save(vm.datos,function() {});
 		vm.persona=SesionPersResource.get();
-		console.log(vm.persona);
-		var log=vm.islog();
-		setTimeout(function(){
-		if (!log[0]){
-			alert("Los datos introducidos no son correctos");
-		}
-		},1000);
 		
 	}
 	

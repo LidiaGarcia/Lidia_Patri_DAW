@@ -76,10 +76,13 @@
   <div  ng-hide="vm.islog[0]">
   <section layout="row">
     <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')">
-      <a href="#/reservasala"><md-toolbar class="md-theme-indigo">
+      <a href="#/vistadia"><md-toolbar class="md-theme-indigo">
         <h1 class="md-toolbar-tools"><md-icon id="home" md-svg-src="img/home.svg"></md-icon> Inicio</h1>
       </md-toolbar></a>
        <md-content>
+		<div layout-gt-sm="row">
+       		<a href="#/inscripcioncurso">Cursos</a>
+       	</div>        
        <div layout-gt-sm="row">
        		<a href="#/reservasala">Salas reservadas</a>
        	</div>

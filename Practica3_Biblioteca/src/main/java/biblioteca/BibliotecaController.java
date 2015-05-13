@@ -33,21 +33,28 @@ public class BibliotecaController {
 	public LocalTime givemeHour(){
 		return now.now();
 	}
-	
-	@RequestMapping(value="/dayWeek", method = RequestMethod.GET)
-	public DayWeek givemeDaysemana(){
-		DayWeek dayWeek = new DayWeek();
-		dayWeek.dayWeek = today.now().getDayOfWeek().getValue(); 
-		return dayWeek;
-	}
+
 	
 	@RequestMapping(value="/date", method = RequestMethod.GET)
 	public LocalDate givemeDate(){		
 		return today.now();
 	}
 	
-	@RequestMapping(value="/date/{a}-{b}-{c}/{day}", method = RequestMethod.GET)
-	public LocalDate oneMoreDayDate(@PathVariable int day, @PathVariable int a, @PathVariable int b, @PathVariable int c){		
+	@RequestMapping(value="/date/{a}-{b}-{c}/{next}", method = RequestMethod.GET)
+	public LocalDate oneMoreDayDate(@PathVariable boolean next, @PathVariable int a, @PathVariable int b, @PathVariable int c){		
+		int day=-1;
+		if (!next){ 
+			day=1;
+		};
+
+		int dayWeek = LocalDate.of(a,b,c).getDayOfWeek().getValue(); 
+		if ((dayWeek==5)&&(next)){
+			day=-3;
+		}
+		else if((dayWeek==1)&&(!next)){
+			day=3;
+		}
+
 		return LocalDate.of(a,b,c).minusDays(day);
 	}
 	
