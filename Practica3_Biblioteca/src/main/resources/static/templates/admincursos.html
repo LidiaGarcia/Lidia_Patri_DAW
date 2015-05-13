@@ -51,7 +51,9 @@
 <div id="adminCursos" ng-controller="adminCursosController as vm">
 	<div ng-show="vm.islog[1]">
 	
-	<div ng-hide="vm.carga">Cargando...</div>
+	<div ng-hide="vm.carga" layout="row" layout-sm="column" layout-align="space-around">
+      <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+    </div>
 	<div ng-hide="!vm.carga" ng-repeat="curso in vm.cursos">
 			<a href="#/newCurso">Nuevo Curso</a>
 		

@@ -1,19 +1,96 @@
+body{
+	font-family: RobotoDraft,Roboto,'Helvetica Neue',sans-serif;
+}
+.logo{
+    top:0.3em;
+    left:0.3em;
+    position: fixed;
+    z-index: 3;
+    height: 70px;
+    width: auto;
+    background-image: url(img/Logo_URJC.png);
+}
+.logo2{
+    top:0.5em;
+    left:5em;
+    position: fixed;
+    z-index: 3;
+    height: 65px;
+    width: auto;
+    background-image: url(img/Logo_URJC.png);
+}
+#home{
+
+	margin: 0px;
+    margin-right: 6px;
+}
 #pie{
 	vertical-align: bottom;
 	display:block;
 	text-align : center;
+    clear:both;
+    background-color: #e3e3ff;
+    font-weight: bold;
+    padding:0.3em;
+    color: #262679; 
 }
 #session{
-	background-color: #EEEEEE;
+	background-color: #e3e3ff;
 	text-align: right;
 	padding: 1.5em;
 	display: block;	
+    height: 80px;
+    vertical-align:middle;	
+
+
+}
+#botonSalir{
+    color:white;
+    background-color: #f40c0c;
+    vertical-align: middle;
+    font-weight: bold;
+}
+#botonSalir span{
+    vertical-align: middle;
+}
+#nombreUsuario{
+    font-weight: bold;
+    font-size: 1.3em;
+    text-decoration: none;
+    width: 100%;
+    padding:6px;
+    margin-top: 9px;
+    vertical-align: middle;
 }
 #leftMenu {
-	position: relative;
+	top:0px;
+	position: left;
 	display: inline-block;
+	vertical-align: top;
+	margin: 0.5em;
 }
-#adminIndex,#adminCursos,#inscrcursos,#adminSalas,#adminPortatiles,#personalData,#vistadia,#misSalas, #misPortatiles{
+#leftMenu a{
+    font-weight: bold;
+    text-decoration: none;
+    width: 100%;
+}
+#leftMenu>div div{
+    padding: 0.7em;
+    border-bottom:2px solid #d5d6ff;
+
+}
+#leftMenu>div div:hover{
+    background-color: #d7d7d8;
+}
+#leftMenu>div div:hover a{
+    color: white;
+}
+
+#menuSelected{
+    background-color: #e3e3ff;
+}
+
+#adminIndex,#inscrcursos,#adminSalas,#adminPortatiles,#personalData,#vistadia,#misSalas, #misPortatiles{
 	display: inline;
 	float: right;
 	padding: 3em;
@@ -29,3 +106,60 @@
 	min-width: 10em;
 	padding: 2em;	
 }
+#adminCursos form{
+	width: 60%;
+	position: relative;
+	display : inline;
+	
+}
+#adminCursos form>div{
+	vertical-align: top;
+	display : inline-block;
+	margin-top:1em;
+
+}
+#adminCursos form>div>div{
+	vertical-align: top;
+	display : inline-block;
+	padding: 1em;
+    float: center;
+    width: 100%;
+	
+}
+#submit{
+   clear:both;
+   margin:1em;
+    margin-left: 0em;
+    margin-top: 0em;
+    color: white;
+   
+}
+#submit span{
+   color: white;
+   
+}
+#adminCursos md-content, #adminCursos{
+	background-color:transparent;
+	display : inline;
+}
+#content{
+    display: inline-block;
+    padding-top: 0.5em;
+    padding-left: 1em;
+    padding-right: 1em;
+	width: 40%;
+    background-color: white;
+    margin: 0.5em;
+    font-size: 1em !important;
+}
+#content span{
+    text-transform: none;
+}
+#content h5{
+    color: #262679; 
+    margin: 0px;
+}
+#content h3{
+    color: #262679; 
+}
+
