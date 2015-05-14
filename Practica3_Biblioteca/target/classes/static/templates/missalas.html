@@ -107,27 +107,30 @@
 
 <div id="adminSalas2" ng-controller="SalasController as vm">
 	<span ng-show = "vm.islog[0]"><span ng-show="!vm.islog[1]"><md-content layout-padding>
-	<div layout="row">
-		<md-toolbar id="content3" layout="colum" >
+	
 		<div ng-show="vm.misSalas[0]">	
-			<div ng-hide="vm.carga" layout="row" layout-sm="column" layout-align="space-around">
+			<div ng-hide="vm.carga">
 		      <md-progress-circular md-mode="indeterminate"></md-progress-circular>
 		    </div>
 		    </div>
 			<div ng-hide="vm.misSalas[0]">
 			<h3>¡No tienes ninguna sala reservada!</h3>
 			</div>
+		<div id="scroll">
+		<div layout="row">	
+			<div id ="reserva" ng-hide="!vm.carga" ng-repeat="reserva in vm.misSalas">
 			
-			<div ng-hide="!vm.carga" ng-repeat="reserva in vm.misSalas">
-				<u><h3>{{reserva.sala.nombre}}</h3></u>
+			<md-toolbar layout ="colum" id="content4">	
+	
+				<b><p>{{reserva.sala.nombre}}</p></b>
 				<p>Fecha: {{reserva.fecha[2]}}-{{reserva.fecha[1]}}-{{reserva.fecha[0]}}</p>
 				<p>Hora: {{reserva.horaEntrada[0]}}:{{reserva.horaEntrada[1]}}</p>
-				<md-button type="button" class="md-raised md-warn" ng-click="vm.removeReservaSala(reserva)">Eliminar reserva</md-button>
-				<md-divider ></md-divider>
+				<md-button id="botonreserva" type="button" class="md-raised md-warn" ng-click="vm.removeReservaSala(reserva)">Eliminar reserva</md-button>
+			</md-toolbar>
 			</div>
-	
-		</md-toolbar>
-	</div>
+
+		</div>
+		</div>
 	</md-content>
 	</span>
 	</span>

@@ -104,11 +104,12 @@
   </div>
 </div>
 
-<div id="adminSalas" ng-controller="adminCursosController as vm">
+<div id="adminSalas2" ng-controller="adminCursosController as vm">
 	<md-content layout-padding>
+	<div id="scroll"
 	<div layout="row">
 		
-		<md-toolbar id="content3" layout="colum" >
+		
 			<div ng-show="vm.miscursos[0]">	
 			<div ng-hide="vm.carga" layout="row" layout-sm="column" layout-align="space-around">
 		      <md-progress-circular md-mode="indeterminate"></md-progress-circular>
@@ -119,6 +120,7 @@
 			</div>
 			
 			<div ng-hide="!vm.carga" ng-repeat="curso in vm.miscursos">
+			<md-toolbar id="content3" layout="colum" >
 				
 				<u><h3>{{curso.nombre}}</h3></u>
 				<b><p>Descripción:</b> {{curso.descripcion}}</p>
@@ -126,11 +128,13 @@
 				<b><p>Hora: </b>{{curso.hora[0]}}:{{curso.hora[1]}}</p>
 				<b><p>Duración: </b>{{curso.duracion}}</p>
 				<b><p>Aforo: </b>{{curso.aforo}}</p>
-					
+				<div id="botcurso">
 				<md-button type="button" class="md-raised md-warn" ng-click="vm.removeInscripcion(curso)">Eliminar inscripción al curso</md-button
-				<md-divider ></md-divider>
+				</div>
+				</md-toolbar>
 			</div>
-		</md-toolbar>
+		
+	</div>
 	</div>
 	</md-content>
 </div>

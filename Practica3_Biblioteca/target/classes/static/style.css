@@ -1,5 +1,6 @@
 body{
 	font-family: RobotoDraft,Roboto,'Helvetica Neue',sans-serif;
+	word-wrap:break-word;
 }
 .logo{
     top:0.3em;
@@ -67,7 +68,8 @@ body{
 	position: left;
 	display: inline-block;
 	vertical-align: top;
-	margin: 0.5em;
+	margin: 0.8em;
+
 }
 #leftMenu a{
     font-weight: bold;
@@ -90,22 +92,6 @@ body{
     background-color: #e3e3ff;
 }
 
-#adminIndex,#inscrcursos,#vistadia,#misSalas, #misPortatiles{
-	display: inline;
-	float: right;
-	padding: 3em;
-}
-#salaNotReser,#portatilNotReser{
-	background: red;
-}
-#salaReser,#portatilReser{
-	background: green;
-}
-#listadoSalas,#listadoPortatiles{
-	display: inline-block;
-	min-width: 10em;
-	padding: 2em;	
-}
 #adminSalanueva form{
 	width: 60%;
 	position: relative;
@@ -176,15 +162,30 @@ body{
 	background-color:transparent;
 	display : inline;
 }
-#adminSala md-content,#adminSala {
+#adminSalas md-content,#adminSalas {
 	background-color:transparent;
 	width:auto;
 	display : inline-block;
+	padding:1em;
 }
-#adminSala2 md-content,#adminSala2 {
+#personalData md-content,#personalData {
 	background-color:transparent;
 	width:auto;
 	display : inline-block;
+	padding:1em;
+}
+#adminSalas2 md-content,#adminSalas2 {
+	background-color:transparent;
+	max-width:1050px;
+	margin-top:2em;
+	float:right;
+}
+
+#scroll{
+/* 	width:1000em; */
+/* 	overflow-x: scroll !important; */
+
+	display:inline-flex;
 }
 #login md-content, #login{
 
@@ -193,20 +194,97 @@ body{
 	display : inline-block;
 }
 
-#sala{
+#sala,#reserva{
+	padding:0.5em;
+	
+}
+#botonreserva{
+	margin:0.5em;
+}
+#newCurso{
+	position:fixed;
+	left:23em;
+	top:7em;
+	
+}
+#botcurso{
 	padding:1em;
+	position:absolute;
+	bottom:0;
+}
+#botcurso2{
+	position:absolute;
+	bottom:1em;
+}
+#content6{
+	color: #262679;  
+    padding-top: 0.5em; 
+    padding-left: 1em; 
+    padding-right: 1em; 
+    width:22em;
+ 	height:24em;
+    background-color: white;
+    margin: 0em;
+    margin-left:0em;
+    margin-right: 1em;
+    margin-botton: 4em;
+    font-size: 1em !important;
+}
+#content5{
+	color: #262679;  
+    padding-top: 0.5em; 
+    padding-left: 1em; 
+    padding-right: 1em; 
+    width:22em;
+    height:30em;
+    background-color: white;
+    margin: 2em;
+    margin-left:0em;
+    margin-right: 1em;
+    margin-botton: 4em;
+    font-size: 1em !important;
+
 }
 
+#content4{
+	color: #262679;  
+    padding-top: 0.5em; 
+    padding-left: 1em; 
+    padding-right: 1em; 
+    width:15em;
+    background-color: white;
+    margin: 0.9em;
+    margin-left: 1em;
+    margin-right: 1em;
+    margin-botton: 4em;
+    font-size: 1em !important;
+}
+#content4 span,#content5 span{
+    text-transform: none;
+}
+#content4 h5,#content5 h5{
+    color: #262679; 
+    margin: 0px;
+}
+#content4 h3,#content5 h3{
+	margin-top:0.4em;
+    color: #262679; 
+}
+#content4 u,#content5 u{
+	color:#919191;
+}
 #content3{
 	color: #262679; 
     padding-top: 0.5em;
     padding-left: 1em;
     padding-right: 1em;
-    width:40%;
+    width:20em;
+    height:30em;
     background-color: white;
-    margin: 0.9em;
-    margin-left: 0em;
+    margin: -2em;
+    margin-left: -0.1em;
     margin-right: 0em;
+    margin-bottom: 2em;
     font-size: 1em !important;
 }
 #content3 span{
@@ -294,3 +372,88 @@ md-input-container md-select {
 md-divider {
   margin-top: 10px;
   margin-bottom: 10px; }
+  
+  
+#fechas{
+	align-content: center;
+    justify-content: space-between;
+    display: flex;
+    width: 100%;
+}
+#fechas button{
+	    text-transform: none;
+}
+#adminIndex{
+	display: block;
+	float: auto;
+	margin: 1em;
+	border: 2px solid #d5d6ff;
+    max-width: 1050px;
+    min-width:600px;
+}
+#arriba{
+	display: block;
+	float: right;
+}
+#listadoSalas{
+	display: block;
+	height: auto;
+	padding: 0.5em;
+	width: 150px;
+	
+}
+#listadoSalas div{
+	align-content: center;
+	text-align: center;		
+	display: block;
+	flex-flow: row wrap;
+		
+}
+#listadoSalas div  span{
+	text-align: center;
+	align-items: center;
+	align-content: center;
+        text-shadow: 0 4px 2px -2px gray;
+    
+		
+}
+#nombreSala{
+       font-weight: bold;
+}
+#salaNotReser,#portatilNotReser{
+	text-align: center;		
+	padding:0.3em;
+	background: green;
+	width: 110px;
+    height: 60px;
+	margin: 2px;
+	color: white;	
+    font-weight: bold;
+
+}
+#salaReser,#portatilReser{
+	text-align: center;		
+	padding:0.3em;
+	background: red;
+	width: 110px;
+    height: 60px;
+    margin: 2px;
+    color: white;
+    font-weight: bold;
+}
+
+#horas > div{
+	align-content: center;
+	text-align: center;		
+	padding: 0.5em;
+	height: 70px;
+	width: 80px;
+	display: block;	
+	margin-right:0px;
+}
+		
+#horas{
+	width: 30px;
+	margin: 0.3em;	
+	padding-top: 3em;
+}

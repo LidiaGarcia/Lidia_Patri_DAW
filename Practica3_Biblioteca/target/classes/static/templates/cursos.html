@@ -105,29 +105,31 @@
 </div>
 
 
-<div id="adminSalas" ng-controller="adminCursosController as vm">
-	<md-content ng-show="vm.islog[1]" layout-padding>	
-	    <md-button id ="submit" href="#/newCurso" class="md-raised md-primary">Nuevo curso</md-button>
-		<div layout="row">
-			<md-toolbar id="content3" layout="colum" >	
-				<div ng-hide="vm.carga" layout="row" layout-sm="column" layout-align="space-around">
+<div id="adminSalas2" ng-controller="adminCursosController as vm">
+
+	<md-content ng-show="vm.islog[1]" layout-padding>
+	<md-button id ="newCurso" href="#/newCurso" class="md-raised md-primary">Nuevo curso</md-button>
+	<div ng-hide="vm.carga" layout="row" layout-sm="column" layout-align="space-around">
 			      <md-progress-circular md-mode="indeterminate"></md-progress-circular>
-			    </div>
+			    </div>	
+	   <div id="scroll"> 
+		<div layout="row">
+				
 				<div ng-hide="!vm.carga" ng-repeat="curso in vm.cursos">
-					
+				<md-toolbar id="content5" layout="colum" flex>	
 					<u><h3>{{curso.nombre}}</h3></u>
 					<b><p>Descripción:</b> {{curso.descripcion}}</p>
 					<b><p>Fecha:</b> {{curso.fecha[2]}}-{{curso.fecha[1]}}-{{curso.fecha[0]}}</p>
 					<b><p>Hora: </b>{{curso.hora[0]}}:{{curso.hora[1]}}</p>
 					<b><p>Duración: </b>{{curso.duracion}}</p>
 					<b><p>Aforo: </b>{{curso.aforo}}</p>
-					
+					<div id="botcurso">
 					<md-button type="button" class="md-raised md-primary" ng-click="vm.modificar(curso)">Modificar Curso</md-button>
 					<md-button type="button" class="md-raised md-warn" ng-click="vm.deleteCurso(curso)">Eliminar Curso</md-button>
-
-					<md-divider ></md-divider>
+					</div>
+					</md-toolbar>
 				</div>
-			</md-toolbar>
+			
 		</div>
 	</md-content>
 </div>

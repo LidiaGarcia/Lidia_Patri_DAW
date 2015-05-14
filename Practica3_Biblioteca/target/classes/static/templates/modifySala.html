@@ -140,7 +140,7 @@
 		</div>
 		<md-input-container>
 			<label>Estado</label>
-			<textarea rows='4' cols='30' type='text' required="true" ng-model = "vm.salamodificar.estado"></textarea>
+			<textarea rows='4' cols='30' type='text' ng-maxlength="10" required="true" ng-model = "vm.salamodificar.estado"></textarea>
 		</md-input-container>	
 		 	
 		 <md-button id="submit" class="md-raised md-primary">Guardar sala modificada</md-button>
@@ -150,26 +150,3 @@
 		</md-content>
 	</div>
 </div>
-
-<!-- <div id="salas" ng-controller="SalasController as vm"> -->
-		
-<!-- 		<form ng-submit="vm.modifySala(vm.salamodificar)"> -->
-<!-- 			<b>Nombre:</b><br><input type='text' required="true" ng-model = "vm.salamodificar.nombre"/><br> -->
-<!-- 			<b>Compartida:</b><br> -->
-<!-- 			<select ng-model = "vm.salamodificar.compartida" required="true"> -->
-<!-- 				<option value="si">Sí</option> -->
-<!-- 				<option value="no">No</option> -->
-<!-- 				</select><br> -->
-<!-- 			<b>Tamaño:</b><br> -->
-<!-- 			<select ng-model = "vm.salamodificar.tamanio" required="true"> -->
-<!-- 				<option value="mediana">Mediana</option> -->
-<!-- 				<option value="pequeña">Pequeña</option> -->
-<!-- 				<option value="grande">Grande</option> -->
-<!-- 				</select><br> -->
-<!-- 			<b>Estado:</b><br><textarea rows='4' cols='30' type='text' required="true" ng-model = "vm.salamodificar.estado"></textarea><br> -->
-			
-<!-- 		 	<br><input type='submit' name='modifySala' value="Guardar sala modificada" /> -->
-<!-- 		</form> -->
-		
-<!-- 	</div> -->
-<!-- </div> -->

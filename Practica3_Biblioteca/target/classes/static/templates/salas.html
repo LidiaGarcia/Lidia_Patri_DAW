@@ -104,29 +104,26 @@
   </div>
 </div>
 
-<div id="adminSalas" ng-controller="SalasController as vm">
-	
-	<md-content layout-padding>
+<div id="adminSalas2" ng-controller="SalasController as vm">
 	<span ng-show="vm.islog[1]" ><md-button id ="submit" href="#/newSala" class="md-raised md-primary">Nueva sala</md-button></span>
+	<md-content layout-padding>
+	
+	<div id="scroll">
 	<div layout="row">
-	
-	
-	<md-toolbar id="content3" layout="colum" >	
-		 
-		      <div id="sala" ng-repeat="sala in vm.salas">
-		        	<u><h3>{{sala.nombre}}</h3></u>
-					<b><p>Compartida:</b> <span ng-if=sala.compartida>Sí</span><span ng-if=!sala.compartida>No</span></p>
-					<b><p>Tamaño:</b>{{sala.tamanio}}</p>
-					<b><p>Estado: </b>{{sala.estado}}</p>
-				<span ng-show="vm.islog[1]">	
-		        <md-button type="button" class="md-raised md-primary" ng-click="vm.modificar(sala)">Modificar Sala</md-button>
-				<md-button type="button" class="md-raised md-warn" ng-click="vm.deleteSala(sala)">Eliminar Sala</md-button>
-				</span>
-				<md-divider ></md-divider>
-		     </div>
-	</md-toolbar>
-
+		<div id="sala" ng-repeat="sala in vm.salas">
+	     	<md-toolbar id="content3" layout="colum" >	
+		       	<u><h3>{{sala.nombre}}</h3></u>
+				<b><p>Compartida:</b> <span ng-if=sala.compartida>Sí</span><span ng-if=!sala.compartida>No</span></p>
+				<b><p>Tamaño:</b>{{sala.tamanio}}</p>
+				<b><p>Estado: </b>{{sala.estado}}</p>
+				<div id="botcurso"ng-show="vm.islog[1]">
+					
+	       			<md-button type="button" class="md-raised md-primary" ng-click="vm.modificar(sala)">Modificar Sala</md-button>
+					<md-button type="button" class="md-raised md-warn" ng-click="vm.deleteSala(sala)">Eliminar Sala</md-button>
+				</div>
+			</md-toolbar>
+	    </div>
 	</div>
-	</md-content>
-		
+	</div>
+	</md-content>	
 </div>

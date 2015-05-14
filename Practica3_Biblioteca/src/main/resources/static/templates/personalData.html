@@ -110,14 +110,16 @@
 	<md-content ng-show="vm.islog[0]" layout-padding>
 	
 	<div layout="row">
-	<md-toolbar id="content3" layout="colum" >	
+	<md-toolbar id="content6" layout="colum" >	
 	<h3>Datos personales</h3>	
 		<p><b>Nombre:</b> {{vm.persona.nombre}}</p>
 		<p><b>Apellidos:</b> {{vm.persona.apellidos}}</p>
 		<p><b>Correo:</b> {{vm.persona.correo}}</p>
 		<md-button ng-hide="vm.changePass" type="button" class="md-raised md-primary" ng-click="vm.changePass=true">Cambiar contraseña</md-button>
 		<md-divider ></md-divider>
-		<form ng-show="vm.changePass" ng-submit="vm.pass(vm.pass2,vm.pass1,vm.pass0)">
+	</md-toolbar>
+	<md-toolbar ng-show="vm.changePass" id="content6" layout="colum" >
+		<form ng-submit="vm.pass(vm.pass2,vm.pass1,vm.pass0)">
 		<p><b>Cambio de contraseña:</b> 
 			<md-input-container flex>
 			<label>Contraseña actual:</label> <input required="true" type="password" ng-model="vm.pass0" />
@@ -131,9 +133,10 @@
 <!--<input ng-disabled="(vm.pass0!==vm.persona.pass) || (vm.pass1!==vm.pass2)" type='submit' name='Cerrarsesion' value="Cambiar contraseña" />-->
 			
 			<md-button ng-disabled="false" id="submit" class="md-raised md-primary">Cambiar contraseña</md-button>
-			<md-button href="#/vistadia" class="md-raised">Cancelar</md-button>	
+			<md-button href="#/personalData" ng-click="vm.changePass=false" class="md-raised">Cancelar</md-button>	
 			
 		</form> 
+		</md-toolbar>
 	</div>
 
 	</md-content>

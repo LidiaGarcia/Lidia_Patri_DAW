@@ -103,19 +103,34 @@
   </section>
   </div>
 </div>
-<div id="adminCursos" ng-controller="PortatilesController as vm">
 
-	<div ng-hide="vm.misPortatiles[0]">
-	<p>¡No tienes ningun portatil reservado!</p>
-	</div>
-	<div ng-hide="vm.carga">Cargando...</div>
-	<div ng-hide="!vm.carga" ng-repeat="reserva in vm.misPortatiles">
-			<p>Portatil: {{reserva.portatil.id}}</p>
-			<p>Fecha: {{reserva.fecha[2]}}-{{reserva.fecha[1]}}-{{reserva.fecha[0]}}</p>
-			<p>Hora: {{reserva.horaEntrada[0]}}:{{reserva.horaEntrada[1]}}</p>
-			<button type="button" ng-click="vm.removeReservaPortatil(reserva)">Eliminar reserva</button>
+<div id="adminSalas2" ng-controller="PortatilesController as vm">
+	<span ng-show = "vm.islog[0]"><span ng-show="!vm.islog[1]"><md-content layout-padding>
+	
+		<div ng-show="vm.misPortatiles[0]">	
+			<div ng-hide="vm.carga">
+		      <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+		    </div>
+		    </div>
+			<div ng-hide="vm.misPortatiles[0]">
+			<h3>¡No tienes ningun portatil reservado!</h3>
+			</div>
+		<div id="scroll">
+		<div layout="row">	
+			<div id ="reserva" ng-hide="!vm.carga" ng-repeat="reserva in vm.misPortatiles">
 			
+			<md-toolbar layout ="colum" id="content4">	
+				<b><p>Portatil {{reserva.portatil.id}}</p></b>
+				<p>Fecha: {{reserva.fecha[2]}}-{{reserva.fecha[1]}}-{{reserva.fecha[0]}}</p>
+				<p>Hora: {{reserva.horaEntrada[0]}}:{{reserva.horaEntrada[1]}}</p>
+			
+				<md-button id="botonreserva" type="button" class="md-raised md-warn" ng-click="vm.removeReservaPortatil(reserva)">Eliminar reserva</md-button>
+			</md-toolbar>
+			</div>
+
 		</div>
-	
-	
+		</div>
+	</md-content>
+	</span>
+	</span>
 </div>

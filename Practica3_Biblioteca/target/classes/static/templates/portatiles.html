@@ -105,27 +105,24 @@
 </div>
 
 
-<div id="adminSalas" ng-controller="PortatilesController as vm">	
+<div id="adminSalas2" ng-controller="PortatilesController as vm">
+	<span ng-show="vm.islog[1]" ><md-button id ="submit" href="#/newPortatil" class="md-raised md-primary">Nuevo portatil</md-button></span>
 	<md-content layout-padding>
-	<span ng-show="vm.islog[1]"><md-button id ="submit" href="#/newPortatil" class="md-raised md-primary">Nuevo portatil</md-button></span>
+	
+	<div id="scroll">
 	<div layout="row">
-	
-	
-	<md-toolbar id="content3" layout="colum" >	
-		 
-		      <div ng-repeat="portatil in vm.portatiles">
-		        	<u><h3>Portatil {{portatil.id}}</h3></u>
+		<div ng-repeat="portatil in vm.portatiles">
+	     	<md-toolbar id="content3" layout="colum" >	
+		       	<u><h3>Portatil {{portatil.id}}</h3></u>
 					<b><p>Estado:</b> {{portatil.estado}}</p>
 					<b><p>Características:</b> {{portatil.caracteristicas}}</p>
-				<span ng-show="vm.islog[1]">
-				<md-button type="button" class="md-raised md-primary" ng-click="vm.modificar(portatil)">Modificar Portatil</md-button>
-				<md-button type="button" class="md-raised md-warn" ng-click="vm.deletePortatil(portatil)">Eliminar Portatil</md-button>	
-				</span>
-		    
-				<md-divider ></md-divider>
-		     </div>
-	</md-toolbar>
-
+				<div id="botcurso2" ng-show="vm.islog[1]">
+					<md-button type="button" class="md-raised md-primary" ng-click="vm.modificar(portatil)">Modificar Portatil</md-button>
+					<md-button type="button" class="md-raised md-warn" ng-click="vm.deletePortatil(portatil)">Eliminar Portatil</md-button>	
+				</div>
+		   </md-toolbar>
+		 </div>
+	</div>
 	</div>
 	</md-content>
 		

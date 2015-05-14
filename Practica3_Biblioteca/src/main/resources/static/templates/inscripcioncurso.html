@@ -105,28 +105,31 @@
 </div>
 
 
-<div id="adminSalas" ng-controller="adminCursosController as vm">
+<div id="adminSalas2" ng-controller="adminCursosController as vm">
 	<md-content layout-padding>
+	<div id="scroll">
 	<div layout="row">
-			<md-toolbar id="content3" layout="colum" >	
+			
 				<div ng-hide="vm.carga" layout="row" layout-sm="column" layout-align="space-around">
 			      <md-progress-circular md-mode="indeterminate"></md-progress-circular>
 			    </div>
 				<div ng-hide="!vm.carga" ng-repeat="curso in vm.cursos">
-					
+					<md-toolbar id="content3" layout="colum" >	
 					<u><h3>{{curso.nombre}}</h3></u>
 					<b><p>Descripción:</b> {{curso.descripcion}}</p>
 					<b><p>Fecha:</b> {{curso.fecha[2]}}-{{curso.fecha[1]}}-{{curso.fecha[0]}}</p>
 					<b><p>Hora: </b>{{curso.hora[0]}}:{{curso.hora[1]}}</p>
 					<b><p>Duración: </b>{{curso.duracion}}</p>
 					<b><p>Aforo: </b>{{curso.aforo}}</p>
-					
+				<div id="botcurso2">
 				<span ng-show = "vm.islog[0]"><span ng-show="!vm.islog[1]">
 				<md-button type="button" class="md-raised md-primary" ng-click="vm.inscripcion(curso)">Inscribirse al curso</md-button>
 				</span></span>
-				<md-divider ></md-divider>
+				</div>
+				
 				</div>
 			</md-toolbar>
+		</div>
 		</div>
 	</md-content>
 </div>
