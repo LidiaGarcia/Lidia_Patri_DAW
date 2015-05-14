@@ -1,5 +1,6 @@
 package biblioteca;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -13,10 +14,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import biblioteca.BibliotecaController.DayBefore;
+
 @RestController
 @RequestMapping("/personas")
 public class PersonaController {
 
+	public static class PassOk{
+		public boolean passOk;
+	}
+	
+	
 	@Autowired
 	private PersonasRepo personas_repo;
 	
@@ -46,6 +54,19 @@ public class PersonaController {
 			personas_repo.setPass(id,pass);
 		}
 	}
+	@RequestMapping(value = "/misdatos/passOK/{id}/{pass}", method=RequestMethod.GET)
+	public PassOk passOK(@PathVariable long id, @PathVariable String pass ,HttpSession sesion){
+		PassOk passOk = new PassOk();
+		passOk.passOk = false;
+		if((sesion!=null)&&((sesion.getAttribute("login") != null)&&((Boolean)sesion.getAttribute("login")))){			
+			Persona persona=personas_repo.findById(id);
+			if(persona.getPass().equals(pass)){
+			passOk.passOk=true;}
+		}
+		return passOk;
+	}
+	
+	
 	/*
 	//hace falta?
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)

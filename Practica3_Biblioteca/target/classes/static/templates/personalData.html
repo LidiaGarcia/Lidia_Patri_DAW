@@ -103,22 +103,38 @@
   </section>
   </div>
 </div>
+
+
 <!--Datos-->
 <div id="personalData" ng-controller="DataController as vm">
-	<div>
+	<md-content ng-show="vm.islog[0]" layout-padding>
+	
+	<div layout="row">
+	<md-toolbar id="content3" layout="colum" >	
+	<h3>Datos personales</h3>	
 		<p><b>Nombre:</b> {{vm.persona.nombre}}</p>
 		<p><b>Apellidos:</b> {{vm.persona.apellidos}}</p>
 		<p><b>Correo:</b> {{vm.persona.correo}}</p>
-		<button type="button" ng-click="vm.changePass=true">Cambiar contraseña</button>
-		<form ng-show="vm.changePass" ng-submit="vm.pass(vm.pass2)">
-			<b>Contraseña actual:</b><br> <input type="password" ng-model="vm.pass0" /><br>
-			<b >Nueva contraseña:</b><br> <input type="password" ng-model="vm.pass1" /><br>
-			<b >Vuelve a introducir nueva contraseña:</b><br> <input type="password" ng-model="vm.pass2" /><br>
+		<md-button ng-hide="vm.changePass" type="button" class="md-raised md-primary" ng-click="vm.changePass=true">Cambiar contraseña</md-button>
+		<md-divider ></md-divider>
+		<form ng-show="vm.changePass" ng-submit="vm.pass(vm.pass2,vm.pass1,vm.pass0)">
+		<p><b>Cambio de contraseña:</b> 
+			<md-input-container flex>
+			<label>Contraseña actual:</label> <input required="true" type="password" ng-model="vm.pass0" />
+			</md-input-container>
+			<md-input-container flex >
+			<label>Nueva contraseña:</label> <input required="true" type="password" ng-model="vm.pass1" />
+			</md-input-container>
+			<md-input-container flex>
+			<label>Vuelve a introducir nueva contraseña:</label><input required="true"  type="password" ng-model="vm.pass2" />
+			</md-input-container>
 <!--<input ng-disabled="(vm.pass0!==vm.persona.pass) || (vm.pass1!==vm.pass2)" type='submit' name='Cerrarsesion' value="Cambiar contraseña" />-->
-			<input ng-disabled="false" type='submit' name='Cerrarsesion' value="Cambiar contraseña" />
+			
+			<md-button ng-disabled="false" id="submit" class="md-raised md-primary">Cambiar contraseña</md-button>
+			<md-button href="#/vistadia" class="md-raised">Cancelar</md-button>	
 			
 		</form> 
 	</div>
 
-
+	</md-content>
 </div>

@@ -95,7 +95,7 @@ function PortatilesController(globalService, $location, $timeout) {
 				vm.portatil={};
 				reservada=false;
 			}else{
-				alert("No se puede eliminar un portátil con reservas");
+				globalService.showAlert("No se puede eliminar un portátil con reservas");
 			}
 		},1000);
 		setTimeout(function(){

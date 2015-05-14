@@ -90,7 +90,7 @@ body{
     background-color: #e3e3ff;
 }
 
-#adminIndex,#inscrcursos,#personalData,#vistadia,#misSalas, #misPortatiles{
+#adminIndex,#inscrcursos,#vistadia,#misSalas, #misPortatiles{
 	display: inline;
 	float: right;
 	padding: 3em;
@@ -176,7 +176,7 @@ body{
 	background-color:transparent;
 	display : inline;
 }
-#adminSala md-content, #adminSala {
+#adminSala md-content,#adminSala {
 	background-color:transparent;
 	width:auto;
 	display : inline-block;

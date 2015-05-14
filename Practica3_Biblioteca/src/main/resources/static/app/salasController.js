@@ -223,7 +223,7 @@ function SalasController(globalService, $location, $timeout) {
 				vm.sala={};
 				reservada=false;
 			}else{
-				alert("No se puede eliminar una sala con reservas");
+				globalService.showAlert("No se puede eliminar una sala con reservas");
 			}
 		},1000);
 		setTimeout(function(){

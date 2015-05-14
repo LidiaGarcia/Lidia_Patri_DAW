@@ -1,8 +1,8 @@
 angular.module("app").service("globalService", GlobalService);
 
-GlobalService.$inject = [ "$resource", "$timeout"];
+GlobalService.$inject = [ "$resource", "$timeout","$mdDialog"];
 
-function GlobalService($resource,$timeout) {
+function GlobalService($resource,$timeout,$mdDialog) {
 	
 	//Variables
 	var vm =this;
@@ -28,6 +28,7 @@ function GlobalService($resource,$timeout) {
 	vm.allReservas=[];
 	vm.allReservasPortatiles=[];	
 	vm.fechaanterior=false;
+	vm.passcorrecta=false;
 	
 	//resources
 	var BibliotecaHoraResource = $resource('/hour');
@@ -129,6 +130,9 @@ function GlobalService($resource,$timeout) {
 			{id: '@id'},
 			{'update': {method: 'PUT'}}
 	);
+	var PassCorrectaResource = $resource ('personas/misdatos/passOK/:id/:pass',{},
+			{get:{method:'GET',params:{id: '@id',pass:'@pass'}}}
+	);
 
 	var SesionResource = $resource('/sesion',{save: {method: 'POST'},remove: {method: 'DELETE'}});
 	var SesionPersResource = $resource('/sesion/persona');
@@ -136,6 +140,19 @@ function GlobalService($resource,$timeout) {
 	
 	//Funciones
 
+	//alert
+	  vm.showAlert = function(string) {
+	    $mdDialog.show(
+	      $mdDialog.alert()
+	        .title('Biblioteca URJC')
+	        .content(string)
+	        .ariaLabel('')
+	        .ok('Aceptar')
+	    );
+	  };
+	
+	
+	
 	//cursos
 	vm.getCursos = function(){
 		return CursosResource.query();
@@ -148,18 +165,18 @@ function GlobalService($resource,$timeout) {
 	}
 	
 	vm.newCurso = function (newCurso){
-		CursosResource.save(newCurso,function() {
+		CursosResource.save(newCurso,function() {vm.showAlert("Nuevo curso creado");
 		});
 	}
 	
 	vm.deleteCurso = function (curso){
 		$id=curso.id;
-		CursosResource.deleteCurso({id:$id},function(){alert("curso eliminado")});	
+		CursosResource.deleteCurso({id:$id},function(){vm.showAlert("curso eliminado")});	
 	}
 	
 	vm.modifyCurso = function (curso){
 		$id=curso.id;
-		CursosModifyResource.update({id:$id},curso,function(){alert("curso modificado")});
+		CursosModifyResource.update({id:$id},curso,function(){vm.showAlert("curso modificado")});
 	}
 	
 	vm.inscripcion = function(curso){
@@ -173,7 +190,7 @@ function GlobalService($resource,$timeout) {
 	}
 	vm.removeInscripcion = function(curso){
 		$id=curso.id;
-		CursoEliminarInscripResource.eliminarinscripcion({id:$id},function(){alert("Se ha borrado tu inscripción al curso correctamente")})
+		CursoEliminarInscripResource.eliminarinscripcion({id:$id},function(){vm.showAlert("Se ha borrado tu inscripción al curso correctamente")})
 	}
 	
 	vm.getCursosDia = function(){
@@ -202,18 +219,18 @@ function GlobalService($resource,$timeout) {
 	}
 	
 	vm.newSala = function (newSala){
-		SalasResource.save(newSala,function() {alert("Nueva sala añadida")
+		SalasResource.save(newSala,function() {vm.showAlert("Nueva sala añadida")
 		});
 	}
 	
 	vm.deleteSala = function (sala){
 		$id=sala.id;
-		SalasResource.deleteSala({id:$id},function(){alert(sala.nombre+" eliminada")});	
+		SalasResource.deleteSala({id:$id},function(){vm.showAlert(sala.nombre+" eliminada")});	
 	}
 	
 	vm.modifySala = function (sala){
 		$id=sala.id;
-		SalasModifyResource.update({id:$id},sala,function(){alert(sala.nombre+" modificada")});
+		SalasModifyResource.update({id:$id},sala,function(){vm.showAlert(sala.nombre+" modificada")});
 	}
 	
 	//portatiles
@@ -227,18 +244,18 @@ function GlobalService($resource,$timeout) {
 	}
 	
 	vm.newPortatil = function (newPortatil){
-		PortatilesResource.save(newPortatil,function() {alert("Nuevo portatil añadido")
+		PortatilesResource.save(newPortatil,function() {vm.showAlert("Nuevo portatil añadido")
 		});
 	}
 	
 	vm.deletePortatil = function (portatil){
 		$id=portatil.id;
-		PortatilesResource.deletePortatil({id:$id},function(){alert("Portatil "+portatil.id+" eliminado")});	
+		PortatilesResource.deletePortatil({id:$id},function(){vm.showAlert("Portatil "+portatil.id+" eliminado")});	
 	}
 	
 	vm.modifyPortatil = function (portatil){
 		$id=portatil.id;
-		PortatilesModifyResource.update({id:$id},portatil,function(){alert("Portatil "+portatil.id+" modificado")});
+		PortatilesModifyResource.update({id:$id},portatil,function(){vm.showAlert("Portatil "+portatil.id+" modificado")});
 	}
 	
 	
@@ -320,8 +337,14 @@ function GlobalService($resource,$timeout) {
 
 	vm.pass = function(pass,idpers){
 			$id=idpers;
-			PassResource.update({id:$id},pass);
+			PassResource.update({id:$id},pass,function(){vm.showAlert("Contraseña cambiada")});	
 
+	}
+	vm.passCorrecta = function (pass,id){
+		$id=id;
+		$pass=pass;
+		vm.passcorrecta=PassCorrectaResource.get({id:$id},{pass:$pass},function(){});
+		return vm.passcorrecta;
 	}
 	
 	//reservas
@@ -365,19 +388,19 @@ function GlobalService($resource,$timeout) {
 	}
 	vm.confirmarReservaSala = function(id){
 		$id=id;
-		ConfirmarReservasSalaResource.update({id:$id},function(){alert("Sala confirmada")});
+		ConfirmarReservasSalaResource.update({id:$id},function(){vm.showAlert("Sala confirmada")});
 	}
 	
 	vm.confirmarReservaPortatil = function(id){
 		$id=id;
-		ConfirmarReservasPortatilResource.update({id:$id},function(){alert("Portátil confirmado")});
+		ConfirmarReservasPortatilResource.update({id:$id},function(){vm.showAlert("Portátil confirmado")});
 	}
 	vm.reservar = function(reserva){
-		ReservaSalaResource.save(reserva,function(){alert('Has reservado una sala')});
+		ReservaSalaResource.save(reserva,function(){vm.showAlert('Has reservado una sala')});
 	}
 	
 	vm.reservarPortatil = function(reserva){
-		ReservaPortatilResource.save(reserva,function(){alert('Has reservado un portátil')});
+		ReservaPortatilResource.save(reserva,function(){vm.showAlert('Has reservado un portátil')});
 	}
 	vm.getReservasSalaDia = function(){
 			vm.reservasSalaHoy=ReservasSalaHoyResource.query();				
@@ -389,7 +412,7 @@ function GlobalService($resource,$timeout) {
 	
 	vm.removeReservaSala = function(reserva) {
 		$id=reserva.id;
-		ReservaSalaResource.remove({id:$id},function(){alert('Has eliminado tu reserva de sala')});
+		ReservaSalaResource.remove({id:$id},function(){vm.showAlert('Has eliminado tu reserva de sala')});
 	}
 
 	vm.getMisSalas = function(){
@@ -399,7 +422,7 @@ function GlobalService($resource,$timeout) {
 	
 	vm.removeReservaPortatil = function(reserva) {
 		$id=reserva.id;
-		ReservaPortatilResource.remove({id:$id},function(){alert('Has eliminado tu reserva de portátil')});
+		ReservaPortatilResource.remove({id:$id},function(){vm.showAlert('Has eliminado tu reserva de portátil')});
 	}
 
 	vm.getMisPortatiles = function(){
