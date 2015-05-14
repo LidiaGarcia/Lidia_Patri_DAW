@@ -113,32 +113,29 @@
 		 	<label>Nombre</label>
 			<input type='text' required="true" ng-model = "vm.nombre"/>
 		</md-input-container>
-		<md-input-container>	
-			<p>Compartida</p>
-<!-- 			<md-select ng-model = "vm.compartida" required="true"> -->
-<!-- 			<md-select-label>{{ vm.compartida }}</md-select-label>  -->
-<!-- 				<md-option value="si">Sí</md-option> -->
-<!-- 				<md-option value="no">No</md-option> -->
-<!-- 			</md-select> -->
-			<select ng-model = "vm.compartida" required="true">
-				<option value="si">Sí</option>
-				<option value="no" ng-selected="true">No</option>
-			</select>
-		</md-input-container>
-		<md-input-container>
-			<p>Tamaño</p>
-			<md-select ng-model = "vm.tamanio" required="true">
-			<md-select-label>{{ vm.tamanio }}</md-select-label>
-				<md-option value="mediana">Mediana</md-option>
-				<md-option value="pequeña">Pequeña</md-option>
-				<md-option value="grande">Grande</md-option>
-			</md-select>
-<!-- 			<select ng-model = "vm.tamanio" required="true"> -->
-<!-- 				<option value="mediana" ng-selected="true">Mediana</option> -->
-<!-- 				<option value="pequeña">Pequeña</option> -->
-<!-- 				<option value="grande">Grande</option> -->
-<!-- 			</select> -->
-		</md-input-container>
+		<div layout-gt-sm="row">
+		<div layout-gt-sm="colum" flex="20">	
+			<md-input-container flex>	
+				<p>Compartida</p>
+				<select ng-model = "vm.compartida" required="true">
+					<option value="si">Sí</option>
+					<option value="no" ng-selected="true">No</option>
+				</select>
+			</md-input-container>
+		</div>
+		<div layout-gt-sm="colum" flex="25">
+		</div>
+		<div layout-gt-sm="colum" flex="45">	
+			<md-input-container flex>
+				<p>Tamaño</p>
+				<select ng-model = "vm.tamanio" required="true">
+					<option value="mediana" ng-selected="true">Mediana</option>
+					<option value="pequeña">Pequeña</option>
+					<option value="grande">Grande</option>
+				</select>
+			</md-input-container>
+		</div>
+		</div>
 		<md-input-container>
 			<label>Estado</label>
 			<textarea rows='4' cols='30' type='text' required="true" ng-model = "vm.estado"></textarea>
