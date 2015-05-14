@@ -17,10 +17,11 @@
   <div  ng-hide="!vm.islog[0]">
   <section layout="row">
     <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')">
-      <a href="#/reservasala"><md-toolbar class="md-theme-indigo">
+     
+       <md-content ng-hide="vm.islog[1]">
+       <a href="#/vistadia"><md-toolbar class="md-theme-indigo">
         <h1 class="md-toolbar-tools"><md-icon id="home" md-svg-src="img/home.svg"></md-icon> {{vm.persona.nombre}}</h1>
       </md-toolbar></a>
-       <md-content ng-hide="vm.islog[1]">
        <div layout-gt-sm="row">
        		<a href="#/reservasala">Reservar sala</a>
        	</div>
@@ -50,7 +51,9 @@
       	</div>
       </md-content>
       <md-content ng-hide="!vm.islog[1]" >
-       
+       <a href="#/reservasala"><md-toolbar class="md-theme-indigo">
+        <h1 class="md-toolbar-tools"><md-icon id="home" md-svg-src="img/home.svg"></md-icon> {{vm.persona.nombre}}</h1>
+      </md-toolbar></a>
        	<div layout-gt-sm="row">
        		<a href="#/controlsalas">Control Salas</a> 
        </div>

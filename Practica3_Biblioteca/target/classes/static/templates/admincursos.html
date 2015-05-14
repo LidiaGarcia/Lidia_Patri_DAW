@@ -17,10 +17,11 @@
   <div  ng-hide="!vm.islog[0]">
   <section layout="row">
     <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')">
-      <a href="#/reservasala"><md-toolbar class="md-theme-indigo">
+     
+       <md-content ng-hide="vm.islog[1]">
+       <a href="#/vistadia"><md-toolbar class="md-theme-indigo">
         <h1 class="md-toolbar-tools"><md-icon id="home" md-svg-src="img/home.svg"></md-icon> {{vm.persona.nombre}}</h1>
       </md-toolbar></a>
-       <md-content ng-hide="vm.islog[1]">
        <div layout-gt-sm="row">
        		<a href="#/reservasala">Reservar sala</a>
        	</div>
@@ -50,7 +51,9 @@
       	</div>
       </md-content>
       <md-content ng-hide="!vm.islog[1]" >
-       
+       <a href="#/reservasala"><md-toolbar class="md-theme-indigo">
+        <h1 class="md-toolbar-tools"><md-icon id="home" md-svg-src="img/home.svg"></md-icon> {{vm.persona.nombre}}</h1>
+      </md-toolbar></a>
        	<div layout-gt-sm="row">
        		<a href="#/controlsalas">Control Salas</a> 
        </div>
@@ -101,24 +104,30 @@
   </div>
 </div>
 
-<div id="adminCursos" ng-controller="adminCursosController as vm">
-	<div ng-show="vm.islog[1]">
-	
-	<div ng-hide="vm.carga" layout="row" layout-sm="column" layout-align="space-around">
-      <md-progress-circular md-mode="indeterminate"></md-progress-circular>
-    </div>
-	<div ng-hide="!vm.carga" ng-repeat="curso in vm.cursos">
-			<a href="#/newCurso">Nuevo Curso</a>
-		
-		<p>{{curso.nombre}}</p>
-		<p>Descripción: {{curso.descripcion}}</p>
-		<p>Fecha: {{curso.fecha[2]}}-{{curso.fecha[1]}}-{{curso.fecha[0]}}</p>
-		<p>Hora: {{curso.hora[0]}}:{{curso.hora[1]}}</p>
-		<p>Duración: {{curso.duracion}}</p>
-		<p>Aforo: {{curso.aforo}}</p>
-		<button type="button" ng-click="vm.modificar(curso)">Modificar Curso</button>
-		<button type="button" ng-click="vm.deleteCurso(curso)">Eliminar Curso</button>
-		
-	</div>
-	</div>
+
+<div id="adminSalas" ng-controller="adminCursosController as vm">
+	<md-content ng-show="vm.islog[1]" layout-padding>	
+	    <md-button id ="submit" href="#/newCurso" class="md-raised md-primary">Nuevo curso</md-button>
+		<div layout="row">
+			<md-toolbar id="content3" layout="colum" >	
+				<div ng-hide="vm.carga" layout="row" layout-sm="column" layout-align="space-around">
+			      <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+			    </div>
+				<div ng-hide="!vm.carga" ng-repeat="curso in vm.cursos">
+					
+					<u><h3>{{curso.nombre}}</h3></u>
+					<b><p>Descripción:</b> {{curso.descripcion}}</p>
+					<b><p>Fecha:</b> {{curso.fecha[2]}}-{{curso.fecha[1]}}-{{curso.fecha[0]}}</p>
+					<b><p>Hora: </b>{{curso.hora[0]}}:{{curso.hora[1]}}</p>
+					<b><p>Duración: </b>{{curso.duracion}}</p>
+					<b><p>Aforo: </b>{{curso.aforo}}</p>
+					
+					<md-button type="button" class="md-raised md-primary" ng-click="vm.modificar(curso)">Modificar Curso</md-button>
+					<md-button type="button" class="md-raised md-warn" ng-click="vm.deleteCurso(curso)">Eliminar Curso</md-button>
+
+					<md-divider ></md-divider>
+				</div>
+			</md-toolbar>
+		</div>
+	</md-content>
 </div>

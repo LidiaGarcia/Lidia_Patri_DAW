@@ -17,10 +17,11 @@
   <div  ng-hide="!vm.islog[0]">
   <section layout="row">
     <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')">
-      <a href="#/reservasala"><md-toolbar class="md-theme-indigo">
+ 
+       <md-content ng-hide="vm.islog[1]">
+       <a href="#/reservasala"><md-toolbar class="md-theme-indigo">
         <h1 class="md-toolbar-tools"><md-icon id="home" md-svg-src="img/home.svg"></md-icon> {{vm.persona.nombre}}</h1>
       </md-toolbar></a>
-       <md-content ng-hide="vm.islog[1]">
        <div layout-gt-sm="row">
        		<a href="#/reservasala">Reservar sala</a>
        	</div>
@@ -50,7 +51,9 @@
       	</div>
       </md-content>
       <md-content ng-hide="!vm.islog[1]" >
-       
+       <a href="#/reservasala"><md-toolbar class="md-theme-indigo">
+        <h1 class="md-toolbar-tools"><md-icon id="home" md-svg-src="img/home.svg"></md-icon> {{vm.persona.nombre}}</h1>
+      </md-toolbar></a>
        	<div layout-gt-sm="row">
        		<a href="#/controlsalas">Control Salas</a> 
        </div>
@@ -100,16 +103,28 @@
   </section>
   </div>
 </div>
-<div id="adminPortatiles" ng-controller="PortatilesController as vm">
-	<a href="#/newPortatil">Nuevo Portatil</a>
-	<div ng-repeat="portatil in vm.portatiles">
-		
-		<p>Portatil: {{portatil.id}}</p>
-		<p>Estado: {{portatil.estado}}</p>
-		<p>Características: {{portatil.caracteristicas}}</p>
-		
-		<button type="button" ng-click="vm.modificar(portatil)">Modificar Portatil</button>
-		<button type="button" ng-click="vm.deletePortatil(portatil)">Eliminar Portatil</button>
-		
+
+
+<div id="adminSalas" ng-controller="PortatilesController as vm">	
+	<md-content ng-show="vm.islog[1]" layout-padding>
+	<md-button id ="submit" href="#/newPortatil" class="md-raised md-primary">Nuevo portatil</md-button>
+	<div layout="row">
+	
+	
+	<md-toolbar id="content3" layout="colum" >	
+		 
+		      <div ng-repeat="portatil in vm.portatiles">
+		        	<u><h3>Portatil {{portatil.id}}</h3></u>
+					<b><p>Estado:</b> {{portatil.estado}}</p>
+					<b><p>Características:</b> {{portatil.caracteristicas}}</p>
+				<md-button type="button" class="md-raised md-primary" ng-click="vm.modificar(portatil)">Modificar Portatil</md-button>
+				<md-button type="button" class="md-raised md-warn" ng-click="vm.deletePortatil(portatil)">Eliminar Portatil</md-button>	
+		    
+				<md-divider ></md-divider>
+		     </div>
+	</md-toolbar>
+
 	</div>
+	</md-content>
+		
 </div>

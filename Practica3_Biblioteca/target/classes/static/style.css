@@ -90,7 +90,7 @@ body{
     background-color: #e3e3ff;
 }
 
-#adminIndex,#inscrcursos,#adminSalas,#personalData,#vistadia,#misSalas, #misPortatiles{
+#adminIndex,#inscrcursos,#personalData,#vistadia,#misSalas, #misPortatiles{
 	display: inline;
 	float: right;
 	padding: 3em;
@@ -106,7 +106,7 @@ body{
 	min-width: 10em;
 	padding: 2em;	
 }
-#adminSalanueva form {
+#adminSalanueva form{
 	width: 60%;
 	position: relative;
 	display : inline;
@@ -126,20 +126,17 @@ body{
 }
 #login form{
 	width: 90%;
-	dsplay: inline-block;
-	position:relative;
+
+	
 
 }
 
 #login form>div{
-	vertical-align: top;
-	display : inline-block;
-	margin-top:1em;
+   	margin-top:1em;
 	
 }
 #login form>div>div{
 	vertical-align: top;
-	display : inline-block;
 	padding: 1em;
     width: 100%;
 	
@@ -159,10 +156,11 @@ body{
 	
 }
 #submit{
-   clear:both;
-   margin:1em;
+    clear:both;
+   	margin:1em;
     margin-left: 0em;
     margin-top: 0em;
+    margin-right: 0em;
     color: white;
    
 }
@@ -178,6 +176,11 @@ body{
 	background-color:transparent;
 	display : inline;
 }
+#adminSala md-content, #adminSala {
+	background-color:transparent;
+	width:auto;
+	display : inline-block;
+}
 #login md-content, #login{
 
 	background-color:transparent;
@@ -185,14 +188,46 @@ body{
 	display : inline-block;
 }
 
+#sala{
+	padding:1em;
+}
+
+#content3{
+	color: #262679; 
+    padding-top: 0.5em;
+    padding-left: 1em;
+    padding-right: 1em;
+    width:40%;
+    background-color: white;
+    margin: 0.9em;
+    margin-left: 0em;
+    margin-right: 0em;
+    font-size: 1em !important;
+}
+#content3 span{
+    text-transform: none;
+}
+#content3 h5{
+    color: #262679; 
+    margin: 0px;
+}
+#content3 h3{
+    color: #262679; 
+}
+#content3 u{
+	margin-top:1em;
+	color:#919191;
+}
 #content2{
-    display: inline-block;
     padding-top: 0.5em;
     padding-left: 1em;
     padding-right: 1em;
 	width: 100%;
     background-color: white;
-    margin: 0.5em;
+    margin: 0.9em;
+    margin-top:3em;
+    margin-left:5.5em;
+    margin-bottom: 3em;
     font-size: 1em !important;
 }
 #content2 span{
@@ -226,6 +261,7 @@ body{
     color: #262679; 
 }
 
+
 #adminSalanueva p {
 	color:#bbbbbb;
 
@@ -249,3 +285,7 @@ md-input-container md-select {
 .md-input-has-value md-select {
     padding: 0px 0px 2px 1px;
 }
+
+md-divider {
+  margin-top: 10px;
+  margin-bottom: 10px; }
