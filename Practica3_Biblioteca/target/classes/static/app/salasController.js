@@ -186,7 +186,7 @@ function SalasController(globalService, $location, $timeout) {
 		vm.salamodificar={};
 		globalService.setSalaModificar(vm.salamodificar);
 		vm.reload();
-		$location.path('/adminsalas');
+		$location.path('/salas');
 	}
 	vm.newSala = function(){
 		vm.sala.nombre=vm.nombre;
@@ -206,7 +206,7 @@ function SalasController(globalService, $location, $timeout) {
 		globalService.newSala(vm.sala);
 		vm.sala={};
 		vm.reload();
-		$location.path('/adminsalas');
+		$location.path('/salas');
 	}
 	vm.deleteSala = function(sala){
 		var reservada = true;	
@@ -230,7 +230,7 @@ function SalasController(globalService, $location, $timeout) {
 			vm.reload();
 		},1200);
 		setTimeout(function(){
-			$location.path("/adminsalas")
+			$location.path("/salas")
 		},1600);
 	}
 	vm.removeReservaSala = function(reserva){

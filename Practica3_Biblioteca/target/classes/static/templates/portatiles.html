@@ -17,7 +17,7 @@
   <div  ng-hide="!vm.islog[0]">
   <section layout="row">
     <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')">
-      
+ 
        <md-content ng-hide="vm.islog[1]">
        <a href="#/reservasala"><md-toolbar class="md-theme-indigo">
         <h1 class="md-toolbar-tools"><md-icon id="home" md-svg-src="img/home.svg"></md-icon> {{vm.persona.nombre}}</h1>
@@ -41,10 +41,10 @@
        		<a href="#/miscursos">Cursos inscritos</a> 
        </div>
        <div layout-gt-sm="row">
-       		<a href="#/reservasala">Información salas</a>
+       		<a href="#/salas">Información salas</a>
        	</div>
-       	<div layout-gt-sm="row">
-       		<a href="#/reservaportatil">Información portátiles</a>
+       	<div id="menuSelected" layout-gt-sm="row">
+       		<a href="#/portatiles">Información portátiles</a>
        	</div>
        	<div id="lastMenu" layout-gt-sm="row">
        		<a href="#/personalData">Datos personales</a>
@@ -60,14 +60,14 @@
        	<div layout-gt-sm="row">
        		<a href="#/controlportatiles">Control Portátiles</a> 
        </div>
+       	<div  layout-gt-sm="row">
+       		<a href="#/salas">Administrar Salas</a>
+       </div>
        	<div id="menuSelected" layout-gt-sm="row">
-       		<a href="#/adminsalas">Administrar Salas</a>
+       		<a href="#/portatiles">Administrar Portátiles</a> 
        </div>
        	<div layout-gt-sm="row">
-       		<a href="#/adminportatiles">Administrar Portátiles</a> 
-       </div>
-       	<div layout-gt-sm="row">
-       		<a href="#/admincursos">Administrar Cursos</a> 
+       		<a href="#/cursos">Administrar Cursos</a> 
        </div>
        	<div id="lastMenu" layout-gt-sm="row">
        		<a href="#/personalData">Datos personales</a> 
@@ -85,7 +85,7 @@
        <md-content>
 		<div layout-gt-sm="row">
        		<a href="#/inscripcioncurso">Cursos</a>
-       	</div>       
+       	</div>        
        <div layout-gt-sm="row">
        		<a href="#/reservasala">Salas reservadas</a>
        	</div>
@@ -93,10 +93,10 @@
        		<a href="#/reservaportatil">Portátiles reservados</a>
        	</div>
         <div layout-gt-sm="row">
-       		<a href="#/reservasala">Información salas</a>
+       		<a href="#/salas">Información salas</a>
        	</div>
-       	<div layout-gt-sm="row">
-       		<a href="#/reservaportatil">Información portátiles</a>
+       	<div id="menuSelected" layout-gt-sm="row">
+       		<a href="#/portatiles">Información portátiles</a>
        	</div>
       </md-content>
     </md-sidenav>
@@ -104,24 +104,24 @@
   </div>
 </div>
 
-<div id="adminSalas" ng-controller="SalasController as vm">
-	
-	<md-content ng-show="vm.islog[1]" layout-padding>
-	<md-button id ="submit" href="#/newSala" class="md-raised md-primary">Nueva sala</md-button>
+
+<div id="adminSalas" ng-controller="PortatilesController as vm">	
+	<md-content layout-padding>
+	<span ng-show="vm.islog[1]"><md-button id ="submit" href="#/newPortatil" class="md-raised md-primary">Nuevo portatil</md-button></span>
 	<div layout="row">
 	
 	
 	<md-toolbar id="content3" layout="colum" >	
 		 
-		      <div id="sala" ng-repeat="sala in vm.salas">
-		        	<u><h3>{{sala.nombre}}</h3></u>
-					<b><p>Compartida:</b> <span ng-if=sala.compartida>Sí</span><span ng-if=!sala.compartida>No</span></p>
-					<b><p>Tamaño:</b>{{sala.tamanio}}</p>
-					<b><p>Estado: </b>{{sala.estado}}</p>
-					
-		        <md-button type="button" class="md-raised md-primary" ng-click="vm.modificar(sala)">Modificar Sala</md-button>
-				<md-button type="button" class="md-raised md-warn" ng-click="vm.deleteSala(sala)">Eliminar Sala</md-button>
-
+		      <div ng-repeat="portatil in vm.portatiles">
+		        	<u><h3>Portatil {{portatil.id}}</h3></u>
+					<b><p>Estado:</b> {{portatil.estado}}</p>
+					<b><p>Características:</b> {{portatil.caracteristicas}}</p>
+				<span ng-show="vm.islog[1]">
+				<md-button type="button" class="md-raised md-primary" ng-click="vm.modificar(portatil)">Modificar Portatil</md-button>
+				<md-button type="button" class="md-raised md-warn" ng-click="vm.deletePortatil(portatil)">Eliminar Portatil</md-button>	
+				</span>
+		    
 				<md-divider ></md-divider>
 		     </div>
 	</md-toolbar>

@@ -9,9 +9,9 @@ function RouteConfig($routeProvider) {
 	$routeProvider.when('/loginregistro', { templateUrl : "templates/loginregistro.html" , controller: LoginController});
 	$routeProvider.when('/personalData', { templateUrl : "templates/personalData.html" });
 	
-	$routeProvider.when('/admincursos', { templateUrl : "templates/admincursos.html"});
-	$routeProvider.when('/adminsalas', { templateUrl : "templates/adminsalas.html"});
-	$routeProvider.when('/adminportatiles', { templateUrl : "templates/adminportatiles.html"});
+	$routeProvider.when('/cursos', { templateUrl : "templates/cursos.html"});
+	$routeProvider.when('/salas', { templateUrl : "templates/salas.html"});
+	$routeProvider.when('/portatiles', { templateUrl : "templates/portatiles.html"});
 	$routeProvider.when('/controlsalas', { templateUrl : "templates/controlsalas.html"});
 	$routeProvider.when('/controlportatiles', { templateUrl : "templates/controlportatiles.html"});
 	

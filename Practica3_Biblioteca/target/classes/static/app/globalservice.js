@@ -181,7 +181,7 @@ function GlobalService($resource,$timeout,$mdDialog) {
 	
 	vm.inscripcion = function(curso){
 		$id=curso.id;
-		return CursoInscripResource.inscripcion({id:$id},function(){});
+		return CursoInscripResource.inscripcion({id:$id},function(){vm.showAlert("Te has inscrito al curso: "+curso.id)});
 		
 	}
 	vm.getMisCursos = function(){
@@ -190,7 +190,7 @@ function GlobalService($resource,$timeout,$mdDialog) {
 	}
 	vm.removeInscripcion = function(curso){
 		$id=curso.id;
-		CursoEliminarInscripResource.eliminarinscripcion({id:$id},function(){vm.showAlert("Se ha borrado tu inscripción al curso correctamente")})
+		CursoEliminarInscripResource.eliminarinscripcion({id:$id},function(){vm.showAlert("Se ha borrado tu inscripción al curso "+curso.id +" correctamente")})
 	}
 	
 	vm.getCursosDia = function(){

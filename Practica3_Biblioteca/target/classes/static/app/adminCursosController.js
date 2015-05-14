@@ -40,24 +40,43 @@ function adminCursosController(globalService, $location) {
 		vm.cursomodificar={};
 		globalService.setCursoModificar(vm.cursomodificar);
 		vm.reload();
-		$location.path('/admincursos');
+		$location.path('/cursos');
 	}
 	vm.newCurso = function(curso){
 		globalService.newCurso(curso);
 		vm.curso={};
 		vm.reload();
-		$location.path('/admincursos');
+		$location.path('/cursos');
 	}
 	vm.deleteCurso = function(curso){
 		globalService.deleteCurso(curso);
 		vm.curso={};
 		vm.reload();
-		$location.path('/admincursos');
+		$location.path('/cursos');
 	}
 	vm.inscripcion = function(curso){	
-		vm.checkAdd = globalService.inscripcion(curso);
-		vm.reload();
-		$location.path('/inscripcioncurso');
+		var inscrito = false;	
+		setTimeout(function(){			
+			
+			for(index=0;index<vm.miscursos.length;index++){
+				if(curso.id==vm.miscursos[index].id){
+					inscrito=true;
+				}	
+			}	
+			if(!inscrito){
+				globalService.inscripcion(curso);
+				inscrito=false;
+			}else{
+				globalService.showAlert("Ya estabas inscrito en este curso");
+			}
+		},100);
+		setTimeout(function(){
+			vm.reload();
+		},300);
+		setTimeout(function(){
+			$location.path("/inscripcioncurso")
+		},500);
+	
 		
 	}
 	vm.removeInscripcion = function(curso){

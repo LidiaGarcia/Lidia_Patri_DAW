@@ -70,7 +70,7 @@ function PortatilesController(globalService, $location, $timeout) {
 		vm.portatilmodificar={};
 		globalService.setPortatilModificar(vm.portatilmodificar);
 		vm.reload();
-			$location.path('/adminportatiles');
+			$location.path('/portatiles');
 		
 		
 	}
@@ -78,7 +78,7 @@ function PortatilesController(globalService, $location, $timeout) {
 		globalService.newPortatil(portatil);
 		vm.portatil={};
 		vm.reload();
-		$location.path('/adminportatiles');
+		$location.path('/portatiles');
 	}
 	vm.deletePortatil = function(portatil){
 		var reservada = true;	
@@ -102,7 +102,7 @@ function PortatilesController(globalService, $location, $timeout) {
 			vm.reload();
 		},1200);
 		setTimeout(function(){
-			$location.path('/adminportatiles');
+			$location.path('/portatiles');
 		},1600);
 		
 	}
