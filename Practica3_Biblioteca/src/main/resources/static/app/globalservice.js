@@ -329,7 +329,7 @@ function GlobalService($resource,$timeout,$mdDialog) {
 			if ((vm.personas[i].correo === mail)&&(vm.personas[i].pass === pass)) {
 				vm.persona = vm.personas[i];
 				$id=vm.persona.id;
-				SignupResource.update({id:$id},true);			
+				SignupResource.update({id:$id},true,function(){vm.showAlert("Te has registrasdo correctamente")});			
 			}
 		}
 		

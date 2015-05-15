@@ -1,12 +1,18 @@
 package biblioteca;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 @Entity
-public class Persona {
+public class Persona implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
@@ -65,5 +71,11 @@ public class Persona {
 	public void setAdmin(boolean admin) {
 		this.admin = admin;
 	}
+	
+	@Override
+	public String toString() {
+	    return new StringBuffer(" Nombre : ").append(this.nombre).append(", Apellidos : ").append(this.apellidos).append(", Correo : ").append(this.correo).append(", Pass : ").append(this.pass).append(", Alta: ").append(this.alta).append(", Admin : ").append(this.admin).toString();
+	    }
+
 	
 }
