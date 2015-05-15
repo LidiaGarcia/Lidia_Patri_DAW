@@ -114,7 +114,7 @@ function SalasController(globalService, $location, $timeout) {
 		
 		setTimeout(function(){	
 			vm.reload();
-			$location.path("/vistadia");
+			$location.path("/controlsalas");
 		},500);
 		
 	}

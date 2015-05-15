@@ -1,257 +1,310 @@
-body{
-	font-family: RobotoDraft,Roboto,'Helvetica Neue',sans-serif;
-	word-wrap:break-word;
+body {
+    font-family: RobotoDraft, Roboto, 'Helvetica Neue', sans-serif;
+    word-wrap: break-word;
 }
-.logo{
-    top:0.3em;
-    left:0.3em;
+
+.logo {
+    top: 0.3em;
+    left: 0.3em;
     position: absolute;
     z-index: 3;
     height: 70px;
     width: auto;
     background-image: url(img/Logo_URJC.png);
 }
-.logo2{
-    top:0.5em;
-    left:5em;
+
+.logo2 {
+    top: 0.5em;
+    left: 5em;
     position: absolute;
     z-index: 3;
     height: 65px;
     width: auto;
     background-image: url(img/Logo_URJC.png);
 }
-#home{
 
-	margin: 0px;
+#home {
+    margin: 0px;
     margin-right: 6px;
 }
-#pie{
-	vertical-align: bottom;
-	display:block;
-	text-align : center;
-    clear:both;
+
+#pie {
+    vertical-align: bottom;
+    display: block;
+    text-align: center;
+    clear: both;
     background-color: #e3e3ff;
     font-weight: bold;
-    padding:0.3em;
-    color: #262679; 
+    padding: 0.3em;
+    color: #262679;
 }
-#session{
-	background-color: #e3e3ff;
-	text-align: right;
-	padding: 1.5em;
-	display: block;	
+
+#session {
+    background-color: #e3e3ff;
+    text-align: right;
+    padding: 1.5em;
+    display: block;
     height: 80px;
-    vertical-align:middle;	
-
-
+    vertical-align: middle;
 }
-#botonSalir{
-    color:white;
+
+#botonSalir {
+    color: white;
     background-color: #f40c0c;
     vertical-align: middle;
     font-weight: bold;
 }
-#botonSalir span{
+
+#botonSalir span {
     vertical-align: middle;
 }
-#nombreUsuario{
+
+#nombreUsuario {
     font-weight: bold;
     font-size: 1.3em;
     text-decoration: none;
     width: 100%;
-    padding:6px;
+    padding: 6px;
     margin-top: 9px;
     vertical-align: middle;
 }
-#leftMenu {
-	top:0px;
-	position: left;
-	display: inline-block;
-	vertical-align: top;
-	margin: 0.8em;
 
+#leftMenu {
+    top: 0px;
+    position: left;
+    display: inline-block;
+    vertical-align: top;
+    margin: 0.8em;
 }
-#leftMenu a{
+
+#leftMenu a {
     font-weight: bold;
     text-decoration: none;
     width: 100%;
 }
-#leftMenu>div div{
-    padding: 0.7em;
-    border-bottom:2px solid #d5d6ff;
 
+#leftMenu>div div {
+    padding: 0.7em;
+    border-bottom: 2px solid #d5d6ff;
 }
-#leftMenu>div div:hover{
+
+#leftMenu>div div:hover {
     background-color: #d7d7d8;
 }
-#leftMenu>div div:hover a{
+
+#leftMenu>div div:hover a {
     color: white;
 }
 
-#menuSelected{
+#menuSelected {
     background-color: #e3e3ff;
 }
 
-#adminSalanueva form{
-	width: 60%;
-	position: relative;
-	display : inline;
-
-}
-#adminPortatiles form{
-	width: 60%;
-	position: relative;
-	display : inline;
-	
-}
-#adminCursos form{
-	width: 60%;
-	position: relative;
-	display : inline;
-	
-}
-#login form{
-	width: 90%;
-
-	
-
+#adminSalanueva form {
+    width: 60%;
+    position: relative;
+    display: inline;
 }
 
-#login form>div{
-   	margin-top:1em;
-	
+#adminPortatiles form {
+    width: 60%;
+    position: relative;
+    display: inline;
 }
-#login form>div>div{
-	vertical-align: top;
-	padding: 1em;
+
+#adminCursos form {
+    width: 60%;
+    position: relative;
+    display: inline;
+}
+
+#login form {
+    width: 90%;
+}
+
+#login form>div {
+    margin-top: 1em;
+}
+
+#login form>div>div {
+    vertical-align: top;
+    padding: 1em;
     width: 100%;
-	
 }
-#adminCursos form>div, #adminPortatiles form>div, #adminSalanueva form>div{
-	vertical-align: top;
-	display : inline-block;
-	margin-top:1em;
 
+#adminCursos form>div,
+#adminPortatiles form>div,
+#adminSalanueva form>div {
+    vertical-align: top;
+    display: inline-block;
+    margin-top: 1em;
 }
-#adminCursos form>div>div,#adminPortatiles form>div>div, #adminSalanueva form>div>div{
-	vertical-align: top;
-	display : inline-block;
-	padding: 1em;
+
+#adminCursos form>div>div,
+#adminPortatiles form>div>div,
+#adminSalanueva form>div>div {
+    vertical-align: top;
+    display: inline-block;
+    padding: 1em;
     float: center;
     width: 100%;
-	
 }
-#submit{
-    clear:both;
-   	margin:1em;
+
+#submit {
+    clear: both;
+    margin: 1em;
     margin-left: 0em;
     margin-top: 0em;
     margin-right: 0em;
     color: white;
-   
-}
-#submit span{
-   color: white;
-   
-}
-#adminPortatiles md-content, #adminPortatiles{
-	background-color:transparent;
-	display : inline;
-}
-#adminCursos md-content, #adminCursos, #adminSalanueva md-content, #adminSalanueva{
-	background-color:transparent;
-	display : inline;
-}
-#adminSalas md-content,#adminSalas {
-	background-color:transparent;
-	width:auto;
-	display : inline-block;
-	padding:1em;
-}
-#personalData md-content,#personalData {
-	background-color:transparent;
-	width:auto;
-	display : inline-block;
-	padding:1em;
-}
-#adminSalas2 md-content,#adminSalas2 {
-	background-color:transparent;
-	max-width:1050px;
-	margin-top:2em;
-	float:right;
 }
 
-#scroll{
-/* 	width:1000em; */
-/* 	overflow-x: scroll !important; */
-
-	display:inline-flex;
-}
-#login md-content, #login{
-
-	background-color:transparent;
-	width:auto;
-	display : inline-block;
+#submit span {
+    color: white;
 }
 
-#sala,#reserva{
-	padding:0.5em;
-	
+#adminPortatiles md-content,
+#adminPortatiles {
+    background-color: transparent;
+    display: inline;
 }
-#botonreserva{
-	margin:0.5em;
+
+#adminCursos md-content,
+#adminCursos,
+#adminSalanueva md-content,
+#adminSalanueva {
+    background-color: transparent;
+    display: inline;
 }
-#newCurso{
-	position:fixed;
-	left:23em;
-	top:7em;
-	
+
+#adminSalas md-content,
+#adminSalas {
+    background-color: transparent;
+    width: auto;
+    display: inline-block;
+    padding: 1em;
 }
-#botcurso{
-	padding:1em;
-	position:absolute;
-	bottom:0;
+
+#personalData md-content,
+#personalData {
+    background-color: transparent;
+    width: auto;
+    display: inline-block;
+    padding: 1em;
 }
-#botcurso2{
-	position:absolute;
-	bottom:1em;
+
+#adminSalas2 md-content,
+#adminSalas2 {
+    background-color: transparent;
+    max-width: 1050px;
+/*     margin-top: 2em; */
+    float: right;
 }
-#content6{
-	color: #262679;  
-    padding-top: 0.5em; 
-    padding-left: 1em; 
-    padding-right: 1em; 
-    width:22em;
- 	height:24em;
+
+#scroll {
+    /* 	width:1000em; */
+    /* 	overflow-x: scroll !important; */
+    
+    display: inline-flex;
+}
+
+#login md-content,
+#login {
+    background-color: transparent;
+    width: auto;
+    display: inline-block;
+}
+
+#sala,
+#reserva {
+    padding: 0.5em;
+}
+
+#botonreserva {
+    margin: 0.5em;
+}
+
+#newCurso {
+    position: fixed;
+    left: 23em;
+    top: 7em;
+}
+
+#botcurso {
+    padding: 1em;
+    position: absolute;
+    bottom: 0;
+}
+
+#botcurso2 {
+    position: absolute;
+    bottom: 1em;
+}
+
+#content6 {
+    color: #262679;
+    padding-top: 0.5em;
+    padding-left: 1em;
+    padding-right: 1em;
+    width: 22em;
+    height: 24em;
     background-color: white;
     margin: 0em;
-    margin-left:0em;
+    margin-left: 0em;
     margin-right: 1em;
     margin-botton: 4em;
     font-size: 1em !important;
 }
-#content5{
-	color: #262679;  
-    padding-top: 0.5em; 
-    padding-left: 1em; 
-    padding-right: 1em; 
-    width:22em;
-    height:30em;
+#content7 {
+    color: #262679;
+    padding-top: 0.5em;
+    padding-left: 1em;
+    padding-right: 1em;
+    width: 30em;
+    height: 24em;
+    background-color: white;
+    margin: 0em;
+    margin-left: 0em;
+    margin-right: 1em;
+    margin-botton: 4em;
+    font-size: 1em !important;
+    overflow-y: scroll;
+}
+#content7 h2 {
+    margin-top: 1em;
+    color: #919191;
+}
+
+#content7>div>div span{
+	display:block;
+		margin-top: 1em;
+}
+#content7 h3 {
+    margin-bottom: 0em;
+    color: #919191;
+}
+
+#content5 {
+    color: #262679;
+    padding-top: 0.5em;
+    padding-left: 1em;
+    padding-right: 1em;
+    width: 22em;
+    height: 30em;
     background-color: white;
     margin: 2em;
-    margin-left:0em;
+    margin-left: 0em;
     margin-right: 1em;
     margin-botton: 4em;
     font-size: 1em !important;
-
 }
 
-#content4{
-	color: #262679;  
-    padding-top: 0.5em; 
-    padding-left: 1em; 
-    padding-right: 1em; 
-    width:15em;
+#content4 {
+    color: #262679;
+    padding-top: 0.5em;
+    padding-left: 1em;
+    padding-right: 1em;
+    width: 15em;
     background-color: white;
     margin: 0.9em;
     margin-left: 1em;
@@ -259,96 +312,124 @@ body{
     margin-botton: 4em;
     font-size: 1em !important;
 }
-#content4 span,#content5 span{
+
+#content4 span,
+#content5 span {
     text-transform: none;
 }
-#content4 h5,#content5 h5{
-    color: #262679; 
+
+#content4 h5,
+#content5 h5 {
+    color: #262679;
     margin: 0px;
 }
-#content4 h3,#content5 h3{
-	margin-top:0.4em;
-    color: #262679; 
+
+#content4 h3,
+#content5 h3 {
+    margin-top: 0.4em;
+    color: #262679;
 }
-#content4 u,#content5 u{
-	color:#919191;
+
+#content4 u,
+#content5 u {
+    color: #919191;
 }
-#content3{
-	color: #262679; 
+
+#content3 {
+    color: #262679;
     padding-top: 0.5em;
     padding-left: 1em;
     padding-right: 1em;
-    width:20em;
-    height:30em;
+    width: 20em;
+    height: 30em;
     background-color: white;
-    margin: -2em;
+/*     margin: -2em; */
     margin-left: -0.1em;
     margin-right: 0em;
     margin-bottom: 2em;
     font-size: 1em !important;
 }
-#content3 span{
+
+#content3 span {
     text-transform: none;
 }
-#content3 h5{
-    color: #262679; 
+
+#content3 h5 {
+    color: #262679;
     margin: 0px;
 }
-#content3 h3{
-    color: #262679; 
+
+#content3 h3 {
+    color: #262679;
 }
-#content3 u{
-	margin-top:1em;
-	color:#919191;
+
+#content3 h2 {
+    margin-top: 1em;
+    color: #919191;
 }
-#content2{
+#content6 h2 {
+    margin-top: 1em;
+    color: #919191;
+}
+#content6 h3 {
+    margin-bottom: 0em;
+    color: #919191;
+}
+
+#content2 {
     padding-top: 0.5em;
     padding-left: 1em;
     padding-right: 1em;
-	width: 100%;
+    width: 100%;
     background-color: white;
     margin: 0.9em;
-    margin-top:3em;
-    margin-left:5.5em;
+    margin-top: 3em;
+    margin-left: 5.5em;
     margin-bottom: 3em;
     font-size: 1em !important;
 }
-#content2 span{
+
+#content2 span {
     text-transform: none;
 }
-#content2 h5{
-    color: #262679; 
+
+#content2 h5 {
+    color: #262679;
     margin: 0px;
 }
-#content2 h3{
-    color: #262679; 
+
+#content2 h3 {
+    color: #262679;
 }
-#content{
+
+#content {
     display: inline-block;
     padding-top: 0.5em;
     padding-left: 1em;
     padding-right: 1em;
-	width: 40%;
+    width: 40%;
     background-color: white;
     margin: 0.5em;
     font-size: 1em !important;
 }
-#content span{
+
+#content span {
     text-transform: none;
 }
-#content h5{
-    color: #262679; 
+
+#content h5 {
+    color: #262679;
     margin: 0px;
 }
-#content h3{
-    color: #262679; 
-}
 
+#content h3 {
+    color: #262679;
+}
 
 #adminSalanueva p {
-	color:#bbbbbb;
-
+    color: #bbbbbb;
 }
+
 md-input-container md-select {
     -webkit-flex: 1;
     -ms-flex: 1;
@@ -365,95 +446,162 @@ md-input-container md-select {
     border-radius: 0;
     margin: 0;
 }
+
 .md-input-has-value md-select {
     padding: 0px 0px 2px 1px;
 }
 
+/* md-divider { */
+/*     margin-top: 10px; */
+/*     margin-bottom: 10px; */
+/* } */
+
 md-divider {
-  margin-top: 10px;
-  margin-bottom: 10px; }
-  
-  
-#fechas{
-	align-content: center;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+#fechas {
+    align-content: center;
     justify-content: space-between;
     display: flex;
     width: 100%;
+    font-weight: bold;
+    vertical-align: middle;
+    align-items: center;
+    
+}
+#fechas2{        
+    justify-content: center;
+    align-content: center;
+    display: flex;
+    width: 100%;
+    font-weight: bold;
+    vertical-align: middle;
+    align-items: center;
 }
 #fechas button{
-	    text-transform: none;
-}
-#adminIndex{
-	display: block;
-	float: auto;
-	margin: 1em;
-	border: 2px solid #d5d6ff;
-    max-width: 1050px;
-    min-width:600px;
-}
-#arriba{
-	display: block;
-	float: right;
-}
-#listadoSalas{
-	display: block;
-	height: auto;
-	padding: 0.5em;
-	width: 150px;
-	
-}
-#listadoSalas div{
-	align-content: center;
-	text-align: center;		
-	display: block;
-	flex-flow: row wrap;
-		
-}
-#listadoSalas div  span{
-	text-align: center;
-	align-items: center;
-	align-content: center;
-        text-shadow: 0 4px 2px -2px gray;
-    
-		
-}
-#nombreSala{
-       font-weight: bold;
-}
-#salaNotReser,#portatilNotReser{
-	text-align: center;		
-	padding:0.3em;
-	background: green;
-	width: 110px;
-    height: 60px;
-	margin: 2px;
-	color: white;	
+    text-transform: none;
     font-weight: bold;
+}
+
+#fechas button svg{
+    color: white;
+}
+
+#adminIndex {
+    display: block;
+    float: auto;
+    margin: 1em;
+    border: 2px solid #d5d6ff;
+    max-width: 1050px;
+    min-width: 600px;
+}
+
+#arriba {
+    display: block;
+    float: right;
+}
+
+#arriba md-content {
+    overflow-x: scroll;
+}
+
+#listadoSalas {
+    display: block;
+    height: auto;
+    padding: 0.5em;
+    min-width: 120px;
+}
+
+#listadoSalas div {
+    align-content: center;
+    text-align: center;
+    display: block;
+    vertical-align: middle;
+        align-items: center;
 
 }
-#salaReser,#portatilReser{
-	text-align: center;		
-	padding:0.3em;
-	background: red;
-	width: 110px;
-    height: 60px;
+
+#listadoSalas div span {
+    text-align: center;
+    align-items: center;
+    align-content: center;
+    vertical-align: middle;
+}
+
+#nombreSala {
+    font-weight: bold;
+    padding: 0.5em;
+    color: #2a2aba;
+}
+
+#salaNotReser,
+#portatilNotReser {
+	align-items: center;
+    align-content: center;
+    text-align: center;
+    padding: 0.3em;
+    background: green;
+    width: 110px;
+    height: 80px;
     margin: 2px;
     color: white;
     font-weight: bold;
+    border-radius: 6px;
+    vertical-align: middle;
+    
 }
 
-#horas > div{
-	align-content: center;
-	text-align: center;		
-	padding: 0.5em;
-	height: 70px;
-	width: 80px;
-	display: block;	
-	margin-right:0px;
+#salaReser button,
+#portatilReser button,
+#salaNotReser div button,
+#portatilNotReser button {
+    text-transform: none;
+    background-color: #ddd;
+    color: black;
+    
 }
-		
-#horas{
-	width: 30px;
-	margin: 0.3em;	
-	padding-top: 3em;
+
+#salaReser,
+#portatilReser {
+	align-items: center;
+    align-content: center;
+    text-align: center;
+    padding: 0.3em;
+    background: red;
+    width: 110px;
+    height: 80px;
+    margin: 2px;
+    color: white;
+    font-weight: bold;
+    border-radius: 6px;
+    vertical-align: middle;
+    display: inline;
+}
+#salaReser > div,
+#portatilReser > div {
+    display: inline;
+}
+
+#horas > div {
+    align-content: center;
+    text-align: center;
+    padding: 0.5em;
+    height: 82px;
+    display: block;
+    margin-right: 0px;
+    font-weight: bold;
+    color: #2a2aba;
+}
+
+#horas {
+    display: block;
+    height: auto;
+    min-width: 80px;
+    margin: 0.3em;
+    padding-top: 2.8em;
+}
+#bajar{
+	margin-top:1.5em;
 }

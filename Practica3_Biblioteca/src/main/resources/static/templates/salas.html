@@ -105,14 +105,14 @@
 </div>
 
 <div id="adminSalas2" ng-controller="SalasController as vm">
-	<span ng-show="vm.islog[1]" ><md-button id ="submit" href="#/newSala" class="md-raised md-primary">Nueva sala</md-button></span>
+	<div id="bajar" ng-show="vm.islog[1]" ><md-button id ="submit" href="#/newSala" class="md-raised md-primary">Nueva sala</md-button></div>
 	<md-content layout-padding>
 	
 	<div id="scroll">
 	<div layout="row">
 		<div id="sala" ng-repeat="sala in vm.salas">
 	     	<md-toolbar id="content3" layout="colum" >	
-		       	<u><h3>{{sala.nombre}}</h3></u>
+		       	<h2>{{sala.nombre}}</h2>
 				<b><p>Compartida:</b> <span ng-if=sala.compartida>Sí</span><span ng-if=!sala.compartida>No</span></p>
 				<b><p>Tamaño:</b>{{sala.tamanio}}</p>
 				<b><p>Estado: </b>{{sala.estado}}</p>

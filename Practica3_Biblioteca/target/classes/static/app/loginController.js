@@ -18,7 +18,7 @@ function LoginController(globalService, $location) {
 	//Controller actions
 	vm.login = function() {
 		var valido=globalService.login(vm.maillog,vm.passlog);
-		setTimeout(function(){$location.path("/");},200);
+		setTimeout(function(){$location.path("/vistadia");},200);
 	};
 	vm.logout = function() {
 		globalService.logout();

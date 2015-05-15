@@ -106,14 +106,14 @@
 
 
 <div id="adminSalas2" ng-controller="PortatilesController as vm">
-	<span ng-show="vm.islog[1]" ><md-button id ="submit" href="#/newPortatil" class="md-raised md-primary">Nuevo portatil</md-button></span>
+	<div id="bajar" ng-show="vm.islog[1]" ><md-button id ="submit" href="#/newPortatil" class="md-raised md-primary">Nuevo portatil</md-button></div>
 	<md-content layout-padding>
 	
 	<div id="scroll">
 	<div layout="row">
-		<div ng-repeat="portatil in vm.portatiles">
+		<div id="sala" ng-repeat="portatil in vm.portatiles">
 	     	<md-toolbar id="content3" layout="colum" >	
-		       	<u><h3>Portatil {{portatil.id}}</h3></u>
+		       	<h2>Portatil {{portatil.id}}</h2>
 					<b><p>Estado:</b> {{portatil.estado}}</p>
 					<b><p>Características:</b> {{portatil.caracteristicas}}</p>
 				<div id="botcurso2" ng-show="vm.islog[1]">

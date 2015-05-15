@@ -105,7 +105,7 @@
 </div>
 
 
-<div id="adminSalas2" ng-controller="adminCursosController as vm">
+<div id="adminSalas2" ng-controller="adminCursosController as vm" ng-hide="vm.islog[1]">
 	<md-content layout-padding>
 	<div id="scroll">
 	<div layout="row">
@@ -113,9 +113,9 @@
 				<div ng-hide="vm.carga" layout="row" layout-sm="column" layout-align="space-around">
 			      <md-progress-circular md-mode="indeterminate"></md-progress-circular>
 			    </div>
-				<div ng-hide="!vm.carga" ng-repeat="curso in vm.cursos">
+				<div id="sala" ng-hide="!vm.carga" ng-repeat="curso in vm.cursos">
 					<md-toolbar id="content3" layout="colum" >	
-					<u><h3>{{curso.nombre}}</h3></u>
+					<h2>{{curso.nombre}}</h2>
 					<b><p>Descripción:</b> {{curso.descripcion}}</p>
 					<b><p>Fecha:</b> {{curso.fecha[2]}}-{{curso.fecha[1]}}-{{curso.fecha[0]}}</p>
 					<b><p>Hora: </b>{{curso.hora[0]}}:{{curso.hora[1]}}</p>

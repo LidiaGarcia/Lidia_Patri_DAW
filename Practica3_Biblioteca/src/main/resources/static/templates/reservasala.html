@@ -104,28 +104,28 @@
   </div>
 </div>
 
-<div id="arriba" ng-controller="SalasController as vm">
+<div id="arriba" ng-controller="SalasController as vm" ng-hide="vm.islog[1]">
 	
-	<div ng-hide="vm.carga" layout="row" layout-sm="column" layout-align="space-around">
+	<div ng-hide="vm.carga" layout="row" layout-sm="column" layout-align="space-around" layout-align="center center">
 			      <md-progress-circular md-mode="indeterminate"></md-progress-circular>
 	</div>
 	<div  ng-hide="!vm.carga" id="adminIndex">
-	<md-toolbar >
+	<md-toolbar>
     <div class="md-toolbar-tools" >
-      <div ng-if="!vm.islog[1]" class="md-flex" id="fechas" flex>	
-			<md-button type="button" ng-disabled="vm.fechaAnterior.dayBefore" ng-click="vm.previusDay()">Día anterior</md-button>
+      <div  class="md-flex" id="fechas" flex>	
+			<md-button type="button" ng-disabled="vm.fechaAnterior.dayBefore" ng-click="vm.previusDay()"><md-icon md-svg-src="img/prev.svg"></md-icon> Día anterior</md-button>
 			<span>Reservas de sala del día {{vm.date2[2]}}-{{vm.date2[1]}}-{{vm.date2[0]}}</span>
-			<md-button  type="button" ng-click="vm.nextDay()">Día siguiente</md-button>
+			<md-button  type="button" ng-click="vm.nextDay()">Día siguiente <md-icon md-svg-src="img/next.svg"/></md-button>
 		</div>
     </div>
   </md-toolbar>
-	<md-content ng-show="vm.carga" layout-padding  layout-gt-sm="row" flex>	
+	<md-content ng-if="!vm.islog[1]" ng-show="vm.carga" layout-padding  layout-gt-sm="row">	
 	
-		<div  id="horas"  flex>	
+		<div  id="horas">	
 			<div ng-repeat="hour in vm.hours" layout-gt-sm="row">{{hour}}:00
 			</div>
 		</div>
-		<div id="listadoSalas" ng-repeat="sala in vm.salas" layout-gt-sm="colum" flex>	
+		<div id="listadoSalas" ng-repeat="sala in vm.salas" layout-gt-sm="colum">	
 		
 			<div id="nombreSala" layout-gt-sm="row">Sala {{sala.id}}</div>
 			<div ng-repeat="hour in vm.hours" layout-gt-sm="row">			
@@ -137,9 +137,15 @@
 				<div  id="salaNotReser" ng-if="!vm.checkTotal[$parent.$index][$index]" layout-gt-sm="row" layout-align="center center">
 					<div layout-gt-sm="row">Vacía</div>
 					<div  layout-gt-sm="row">
-						<button type="button"  ng-if="vm.islog[0]" ng-hide="vm.islog[1]" ng-click="vm.reservar($parent.$parent.$parent.$index,hour)">Reservar</button>							
+						<md-button type="button"  ng-if="vm.islog[0]" ng-hide="vm.islog[1]" ng-click="vm.reservar($parent.$parent.$parent.$index,hour)">Reservar</md-button>							
 					</div>
 				</div>		
+			</div>
+						<div id="nombreSala" layout-gt-sm="row">Sala {{sala.id}}</div>
+			
+		</div>
+		<div  id="horas">	
+			<div ng-repeat="hour in vm.hours" layout-gt-sm="row">{{hour}}:00
 			</div>
 		</div>	
 	</md-content>

@@ -106,18 +106,18 @@
 
 
 <div id="adminSalas2" ng-controller="adminCursosController as vm">
-
-	<md-content ng-show="vm.islog[1]" layout-padding>
-	<md-button id ="newCurso" href="#/newCurso" class="md-raised md-primary">Nuevo curso</md-button>
+	<div id="bajar" ng-show="vm.islog[1]" ><md-button id ="submit" href="#/newCurso" class="md-raised md-primary">Nuevo curso</md-button>
+	<md-content layout-padding>
+	
 	<div ng-hide="vm.carga" layout="row" layout-sm="column" layout-align="space-around">
 			      <md-progress-circular md-mode="indeterminate"></md-progress-circular>
 			    </div>	
 	   <div id="scroll"> 
 		<div layout="row">
 				
-				<div ng-hide="!vm.carga" ng-repeat="curso in vm.cursos">
-				<md-toolbar id="content5" layout="colum" flex>	
-					<u><h3>{{curso.nombre}}</h3></u>
+				<div id="sala" ng-hide="!vm.carga" ng-repeat="curso in vm.cursos">
+				<md-toolbar id="content3" layout="colum" flex>	
+					<h2>{{curso.nombre}}</h2>
 					<b><p>Descripción:</b> {{curso.descripcion}}</p>
 					<b><p>Fecha:</b> {{curso.fecha[2]}}-{{curso.fecha[1]}}-{{curso.fecha[0]}}</p>
 					<b><p>Hora: </b>{{curso.hora[0]}}:{{curso.hora[1]}}</p>
@@ -132,4 +132,5 @@
 			
 		</div>
 	</md-content>
+	</div>
 </div>

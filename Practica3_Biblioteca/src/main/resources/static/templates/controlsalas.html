@@ -104,25 +104,63 @@
   </div>
 </div>
 <!--Datos-->
-<div ng-show="vm.islog[1]" id="adminIndex" ng-controller="SalasController as vm">
-	<div id="listadoSalas" ng-repeat="sala in vm.salas">	
-		<div ng-hide="vm.carga">Cargando...</div>
-		<div ng-show="vm.carga">	
-			<p>Sala {{sala.id}}</p>
-			<div ng-repeat="hour in vm.hours">			
-				<div ng-if="vm.checkTotal[$parent.$index][$index]">				
-					<div id="salaReser"><p>{{hour}}:00 - 	
-						<span ng-if="(vm.islog[1])">
-							{{vm.reservaTotal[$parent.$parent.$parent.$index][$index].nombre}} 
-							{{vm.reservaTotal[$parent.$parent.$parent.$index][$index].apellidos}}
-							<button type="button" ng-hide="vm.confirmTotal[$parent.$parent.$parent.$index][$index]" ng-click="vm.confirmar($parent.$parent.$parent.$index,vm.reservaTotal[$parent.$parent.$parent.$index][$index],hour)">Confirmar</button>							
-						</span>
-					</div>			
+<div id="arriba" ng-controller="SalasController as vm" ng-show="vm.islog[1]">
+	
+	<div ng-hide="vm.carga" layout="row" layout-sm="column" layout-align="space-around" layout-align="center center">
+			      <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+	</div>
+	<div  ng-hide="!vm.carga" id="adminIndex">
+		<md-toolbar ng-if="vm.islog[1]">
+		    <div class="md-toolbar-tools" >
+		      <div  class="md-flex" id="fechas2" flex>	
+					<span>Control de salas del día {{vm.date2[2]}}-{{vm.date2[1]}}-{{vm.date2[0]}}</span>
 				</div>
-				<div ng-if="!vm.checkTotal[$parent.$index][$index]">
-					<div id="salaNotReser"><p>{{hour}}:00 - Vacía</p></div>
-				</div>		
+		    </div>
+	  	</md-toolbar>
+		<md-content ng-if="vm.islog[1]" ng-show="vm.carga" layout-padding  layout-gt-sm="row">	
+		
+			<div  id="horas">	
+				<div ng-repeat="hour in vm.hours" layout-gt-sm="row">{{hour}}:00</div>
 			</div>
-		</div>	
+			<div id="listadoSalas" ng-repeat="sala in vm.salas" layout-gt-sm="colum">	
+			
+				<div id="nombreSala" layout-gt-sm="row">Sala {{sala.id}}</div>
+				<div ng-repeat="hour in vm.hours" layout-gt-sm="row">			
+					<div ng-if="vm.checkTotal[$parent.$index][$index]">				
+						<div id="salaReser">	
+							<span ng-if="(vm.islog[1])">
+								{{vm.reservaTotal[$parent.$parent.$parent.$index][$index].nombre}} 
+								{{vm.reservaTotal[$parent.$parent.$parent.$index][$index].apellidos}}
+								<md-button type="button" ng-hide="vm.confirmTotal[$parent.$parent.$parent.$index][$index]" ng-click="vm.confirmar($parent.$parent.$parent.$index,vm.reservaTotal[$parent.$parent.$parent.$index][$index],hour)">Confirmar</md-button>							
+							<span ng-show="vm.confirmTotal[$parent.$parent.$parent.$index][$index]">Confirmada</span>
+							</span>
+						</div>			
+					</div>
+					<div ng-if="!vm.checkTotal[$parent.$index][$index]">
+						<div layout-gt-sm="row" id="salaNotReser">Vacía</div>
+					</div>		
+				</div>
+						
+					
+					<div id="salaReser"  ng-if="vm.checkTotal[$parent.$index][$index]" layout-gt-sm="row" flex layout-align="center center">				
+						<div layout-gt-sm="row" ng-if="!vm.islog[1]" flex>
+								Reservada
+						</div>			
+					</div>
+					<div  id="salaNotReser" ng-if="!vm.checkTotal[$parent.$index][$index]" layout-gt-sm="row" layout-align="center center">
+						<div  layout-gt-sm="row">
+							<md-button type="button"  ng-if="vm.islog[0]" ng-hide="vm.islog[1]" ng-click="vm.reservar($parent.$parent.$parent.$index,hour)">Reservar</md-button>							
+						</div>
+				</div>
+							
+				
+				<div id="nombreSala" layout-gt-sm="row">Sala {{sala.id}}</div>
+			</div>
+				<div  id="horas">	
+					<div ng-repeat="hour in vm.hours" layout-gt-sm="row">{{hour}}:00</div>
+				</div>	
+		</md-content>
 	</div>
 </div>
+
+			
