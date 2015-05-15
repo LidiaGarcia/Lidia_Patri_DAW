@@ -140,18 +140,6 @@
 						<div layout-gt-sm="row" id="salaNotReser">Vacía</div>
 					</div>		
 				</div>
-						
-					
-					<div id="salaReser"  ng-if="vm.checkTotal[$parent.$index][$index]" layout-gt-sm="row" flex layout-align="center center">				
-						<div layout-gt-sm="row" ng-if="!vm.islog[1]" flex>
-								Reservada
-						</div>			
-					</div>
-					<div  id="salaNotReser" ng-if="!vm.checkTotal[$parent.$index][$index]" layout-gt-sm="row" layout-align="center center">
-						<div  layout-gt-sm="row">
-							<md-button type="button"  ng-if="vm.islog[0]" ng-hide="vm.islog[1]" ng-click="vm.reservar($parent.$parent.$parent.$index,hour)">Reservar</md-button>							
-						</div>
-				</div>
 							
 				
 				<div id="nombreSala" layout-gt-sm="row">Portátil {{portatil.id}}</div>
