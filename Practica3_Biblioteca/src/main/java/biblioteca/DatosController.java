@@ -82,15 +82,15 @@ public class DatosController implements CommandLineRunner {
 		Portatil por5 = new Portatil("bueno", "hp 15 500GB");
 		portatiles_repo.save(por5);
 		
-		Curso c1 = new Curso ("Curso 1","Curso sobre el tabaco", LocalDate.of(2015, 5, 15), LocalTime.of(12,00),120,100);
+		Curso c1 = new Curso ("Malos hábitos","Curso sobre el tabaco, las drogas y el alcohol", LocalDate.of(2015, 5, 15), LocalTime.of(12,30),120,100);
 		cursos_repo.save(c1);
-		Curso c2 = new Curso ("Curso 2","Curso sobre el presatamo automatico", LocalDate.of(2015, 5, 21), LocalTime.of(10,00),60,40);
+		Curso c2 = new Curso ("Préstamo automático","Curso sobre el présatamo automático de libros de la biblioteca.", LocalDate.of(2015, 5, 21), LocalTime.of(10,10),60,40);
 		cursos_repo.save(c2);
-		Curso c3 = new Curso ("Curso 3","Curso sobre ordenadores", LocalDate.of(2015, 5, 19), LocalTime.of(16,00),30,30);
+		Curso c3 = new Curso ("Uso básico del PC","Curso sobre herramientas básicas de ordenadores", LocalDate.of(2015, 5, 19), LocalTime.of(16,15),30,30);
 		cursos_repo.save(c3);
-		Curso c4 = new Curso ("Curso 4","Curso sobre el reciclaje", LocalDate.of(2015, 5, 15), LocalTime.of(18,00),50,120);
+		Curso c4 = new Curso ("¡Recíclate!","Curso sobre la importancia de reciclar", LocalDate.of(2015, 5, 15), LocalTime.of(18,30),50,120);
 		cursos_repo.save(c4);
-		Curso c5 = new Curso ("Curso 5","Curso sobre la pintura", LocalDate.of(2015, 5, 20), LocalTime.of(9,00),60,90);
+		Curso c5 = new Curso ("Técnicas de estudio","Técnica pomodoro, esquemas, resúmenes...", LocalDate.of(2015, 5, 15), LocalTime.of(9,45),60,90);
 		cursos_repo.save(c5);
 		
 		ReservaSala rs1 = new ReservaSala(s1,personas_repo.findById(3), LocalDate.of(2015, 5, 15), LocalTime.of(14,00),false);
