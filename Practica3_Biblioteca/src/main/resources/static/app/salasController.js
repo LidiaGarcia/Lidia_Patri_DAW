@@ -69,7 +69,6 @@ function SalasController(globalService, $location, $timeout) {
 			vm.persona=globalService.persona;
 			vm.allReservas=globalService.allReservas;
 			vm.isReser();
-			console.log(vm.checkTotal);
 			vm.carga=true;}
 		,2050);
 		
